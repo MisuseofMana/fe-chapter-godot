@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="fe-chapter-godot"
+run/main_scene="res://cards/abstract_card_track/abstract_card_track.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=192
+window/size/viewport_height=160
+window/dpi/allow_hidpi=false
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
