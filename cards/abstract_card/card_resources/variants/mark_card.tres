@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=5 format=3 uid="uid://bcq1b3hapiwer"]
+
+[ext_resource type="Texture2D" uid="uid://dk34o0kxqbbjw" path="res://assets/cards/card_strength/strength4.png" id="1_bkbrt"]
+[ext_resource type="Texture2D" uid="uid://n0afdi5g4623" path="res://assets/cards/card_texture/card_texture8.png" id="2_2ulva"]
+[ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="3_qbrqu"]
+[ext_resource type="Texture2D" uid="uid://d0aod8n7n7mme" path="res://assets/cards/suits/cross.png" id="4_6hd8q"]
+
+[resource]
+script = ExtResource("3_qbrqu")
+card_name = &"Mark"
+card_type = 4
+card_texture = ExtResource("2_2ulva")
+suit_texture = ExtResource("4_6hd8q")
+card_bar_texture = ExtResource("1_bkbrt")
+destroy_effects = Array[Resource]([])
+card_cost = 0
+movement_value = 0
+power_value = 0
+card_description = ""
+metadata/_custom_type_script = "uid://dpjghe1cqo76r"

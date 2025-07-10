@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=5 format=3 uid="uid://dibmsy8auca5t"]
+
+[ext_resource type="Texture2D" uid="uid://bm2s5hurijmwm" path="res://assets/cards/card_strength/strength3.png" id="1_eb15f"]
+[ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_yvp75"]
+[ext_resource type="Texture2D" uid="uid://cgmvr5tf580va" path="res://assets/cards/card_texture/card_texture2.png" id="2_xt7kk"]
+[ext_resource type="Texture2D" uid="uid://fjtydnp7cw3" path="res://assets/cards/suits/spade.png" id="4_xika0"]
+
+[resource]
+script = ExtResource("1_yvp75")
+card_name = &"Defense"
+card_type = 3
+card_texture = ExtResource("2_xt7kk")
+suit_texture = ExtResource("4_xika0")
+card_bar_texture = ExtResource("1_eb15f")
+destroy_effects = Array[Resource]([null, null, null])
+card_cost = 2
+movement_value = 0
+power_value = 0
+card_description = ""

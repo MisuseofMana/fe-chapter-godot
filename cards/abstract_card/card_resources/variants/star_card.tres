@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=2 format=3 uid="uid://cgm2mf3bqq7xd"]
+
+[ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_ftm74"]
+
+[resource]
+script = ExtResource("1_ftm74")
+card_name = &"Star"
+card_type = 6
+destroy_effects = Array[Resource]([])
+card_cost = 0
+movement_value = 0
+power_value = 0
+card_description = ""
+metadata/_custom_type_script = "uid://dpjghe1cqo76r"
