@@ -1,20 +1,11 @@
-[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=5 format=3 uid="uid://2plxoe3qb8l6"]
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=3 format=3 uid="uid://2plxoe3qb8l6"]
 
-[ext_resource type="Texture2D" uid="uid://dk34o0kxqbbjw" path="res://assets/cards/card_strength/strength4.png" id="1_ixssw"]
-[ext_resource type="Texture2D" uid="uid://d0yueoc6f4a7q" path="res://assets/cards/card_texture/card_texture4.png" id="2_s6u58"]
 [ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="3_3y4fi"]
 [ext_resource type="Texture2D" uid="uid://cjmlabguykcml" path="res://assets/cards/suits/wave.png" id="4_mxbmr"]
 
 [resource]
 script = ExtResource("3_3y4fi")
-card_name = &"Wave"
 card_type = 5
-card_texture = ExtResource("2_s6u58")
 suit_texture = ExtResource("4_mxbmr")
-card_bar_texture = ExtResource("1_ixssw")
-destroy_effects = Array[Resource]([])
-card_cost = 0
-movement_value = 0
-power_value = 0
-card_description = ""
+power = 7
 metadata/_custom_type_script = "uid://dpjghe1cqo76r"

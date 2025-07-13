@@ -25,6 +25,11 @@ window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 window/dpi/allow_hidpi=false
 
+[global_group]
+
+player_cards="For getting all the player card nodes."
+monster_cards="for all the monster cards"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
