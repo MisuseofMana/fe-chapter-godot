@@ -3,6 +3,7 @@ class_name CardContainer
 
 @export_enum('monster_group', 'player_group') var group_to_assign : String
 @export var deck : Array[AbstractCardDetails]
+@export var slots : Node2D
 
 const CARD_BASE = preload("res://cards/abstract_card/card_base.tscn")
 
