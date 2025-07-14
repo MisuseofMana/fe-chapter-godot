@@ -1,67 +1,19 @@
-[gd_scene load_steps=22 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=7 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://b8li47pawi7q3" path="res://scenes/world.gd" id="1_os6r6"]
-[ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_itdnq"]
-[ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_h5ji5"]
-[ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="3_pm21f"]
-[ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="5_o8fc1"]
-[ext_resource type="Resource" uid="uid://cgm2mf3bqq7xd" path="res://cards/abstract_card/card_resources/variants/star_card.tres" id="6_4mrxx"]
+[ext_resource type="PackedScene" uid="uid://fty5ct3prfsh" path="res://cards/card_gui.tscn" id="2_jhx03"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="6_rgjgb"]
-[ext_resource type="Resource" uid="uid://2plxoe3qb8l6" path="res://cards/abstract_card/card_resources/variants/wave_card.tres" id="7_dss4m"]
-[ext_resource type="Resource" uid="uid://0w3655o87wmu" path="res://cards/abstract_card/card_resources/variants/heart_card.tres" id="7_e3hyu"]
 [ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="7_gmfoo"]
-[ext_resource type="Resource" uid="uid://dj0ryccqxqx4d" path="res://cards/abstract_card/card_resources/variants/drop_card.tres" id="7_jhx03"]
-[ext_resource type="Resource" uid="uid://cfmnuy2f7o3w2" path="res://cards/abstract_card/card_resources/variants/diamond_card.tres" id="8_jhx03"]
-[ext_resource type="Resource" uid="uid://bcq1b3hapiwer" path="res://cards/abstract_card/card_resources/variants/mark_card.tres" id="8_xo05s"]
-[ext_resource type="Resource" uid="uid://dibmsy8auca5t" path="res://cards/abstract_card/card_resources/variants/spade_card.tres" id="9_e3hyu"]
-[ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="13_7t5mc"]
-[ext_resource type="Resource" uid="uid://dokcxi0d0gij" path="res://cards/abstract_card/card_resources/variants/club_card.tres" id="14_lakw3"]
 [ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="14_o8fc1"]
-
-[sub_resource type="Animation" id="Animation_2lf6f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardGui:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(16, 176)]
-}
-
-[sub_resource type="Animation" id="Animation_pm21f"]
-resource_name = "show_drawer"
-length = 0.5
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardGui:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 2),
-"update": 0,
-"values": [Vector2(16, 176), Vector2(16, 144)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7iits"]
-_data = {
-&"RESET": SubResource("Animation_2lf6f"),
-&"slide": SubResource("Animation_pm21f")
-}
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_os6r6")
 
+[node name="CardGui" parent="." instance=ExtResource("2_jhx03")]
+
 [node name="Level" type="Node2D" parent="."]
-position = Vector2(8, 0)
+position = Vector2(24, -16)
 scale = Vector2(0.5, 0.5)
 
 [node name="Ground" type="TileMapLayer" parent="Level"]
@@ -71,103 +23,53 @@ tile_set = ExtResource("1_m33p3")
 [node name="Walls" type="TileMapLayer" parent="Level"]
 tile_map_data = PackedByteArray("AAACAAEAAwABAAAAAAAEAAAAAwABAAAAAAADAAAAAwAAAAAAAAADAAEAAwABAAAAAAAFAAAAAwABABAAAAACAAMAAwABAAAAAAADAAMAAwABAAAAAAAEAAMAAwABAAAAAAAFAAMAAwABAAAAAAAGAAAAAwABAAAAAAAGAAMAAwABAAAAAAAHAAMAAwABAAAAAAAIAAEAAwABAAAAAAAHAAAAAwAAAAAAAAAHAAEAAwABAAAAAAAHAAIAAwAPABAAAAAGAAEAAwACABEAAAAEAAEAAwAEABEAAAD//wMAAwAAAAAAAAD//wQAAwAAAAAAAAD//wUAAwAAAAAAAAD//wYAAwAAAAAAAAAAAAYAAwABAAAAAAABAAYAAwABAAAAAAACAAYAAwABAAAAAAADAAYAAwAAAAAAAAADAAcAAwAAAAAAAAAFAAYAAwAAAAAAAAAFAAcAAwAAAAAAAAADAAgAAwABAAAAAAAEAAgAAwABAAAAAAAFAAgAAwABAAAAAAAGAAYAAwABAAAAAAAHAAYAAwABAAAAAAAIAAYAAwABAAAAAAAIAAMAAwABAAAAAAAJAAMAAwAAAAAAAAAJAAQAAwAAAAAAAAAJAAUAAwAAAAAAAAAJAAYAAwAAAAAAAAAAAAEAAwABAAAAAAAAAPz/AwABAAAAAAABAPz/AwABAAAAAAACAPz/AwABAAAAAAADAPz/AwABAAAAAAAEAPz/AwABAAAAAAAFAPz/AwABAAAAAAAGAP//AwAAAAAAAAAGAP7/AwAAAAAAAAAGAP3/AwAAAAAAAAAGAPz/AwAAAAAAAAD///z/AwAAAAAAAAD///3/AwAAAAAAAAD///7/AwAAAAAAAAD/////AwAAAAAAAAD//wAAAwAAAAAAAAD//wEAAwABAAAAAAD+/wEAAwABAAAAAAD+/wMAAwABAAAAAAD9/wEAAwABAAAAAAD8/wEAAwABAAAAAAD7/wEAAwABAAAAAAD9/wMAAwABAAAAAAD8/wMAAwABAAAAAAD7/wMAAwAAAAAAAAD7/wQAAwAAAAAAAAD7/wUAAwABAAAAAAD7/wcAAwABAAAAAAD8/wcAAwABAAAAAAD9/wcAAwABAAAAAAD+/wcAAwABAAAAAAD//wcAAwABAAAAAAABAAEAAwABABAAAAABAAMAAwABABAAAAABAP3/AwAAABEAAAAIAAQAAwAAABEAAAD9/wUAAwAOABAAAAD+/wQAAwAGABEAAAD9/wQAAwAGABEAAAD8/wQAAwAFABEAAAD5/wIAAwAAAAAAAAD5/wEAAwAAAAAAAAD5/wMAAwAAAAAAAAD5/wQAAwAAAAAAAAD5/wUAAwAAAAAAAAD5/wYAAwAAAAAAAAD5/wcAAwABAAAAAAD6/wcAAwABAAAAAAD3//3/AwAIABAAAAD2//z/AwAAAAAAAAD2//3/AwAAAAAAAAD2//7/AwAAAAAAAAD2////AwAAAAAAAAD2/wAAAwAAAAAAAAD2/wEAAwABAAAAAAD3/wEAAwABAAAAAAD4/wEAAwABAAAAAAD3//z/AwABAAAAAAD4//z/AwABAAAAAAD5//z/AwABAAAAAAD6//z/AwABAAAAAAD7//z/AwABAAAAAAD8//z/AwAAAAAAAAD8//3/AwAAAAAAAAD8//7/AwAAAAAAAAD8////AwAAAAAAAAD8/wAAAwAAAAAAAAD+/wUAAwABABQAAAD8/wYAAwABABYAAAD9/wYAAwAAABYAAAD7//3/AwAAABYAAAD6//7/AwAAABUAAAD7//7/AwAAABIAAAAAAP3/AwAAABIAAAACAP7/AwAAABQAAAD+/wYAAwABABcAAAAEAAcAAwADABcAAAAHAAQAAwAEABcAAAAHAP3/AwADABgAAAAHAP7/AwADABkAAAAFAPr/AwADABgAAAAFAPv/AwADABkAAAACAPn/AwADABgAAAACAPr/AwADABkAAAD+//v/AwADABgAAAD+//z/AwADABkAAAD9//3/AwACABkAAAD+//7/AwABABkAAAD9//7/AwAAABkAAAD1//3/AwAAABkAAAD0////AwABABkAAAD3/wIAAwABABkAAAD7/wgAAwABABkAAAAAAAcAAwABABkAAAAIAAcAAwABABkAAAAGAAcAAwACABkAAAAIAAAAAwACABkAAAD4//v/AwADABgAAAD5//r/AwADABgAAAD5//v/AwADABkAAAD7//r/AwAGABMAAAD0/wIAAwACABMAAAD4/wIAAwABABMAAAAHAPv/AwAAABMAAAD4/wMAAwABABIAAAD9/wAAAwABABIAAAADAAkAAwABABIAAAD3/wAAAwACABEAAAAAAAMAAwABAAAAAAAJAAEAAwABAAAAAAAKAAEAAwABAAAAAAALAAEAAwABAAAAAAAMAAEAAwABAAAAAAANAAEAAwAAAAAAAAANAAIAAwAAAAAAAAANAAMAAwAAAAAAAAANAAQAAwAAAAAAAAANAAUAAwAAAAAAAAANAAYAAwAAAAAAAAAJAAcAAwABAAAAAAAKAAcAAwABAAAAAAALAAcAAwABAAAAAAAMAAcAAwABAAAAAAANAAcAAwABAAAAAAA=")
 tile_set = ExtResource("1_m33p3")
+metadata/_edit_group_ = true
 
-[node name="CardGui" type="Node2D" parent="." node_paths=PackedStringArray("anims")]
-position = Vector2(16, 176)
-script = ExtResource("3_pm21f")
-anims = NodePath("CardGuiAnimations")
+[node name="MonsterContainer" type="Node2D" parent="Level"]
+position = Vector2(-16, 0)
+scale = Vector2(2, 2)
 
-[node name="Gradient" type="Sprite2D" parent="CardGui"]
-position = Vector2(80, 0)
-scale = Vector2(8, 1)
-texture = ExtResource("2_itdnq")
-region_enabled = true
-region_rect = Rect2(0, 0, 24, 32)
-
-[node name="MonsterSlots" type="Node2D" parent="CardGui"]
-
-[node name="Slot6" type="Sprite2D" parent="CardGui/MonsterSlots"]
-position = Vector2(92, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="Slot7" type="Sprite2D" parent="CardGui/MonsterSlots"]
-position = Vector2(112, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="Slot8" type="Sprite2D" parent="CardGui/MonsterSlots"]
-position = Vector2(132, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="Slot9" type="Sprite2D" parent="CardGui/MonsterSlots"]
-position = Vector2(152, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="MonsterCards" parent="CardGui" node_paths=PackedStringArray("slots") instance=ExtResource("5_o8fc1")]
-position = Vector2(-16, -144)
-group_to_assign = "monster_group"
-deck = Array[ExtResource("13_7t5mc")]([ExtResource("14_lakw3"), ExtResource("8_jhx03"), ExtResource("7_e3hyu"), ExtResource("7_dss4m"), ExtResource("8_xo05s"), ExtResource("7_jhx03"), ExtResource("6_4mrxx")])
-slots = NodePath("../MonsterSlots")
-
-[node name="PlayerSlots" type="Node2D" parent="CardGui"]
-
-[node name="Slot" type="Sprite2D" parent="CardGui/PlayerSlots"]
-position = Vector2(8, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="Slot2" type="Sprite2D" parent="CardGui/PlayerSlots"]
-position = Vector2(28, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="Slot3" type="Sprite2D" parent="CardGui/PlayerSlots"]
-position = Vector2(48, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="Slot4" type="Sprite2D" parent="CardGui/PlayerSlots"]
-position = Vector2(68, 0)
-texture = ExtResource("3_h5ji5")
-
-[node name="PlayerCards" parent="CardGui" node_paths=PackedStringArray("slots") instance=ExtResource("5_o8fc1")]
-position = Vector2(-16, -144)
-group_to_assign = "player_group"
-deck = Array[ExtResource("13_7t5mc")]([ExtResource("14_lakw3"), ExtResource("8_jhx03"), ExtResource("7_e3hyu"), ExtResource("9_e3hyu")])
-slots = NodePath("../PlayerSlots")
-
-[node name="CardGuiAnimations" type="AnimationPlayer" parent="CardGui"]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_7iits")
-}
-
-[node name="PlayerContainer" type="Node2D" parent="."]
-script = ExtResource("14_o8fc1")
-deck = Array[ExtResource("13_7t5mc")]([ExtResource("14_lakw3"), ExtResource("8_xo05s"), ExtResource("6_4mrxx"), ExtResource("7_dss4m"), ExtResource("8_xo05s"), ExtResource("8_jhx03")])
-
-[node name="PlayerSprite" type="Sprite2D" parent="PlayerContainer"]
-position = Vector2(96, 72)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_rgjgb")
-region_enabled = true
-region_rect = Rect2(32, 32, 32, 32)
-
-[node name="MonsterContainer" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="MonsterContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/MonsterContainer"]
 position = Vector2(16, 40)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_gmfoo")
 region_enabled = true
 region_rect = Rect2(160, 192, 32, 32)
 
-[node name="Sprite2D4" type="Sprite2D" parent="MonsterContainer"]
+[node name="Sprite2D4" type="Sprite2D" parent="Level/MonsterContainer"]
 position = Vector2(144, 40)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_gmfoo")
 region_enabled = true
 region_rect = Rect2(0, 320, 32, 32)
 
-[node name="Sprite2D2" type="Sprite2D" parent="MonsterContainer"]
+[node name="Sprite2D2" type="Sprite2D" parent="Level/MonsterContainer"]
 position = Vector2(96, 24)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_gmfoo")
 region_enabled = true
 region_rect = Rect2(128, 160, 32, 32)
+
+[node name="PlayerContainer" type="Node2D" parent="."]
+position = Vector2(96, 72)
+script = ExtResource("14_o8fc1")
+
+[node name="PlayerSprite" type="Sprite2D" parent="PlayerContainer"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_rgjgb")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="Down" type="RayCast2D" parent="PlayerContainer"]
+target_position = Vector2(0, 12)
+
+[node name="Right" type="RayCast2D" parent="PlayerContainer"]
+target_position = Vector2(12, 0)
+
+[node name="Up" type="RayCast2D" parent="PlayerContainer"]
+target_position = Vector2(0, -12)
+
+[node name="Left" type="RayCast2D" parent="PlayerContainer"]
+target_position = Vector2(-12, 0)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerContainer"]
