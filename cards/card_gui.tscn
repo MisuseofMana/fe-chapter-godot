@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://fty5ct3prfsh"]
+[gd_scene load_steps=10 format=3 uid="uid://fty5ct3prfsh"]
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
+[ext_resource type="PackedScene" uid="uid://bb7gepmf8q7sj" path="res://cards/abstract_card/card_base.tscn" id="5_5r66m"]
+[ext_resource type="Resource" uid="uid://dokcxi0d0gij" path="res://cards/abstract_card/card_resources/variants/club_card.tres" id="6_dj1s0"]
 
 [sub_resource type="Animation" id="Animation_2lf6f"]
 length = 0.001
@@ -105,6 +107,10 @@ position = Vector2(-14, -288)
 scale = Vector2(0.125, 1)
 group_to_assign = "player_group"
 slots = NodePath("../PlayerSlots")
+
+[node name="CardBase" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
+position = Vector2(40, 288)
+card = ExtResource("6_dj1s0")
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
