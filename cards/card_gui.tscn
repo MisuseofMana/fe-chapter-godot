@@ -1,18 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://fty5ct3prfsh"]
+[gd_scene load_steps=8 format=3 uid="uid://fty5ct3prfsh"]
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
-[ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="5_n00qt"]
-[ext_resource type="Resource" uid="uid://dokcxi0d0gij" path="res://cards/abstract_card/card_resources/variants/club_card.tres" id="6_i5yx8"]
-[ext_resource type="Resource" uid="uid://cfmnuy2f7o3w2" path="res://cards/abstract_card/card_resources/variants/diamond_card.tres" id="7_lujev"]
-[ext_resource type="Resource" uid="uid://0w3655o87wmu" path="res://cards/abstract_card/card_resources/variants/heart_card.tres" id="8_056rj"]
-[ext_resource type="Resource" uid="uid://2plxoe3qb8l6" path="res://cards/abstract_card/card_resources/variants/wave_card.tres" id="9_y5ldi"]
-[ext_resource type="Resource" uid="uid://bcq1b3hapiwer" path="res://cards/abstract_card/card_resources/variants/mark_card.tres" id="10_qx4fp"]
-[ext_resource type="Resource" uid="uid://dj0ryccqxqx4d" path="res://cards/abstract_card/card_resources/variants/drop_card.tres" id="11_5a2y6"]
-[ext_resource type="Resource" uid="uid://cgm2mf3bqq7xd" path="res://cards/abstract_card/card_resources/variants/star_card.tres" id="12_sawhv"]
-[ext_resource type="Resource" uid="uid://dibmsy8auca5t" path="res://cards/abstract_card/card_resources/variants/spade_card.tres" id="13_lcbok"]
 
 [sub_resource type="Animation" id="Animation_2lf6f"]
 length = 0.001
@@ -87,7 +78,6 @@ texture = ExtResource("3_c5pq0")
 position = Vector2(-12, -144)
 scale = Vector2(0.125, 1)
 group_to_assign = "monster_group"
-deck = Array[ExtResource("5_n00qt")]([ExtResource("6_i5yx8"), ExtResource("7_lujev"), ExtResource("8_056rj"), ExtResource("9_y5ldi"), ExtResource("10_qx4fp"), ExtResource("11_5a2y6"), ExtResource("12_sawhv")])
 slots = NodePath("../MonsterSlots")
 
 [node name="PlayerSlots" type="Node2D" parent="Gradient"]
@@ -114,7 +104,6 @@ texture = ExtResource("3_c5pq0")
 position = Vector2(-14, -288)
 scale = Vector2(0.125, 1)
 group_to_assign = "player_group"
-deck = Array[ExtResource("5_n00qt")]([ExtResource("6_i5yx8"), ExtResource("7_lujev"), ExtResource("8_056rj"), ExtResource("13_lcbok")])
 slots = NodePath("../PlayerSlots")
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]

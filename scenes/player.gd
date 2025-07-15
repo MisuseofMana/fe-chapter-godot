@@ -30,13 +30,14 @@ func invalid_movement(relative_pos: Vector2):
 
 func valid_movement(relative_pos: Vector2):
 	lock_movement = true
-	var pos = player.position
 	var lvl_tween : Tween = create_tween()
 	lvl_tween.tween_property(self, "position", position + relative_pos, 0.2)
 	lvl_tween.tween_callback(move_all_monsters)
 	
 func _input(event: InputEvent) -> void:
-	if lock_movement:
+	const actions = ['W', 'A', 'S', 'D']
+	var is_valid_input = actions.has(event.as_text())
+	if lock_movement or not is_valid_input:
 		return
 		
 	var movement_vector : Vector2
