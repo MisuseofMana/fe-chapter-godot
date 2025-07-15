@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=8 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
-[ext_resource type="Script" uid="uid://b8li47pawi7q3" path="res://scenes/world.gd" id="1_os6r6"]
 [ext_resource type="PackedScene" uid="uid://fty5ct3prfsh" path="res://cards/card_gui.tscn" id="2_jhx03"]
 [ext_resource type="Script" uid="uid://b60nknttp50u5" path="res://scenes/monster_container.gd" id="4_i7141"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="5_i7141"]
@@ -11,11 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
 size = Vector2(16, 16)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player_spawn", "player_container", "monster_container")]
-script = ExtResource("1_os6r6")
-player_spawn = NodePath("Level/SpawnPoint")
-player_container = NodePath("PlayerContainer")
-monster_container = NodePath("Level/MonsterContainer")
+[node name="World" type="Node2D"]
 
 [node name="CardGui" parent="." instance=ExtResource("2_jhx03")]
 
