@@ -3,17 +3,22 @@ class_name PlayerContainer
 
 @onready var player: Sprite2D = $PlayerSprite
 
-@onready var down: RayCast2D = $Down
-@onready var right: RayCast2D = $Right
-@onready var up: RayCast2D = $Up
-@onready var left: RayCast2D = $Left
+@onready var down: RayCast2D = $Area2D/Down
+@onready var right: RayCast2D = $Area2D/Right
+@onready var up: RayCast2D = $Area2D/Up
+@onready var left: RayCast2D = $Area2D/Left
 
 var move_distance : int = 16
 var bounce_distance : int = 4
 var lock_movement : bool = false
 
+signal player_just_moved
+
 func unlock_movement():
 	lock_movement = false
+	
+func move_all_monsters():
+	player_just_moved.emit()
 
 func invalid_movement(relative_pos: Vector2):
 	lock_movement = true
@@ -21,14 +26,14 @@ func invalid_movement(relative_pos: Vector2):
 	var lvl_tween : Tween = create_tween()
 	lvl_tween.tween_property(self, "position", position + relative_pos, 0.1)
 	lvl_tween.tween_property(self, "position", origin_pos, 0.1)
-	lvl_tween.tween_callback(unlock_movement)
+	lvl_tween.tween_callback(move_all_monsters)
 
 func valid_movement(relative_pos: Vector2):
 	lock_movement = true
 	var pos = player.position
 	var lvl_tween : Tween = create_tween()
 	lvl_tween.tween_property(self, "position", position + relative_pos, 0.2)
-	lvl_tween.tween_callback(unlock_movement)
+	lvl_tween.tween_callback(move_all_monsters)
 	
 func _input(event: InputEvent) -> void:
 	if lock_movement:

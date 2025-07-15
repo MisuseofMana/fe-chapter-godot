@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=9 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://b8li47pawi7q3" path="res://scenes/world.gd" id="1_os6r6"]
 [ext_resource type="PackedScene" uid="uid://fty5ct3prfsh" path="res://cards/card_gui.tscn" id="2_jhx03"]
+[ext_resource type="Script" uid="uid://b60nknttp50u5" path="res://scenes/monster_container.gd" id="4_i7141"]
+[ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="5_i7141"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="6_rgjgb"]
-[ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="7_gmfoo"]
 [ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="14_o8fc1"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player_spawn", "player_container")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
+size = Vector2(16, 16)
+
+[node name="World" type="Node2D" node_paths=PackedStringArray("player_spawn", "player_container", "monster_container")]
 script = ExtResource("1_os6r6")
 player_spawn = NodePath("Level/SpawnPoint")
 player_container = NodePath("PlayerContainer")
+monster_container = NodePath("Level/MonsterContainer")
 
 [node name="CardGui" parent="." instance=ExtResource("2_jhx03")]
 
@@ -34,27 +39,10 @@ tile_set = ExtResource("1_m33p3")
 [node name="MonsterContainer" type="Node2D" parent="Level"]
 position = Vector2(-48, 32)
 scale = Vector2(2, 2)
+script = ExtResource("4_i7141")
 
-[node name="Sprite2D" type="Sprite2D" parent="Level/MonsterContainer"]
+[node name="MonsterSprite" parent="Level/MonsterContainer" instance=ExtResource("5_i7141")]
 position = Vector2(16, 24)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_gmfoo")
-region_enabled = true
-region_rect = Rect2(160, 192, 32, 32)
-
-[node name="Sprite2D4" type="Sprite2D" parent="Level/MonsterContainer"]
-position = Vector2(63, -9)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_gmfoo")
-region_enabled = true
-region_rect = Rect2(0, 320, 32, 32)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Level/MonsterContainer"]
-position = Vector2(112, 8)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_gmfoo")
-region_enabled = true
-region_rect = Rect2(128, 160, 32, 32)
 
 [node name="PlayerContainer" type="Node2D" parent="."]
 position = Vector2(-120, -40)
@@ -66,16 +54,24 @@ texture = ExtResource("6_rgjgb")
 region_enabled = true
 region_rect = Rect2(32, 32, 32, 32)
 
-[node name="Down" type="RayCast2D" parent="PlayerContainer"]
+[node name="Area2D" type="Area2D" parent="PlayerContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerContainer/Area2D"]
+shape = SubResource("RectangleShape2D_i7141")
+
+[node name="Down" type="RayCast2D" parent="PlayerContainer/Area2D"]
 target_position = Vector2(0, 12)
 
-[node name="Right" type="RayCast2D" parent="PlayerContainer"]
+[node name="Right" type="RayCast2D" parent="PlayerContainer/Area2D"]
 target_position = Vector2(12, 0)
 
-[node name="Up" type="RayCast2D" parent="PlayerContainer"]
+[node name="Up" type="RayCast2D" parent="PlayerContainer/Area2D"]
 target_position = Vector2(0, -12)
 
-[node name="Left" type="RayCast2D" parent="PlayerContainer"]
+[node name="Left" type="RayCast2D" parent="PlayerContainer/Area2D"]
 target_position = Vector2(-12, 0)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerContainer"]
+
+[connection signal="monsters_finished_moving" from="Level/MonsterContainer" to="PlayerContainer" method="unlock_movement"]
+[connection signal="player_just_moved" from="PlayerContainer" to="Level/MonsterContainer" method="handle_monster_movement"]
