@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=4 uid="uid://cs4mx0mhfvbcr"]
+[gd_scene load_steps=3 format=4 uid="uid://cs4mx0mhfvbcr"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_rs0w3"]
+
+[sub_resource type="TileSet" id="TileSet_rs0w3"]
 
 [node name="Shop" type="Node2D"]
 
@@ -17,3 +19,7 @@ tile_map_data = PackedByteArray("AABXABgAAwAQABAAAABTABgAAwAQABAAAABQABcAAwABABQ
 tile_set = ExtResource("1_rs0w3")
 
 [node name="Shop_npc" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_rs0w3")
+
+[node name="Shop_items" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_rs0w3")
