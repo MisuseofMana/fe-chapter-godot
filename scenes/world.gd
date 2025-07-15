@@ -1,8 +1,8 @@
 @tool
 extends Node2D
 
-@export_tool_button('Trigger Track')
-var track_callable = trigger_track()
-	
-func trigger_track():
-	pass
+@export var player_spawn : Marker2D
+@export var player_container : PlayerContainer
+
+func _ready():
+	player_container.position = player_spawn.global_position
