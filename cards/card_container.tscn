@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vt3gq8bkoh3b"]
+
+[ext_resource type="Script" uid="uid://clge4oc15u16c" path="res://cards/card_container.gd" id="1_vb500"]
+
+[node name="CardContainer" type="Node2D"]
+script = ExtResource("1_vb500")
