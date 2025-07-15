@@ -1,13 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://bb7gepmf8q7sj"]
 
-[ext_resource type="Script" uid="uid://cwq7md6smlmj0" path="res://cards/abstract_card/card_base.gd" id="1_7fqoo"]
-[ext_resource type="Texture2D" uid="uid://tjvjnk1pwnlx" path="res://assets/cards/card_texture/card_textures.png" id="1_bdmmp"]
+[ext_resource type="Script" path="res://cards/abstract_card/card_base.gd" id="1_7fqoo"]
+[ext_resource type="Texture2D" uid="uid://bpdg2e184l73l" path="res://assets/cards/card_texture/card_texture1.png" id="1_ddgh8"]
 [ext_resource type="Texture2D" uid="uid://cia7inarpynk5" path="res://assets/cards/card_strength/strength1.png" id="3_ikotl"]
 [ext_resource type="Texture2D" uid="uid://b62o6xgke0wvr" path="res://assets/cards/suits/club.png" id="3_t3dud"]
 
 [node name="CardBase" type="Sprite2D"]
-texture = ExtResource("1_bdmmp")
-hframes = 8
+texture = ExtResource("1_ddgh8")
 region_rect = Rect2(0, 0, 96, 144)
 script = ExtResource("1_7fqoo")
 

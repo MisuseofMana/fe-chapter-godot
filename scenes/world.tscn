@@ -1,26 +1,14 @@
-[gd_scene load_steps=19 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=8 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
-[ext_resource type="Script" uid="uid://b8li47pawi7q3" path="res://scenes/world.gd" id="1_os6r6"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_itdnq"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_h5ji5"]
 [ext_resource type="PackedScene" uid="uid://bb7gepmf8q7sj" path="res://cards/abstract_card/card_base.tscn" id="4_80a6n"]
-[ext_resource type="Texture2D" uid="uid://b3fde5g7g7mke" path="res://assets/cards/card_texture/card_texture6.png" id="5_fc4dr"]
-[ext_resource type="Resource" uid="uid://0w3655o87wmu" path="res://cards/abstract_card/card_resources/variants/health_card.tres" id="5_o4qmv"]
 [ext_resource type="Resource" uid="uid://dokcxi0d0gij" path="res://cards/abstract_card/card_resources/variants/attack_card.tres" id="5_tf7yf"]
-[ext_resource type="Texture2D" uid="uid://d0yueoc6f4a7q" path="res://assets/cards/card_texture/card_texture4.png" id="6_7t5mc"]
-[ext_resource type="Texture2D" uid="uid://cgmvr5tf580va" path="res://assets/cards/card_texture/card_texture2.png" id="6_d0im5"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="6_rgjgb"]
-[ext_resource type="Resource" uid="uid://dibmsy8auca5t" path="res://cards/abstract_card/card_resources/variants/defense_card.tres" id="6_yuwje"]
-[ext_resource type="Resource" uid="uid://2plxoe3qb8l6" path="res://cards/abstract_card/card_resources/variants/wave_card.tres" id="7_dss4m"]
 [ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="7_gmfoo"]
-[ext_resource type="Resource" uid="uid://bcq1b3hapiwer" path="res://cards/abstract_card/card_resources/variants/mark_card.tres" id="8_xo05s"]
-[ext_resource type="Resource" uid="uid://cfmnuy2f7o3w2" path="res://cards/abstract_card/card_resources/variants/treasure_card.tres" id="10_e8gpj"]
-[ext_resource type="Texture2D" uid="uid://n0afdi5g4623" path="res://assets/cards/card_texture/card_texture8.png" id="11_lghfo"]
-[ext_resource type="Texture2D" uid="uid://bpdg2e184l73l" path="res://assets/cards/card_texture/card_texture1.png" id="14_lakw3"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_os6r6")
 
 [node name="Level" type="Node2D" parent="."]
 position = Vector2(8, 0)
@@ -61,6 +49,10 @@ texture = ExtResource("3_h5ji5")
 position = Vector2(60, 0)
 texture = ExtResource("3_h5ji5")
 
+[node name="Slot5" type="Sprite2D" parent="CardSlots"]
+position = Vector2(80, 0)
+texture = ExtResource("3_h5ji5")
+
 [node name="Slot6" type="Sprite2D" parent="CardSlots"]
 position = Vector2(100, 0)
 texture = ExtResource("3_h5ji5")
@@ -81,43 +73,19 @@ texture = ExtResource("3_h5ji5")
 
 [node name="CardBase2" parent="Cards" instance=ExtResource("4_80a6n")]
 position = Vector2(36, 144)
-texture = ExtResource("6_7t5mc")
-card = ExtResource("7_dss4m")
-
-[node name="CardBase6" parent="Cards" instance=ExtResource("4_80a6n")]
-position = Vector2(16, 144)
-texture = ExtResource("11_lghfo")
-card = ExtResource("8_xo05s")
-
-[node name="CardBase7" parent="Cards" instance=ExtResource("4_80a6n")]
-position = Vector2(76, 144)
-texture = ExtResource("5_fc4dr")
-card = ExtResource("5_o4qmv")
+card = ExtResource("5_tf7yf")
 
 [node name="CardBase3" parent="Cards" instance=ExtResource("4_80a6n")]
 position = Vector2(136, 144)
-texture = ExtResource("6_d0im5")
-card = ExtResource("6_yuwje")
-
-[node name="CardBase8" parent="Cards" instance=ExtResource("4_80a6n")]
-position = Vector2(157, 144)
-texture = ExtResource("6_d0im5")
-card = ExtResource("6_yuwje")
-
-[node name="CardBase9" parent="Cards" instance=ExtResource("4_80a6n")]
-position = Vector2(176, 144)
-texture = ExtResource("6_d0im5")
-card = ExtResource("6_yuwje")
+card = ExtResource("5_tf7yf")
 
 [node name="CardBase4" parent="Cards" instance=ExtResource("4_80a6n")]
-position = Vector2(116, 144)
-texture = ExtResource("14_lakw3")
+position = Vector2(96, 144)
 card = ExtResource("5_tf7yf")
 
 [node name="CardBase5" parent="Cards" instance=ExtResource("4_80a6n")]
 position = Vector2(56, 144)
-texture = ExtResource("11_lghfo")
-card = ExtResource("10_e8gpj")
+card = ExtResource("5_tf7yf")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(96, 72)

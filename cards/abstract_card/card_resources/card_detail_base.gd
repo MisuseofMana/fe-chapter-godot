@@ -8,7 +8,6 @@ enum CARD_TYPE {
 	SPADE,
 	CROSS,
 	WAVE,
-	STAR,
 }
 
 @export var card_name : StringName = ''
@@ -17,7 +16,6 @@ enum CARD_TYPE {
 @export var suit_texture : Texture2D
 @export var card_bar_texture : Texture2D
 
-@export var destroy_effects : Array[Resource]
 @export var card_cost : int = 0
 
 @export_category('Card Stats')

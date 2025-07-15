@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 window/dpi/allow_hidpi=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
