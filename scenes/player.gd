@@ -27,7 +27,7 @@ func invalid_movement(relative_pos: Vector2):
 	lvl_tween.tween_property(self, "position", position + relative_pos, 0.1)
 	lvl_tween.tween_property(self, "position", origin_pos, 0.1)
 	lvl_tween.tween_callback(move_all_monsters)
-
+	
 func valid_movement(relative_pos: Vector2):
 	lock_movement = true
 	var lvl_tween : Tween = create_tween()

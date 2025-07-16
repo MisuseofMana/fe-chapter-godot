@@ -1,13 +1,11 @@
 [gd_scene load_steps=5 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
-[ext_resource type="PackedScene" uid="uid://fty5ct3prfsh" path="res://cards/card_gui.tscn" id="2_jhx03"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
+[ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
 
 [node name="World" type="Node2D"]
-
-[node name="CardGui" parent="." instance=ExtResource("2_jhx03")]
 
 [node name="Level" type="Node2D" parent="."]
 position = Vector2(0, -1)
@@ -28,6 +26,13 @@ tile_set = ExtResource("1_m33p3")
 
 [node name="MonsterContainer" parent="Level" instance=ExtResource("3_k0juu")]
 position = Vector2(-48, 32)
+
+[node name="MonsterSprite" parent="Level/MonsterContainer" instance=ExtResource("4_71j4m")]
+position = Vector2(16, 25)
+
+[node name="MonsterSprite2" parent="Level/MonsterContainer" instance=ExtResource("4_71j4m")]
+position = Vector2(112, -31)
+region_rect = Rect2(224, 224, 32, 32)
 
 [node name="Player" parent="." instance=ExtResource("5_71j4m")]
 position = Vector2(-120, -40)

@@ -1,11 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://clcphumb7x1fi"]
+[gd_scene load_steps=2 format=3 uid="uid://clcphumb7x1fi"]
 
 [ext_resource type="Script" uid="uid://b60nknttp50u5" path="res://scenes/monster_container.gd" id="1_glbne"]
-[ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="2_g2buy"]
 
 [node name="MonsterContainer" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_glbne")
-
-[node name="MonsterSprite" parent="." instance=ExtResource("2_g2buy")]
-position = Vector2(16, 24)

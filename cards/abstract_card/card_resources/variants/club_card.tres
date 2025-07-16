@@ -7,4 +7,4 @@
 script = ExtResource("1_y17nb")
 card_type = 2
 suit_texture = ExtResource("2_ujuvk")
-power = 0
+power = 9

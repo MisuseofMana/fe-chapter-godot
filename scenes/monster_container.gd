@@ -11,6 +11,7 @@ func move_monster(whichMonster: Monster):
 	var move_to : Vector2
 	if can_see_player:
 		move_to = get_vector_direction_to_player(whichMonster)
+		whichMonster.grunt()
 	else:
 		move_to = pick_random_movement_direction(whichMonster)
 	var move_tween : Tween = create_tween()

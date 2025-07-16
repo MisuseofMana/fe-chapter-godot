@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://fty5ct3prfsh"]
+[gd_scene load_steps=11 format=3 uid="uid://fty5ct3prfsh"]
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
 [ext_resource type="PackedScene" uid="uid://bb7gepmf8q7sj" path="res://cards/abstract_card/card_base.tscn" id="5_5r66m"]
-[ext_resource type="Resource" uid="uid://dokcxi0d0gij" path="res://cards/abstract_card/card_resources/variants/club_card.tres" id="6_dj1s0"]
+[ext_resource type="Resource" uid="uid://cfmnuy2f7o3w2" path="res://cards/abstract_card/card_resources/variants/diamond_card.tres" id="6_sie6n"]
+[ext_resource type="Resource" uid="uid://dj0ryccqxqx4d" path="res://cards/abstract_card/card_resources/variants/drop_card.tres" id="8_sie6n"]
 
 [sub_resource type="Animation" id="Animation_2lf6f"]
 length = 0.001
@@ -103,14 +104,20 @@ position = Vector2(68, 0)
 texture = ExtResource("3_c5pq0")
 
 [node name="PlayerCards" parent="Gradient" node_paths=PackedStringArray("slots") instance=ExtResource("4_rakwm")]
-position = Vector2(-14, -288)
-scale = Vector2(0.125, 1)
+position = Vector2(0, -2)
+scale = Vector2(1e-05, 1e-05)
 group_to_assign = "player_group"
 slots = NodePath("../PlayerSlots")
 
 [node name="CardBase" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
-position = Vector2(40, 288)
-card = ExtResource("6_dj1s0")
+card = ExtResource("6_sie6n")
+
+[node name="CardBase2" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
+
+[node name="CardBase3" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
+card = ExtResource("8_sie6n")
+
+[node name="CardBase4" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")
