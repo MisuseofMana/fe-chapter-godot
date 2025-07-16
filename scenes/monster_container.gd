@@ -7,7 +7,12 @@ var lock_movement : bool = false
 signal monsters_finished_moving
 
 func move_monster(whichMonster: Monster):
-	var move_to = pick_movement_direction(whichMonster)
+	var can_see_player : bool = whichMonster.can_see_player()
+	var move_to : Vector2
+	if can_see_player:
+		move_to = get_vector_direction_to_player(whichMonster)
+	else:
+		move_to = pick_random_movement_direction(whichMonster)
 	var move_tween : Tween = create_tween()
 	move_tween.tween_property(self, "position", move_to , 0.2).as_relative()
 
@@ -18,7 +23,13 @@ func handle_monster_movement():
 			move_monster(monster)
 	monsters_finished_moving.emit()
 
-func pick_movement_direction(monster: Monster) -> Vector2:
+func get_vector_direction_to_player(monster: Monster) -> Vector2:
+	var player_global_direction = get_tree().get_first_node_in_group('player_node').global_position
+	var monster_global_pos = monster.global_position
+	var normalized_vector : Vector2 = (player_global_direction - monster_global_pos).normalized()
+	return normalized_vector * move_distance
+
+func pick_random_movement_direction(monster: Monster) -> Vector2:
 	var wall_collisions = monster.get_cardinal_collisions()
 	var valid_vectors : Array[Vector2] = []
 	var vectorDict = {

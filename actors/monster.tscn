@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://jrijq5330mc3"]
+[gd_scene load_steps=3 format=3 uid="uid://jrijq5330mc3"]
 
 [ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="1_3m5pa"]
 [ext_resource type="Script" uid="uid://bvq7rvfjft8vc" path="res://actors/monster.gd" id="2_3m5pa"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_3m5pa"]
-radius = 112.0
 
 [node name="MonsterSprite" type="Sprite2D" groups=["monster_sprite"]]
 scale = Vector2(0.5, 0.5)
@@ -19,11 +16,11 @@ scale = Vector2(1.6, 1.6)
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 2
 monitorable = false
 
-[node name="SearchRadius" type="CollisionShape2D" parent="PlayerDetectionArea"]
-shape = SubResource("CircleShape2D_3m5pa")
-debug_color = Color(0.980392, 0, 0.392157, 0.0509804)
+[node name="SearchRadius" type="CollisionPolygon2D" parent="PlayerDetectionArea"]
+polygon = PackedVector2Array(-16, -16, -16, -80, 16, -80, 16, -16, 80, -16, 80, 16, 16, 16, 16, 80, -16, 80, -16, 16, -80, 16, -80, -16)
 
 [node name="South" type="RayCast2D" parent="PlayerDetectionArea"]
 target_position = Vector2(0, 32)

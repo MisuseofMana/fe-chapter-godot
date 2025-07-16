@@ -2,6 +2,7 @@ extends Sprite2D
 class_name Monster
 
 @onready var on_screen_node: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var player_detection_area: Area2D = $PlayerDetectionArea
 
 @onready var south: RayCast2D = $PlayerDetectionArea/South
 @onready var east: RayCast2D = $PlayerDetectionArea/East
@@ -12,8 +13,7 @@ func on_screen() -> bool:
 	return on_screen_node.is_on_screen()
 
 func can_see_player() -> bool:
-#	TODO - logic for player detection
-	return false
+	return player_detection_area.has_overlapping_areas()
 
 func get_cardinal_collisions() -> Dictionary[String, bool]:
 	return {

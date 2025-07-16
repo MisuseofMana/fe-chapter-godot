@@ -34,6 +34,7 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
 player_cards="For getting all the player card nodes."
 monster_cards="for all the monster cards"
 monster_sprite=""
+player_node=""
 
 [input]
 
