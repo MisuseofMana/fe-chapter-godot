@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bb7gepmf8q7sj"]
 
 [ext_resource type="Script" uid="uid://cwq7md6smlmj0" path="res://cards/abstract_card/card_base.gd" id="1_7fqoo"]
-[ext_resource type="Texture2D" uid="uid://bbgauieej3u28" path="res://assets/cards/card_texture/basic_card_sheet.png" id="1_bdmmp"]
-[ext_resource type="Texture2D" uid="uid://b62o6xgke0wvr" path="res://assets/cards/suits/club.png" id="3_t3dud"]
+[ext_resource type="Texture2D" uid="uid://c3i44cv0hagnu" path="res://assets/cards/card_texture/basic_card_sheet.png" id="1_bdmmp"]
+[ext_resource type="Texture2D" uid="uid://cjmlabguykcml" path="res://assets/cards/suits/wave.png" id="4_8b8td"]
 [ext_resource type="Texture2D" uid="uid://dm4582hptiuvf" path="res://assets/cards/card_texture/card_numbers/number-sheet.png" id="4_bdmmp"]
 [ext_resource type="Texture2D" uid="uid://f1nka4d87oiv" path="res://assets/cards/card_slot/highlight.png" id="4_qk2ya"]
 
@@ -154,13 +154,14 @@ region_rect = Rect2(0, 0, 96, 144)
 
 [node name="Suit" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
-texture = ExtResource("3_t3dud")
+texture = ExtResource("4_8b8td")
 region_rect = Rect2(0, 0, 60, 54)
 
 [node name="Strength" type="Sprite2D" parent="."]
 position = Vector2(0, 5)
 texture = ExtResource("4_bdmmp")
 hframes = 10
+frame = 9
 region_rect = Rect2(0, 0, 48, 30)
 
 [node name="Control" type="Control" parent="."]
