@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="2_1yqc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
 [node name="PlayerContainer" type="Node2D" groups=["player_node"]]
 script = ExtResource("1_mvpqy")

@@ -6,17 +6,20 @@ var lock_movement : bool = false
 
 signal monsters_finished_moving
 
-func move_monster(whichMonster: Monster):
-	var can_see_player : bool = whichMonster.can_see_player()
+func move_monster(monster: Monster):
+	var can_see_player : bool = monster.can_see_player()
 	var move_to : Vector2
 	if can_see_player:
-		move_to = get_vector_direction_to_player(whichMonster)
-		whichMonster.grunt()
+		move_to = get_vector_direction_to_player(monster)
+		monster.grunt()
 	else:
-		move_to = pick_random_movement_direction(whichMonster)
+		move_to = pick_random_movement_direction(monster)
+	
+	monster.disable_vision()
 	var move_tween : Tween = create_tween()
+	move_tween.finished.connect(monster.update_active_vision_areas)
 	move_tween.tween_property(self, "position", move_to , 0.2).as_relative()
-
+	
 func handle_monster_movement():
 	var all_monsters = get_children()
 	for monster : Monster in all_monsters:
@@ -31,19 +34,12 @@ func get_vector_direction_to_player(monster: Monster) -> Vector2:
 	return normalized_vector * move_distance
 
 func pick_random_movement_direction(monster: Monster) -> Vector2:
-	var wall_collisions = monster.get_cardinal_collisions()
-	var valid_vectors : Array[Vector2] = []
-	var vectorDict = {
-		'N': Vector2.UP,
-		'E': Vector2.RIGHT,
-		'S': Vector2.DOWN,
-		'W': Vector2.LEFT,
-	}
-	for coll in wall_collisions:
-		if not wall_collisions[coll]:
-			valid_vectors.append(vectorDict[coll])
+	var valid_movement : Array[Vector2] = monster.get_all_valid_movement_vectors()
 	
-	valid_vectors.shuffle()
+	valid_movement.shuffle()
 	
-	return valid_vectors[0] * move_distance
+	if valid_movement.is_empty():
+		return Vector2(0,0)
+	
+	return valid_movement[0] * move_distance
 	

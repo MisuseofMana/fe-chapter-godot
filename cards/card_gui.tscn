@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
-[ext_resource type="PackedScene" uid="uid://bb7gepmf8q7sj" path="res://cards/abstract_card/card_base.tscn" id="5_5r66m"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="5_sie6n"]
 [ext_resource type="Resource" uid="uid://cfmnuy2f7o3w2" path="res://cards/abstract_card/card_resources/variants/diamond_card.tres" id="6_sie6n"]
 [ext_resource type="Resource" uid="uid://dj0ryccqxqx4d" path="res://cards/abstract_card/card_resources/variants/drop_card.tres" id="8_sie6n"]
 
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(96, 176)]
+"values": [Vector2(96, 144)]
 }
 
 [sub_resource type="Animation" id="Animation_pm21f"]
@@ -51,41 +51,37 @@ script = ExtResource("1_lx8rw")
 anims = NodePath("CardGuiAnimations")
 
 [node name="Gradient" type="Sprite2D" parent="."]
-position = Vector2(96, 176)
+position = Vector2(96, 144)
 scale = Vector2(8, 1)
 texture = ExtResource("2_0mfce")
 region_enabled = true
 region_rect = Rect2(0, 0, 24, 32)
 
 [node name="MonsterSlots" type="Node2D" parent="Gradient"]
-position = Vector2(-10, 0)
-scale = Vector2(0.125, 1)
 
-[node name="Slot6" type="Sprite2D" parent="Gradient/MonsterSlots"]
-position = Vector2(92, 0)
+[node name="Sprite2D" type="Sprite2D" parent="Gradient/MonsterSlots"]
+scale = Vector2(0.370848, 3.64565)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot7" type="Sprite2D" parent="Gradient/MonsterSlots"]
-position = Vector2(112, 0)
+[node name="Sprite2D2" type="Sprite2D" parent="Gradient/MonsterSlots"]
+position = Vector2(36, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot8" type="Sprite2D" parent="Gradient/MonsterSlots"]
-position = Vector2(132, 0)
+[node name="Sprite2D3" type="Sprite2D" parent="Gradient/MonsterSlots"]
+position = Vector2(56, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot9" type="Sprite2D" parent="Gradient/MonsterSlots"]
-position = Vector2(152, 0)
+[node name="Sprite2D4" type="Sprite2D" parent="Gradient/MonsterSlots"]
+position = Vector2(76, 0)
 texture = ExtResource("3_c5pq0")
 
 [node name="MonsterCards" parent="Gradient" node_paths=PackedStringArray("slots") instance=ExtResource("4_rakwm")]
-position = Vector2(-12, -144)
 scale = Vector2(0.125, 1)
 group_to_assign = "monster_group"
+deck = Array[ExtResource("5_sie6n")]([ExtResource("6_sie6n"), ExtResource("6_sie6n"), ExtResource("6_sie6n"), ExtResource("6_sie6n")])
 slots = NodePath("../MonsterSlots")
 
 [node name="PlayerSlots" type="Node2D" parent="Gradient"]
-position = Vector2(-10, 0)
-scale = Vector2(0.125, 1)
 
 [node name="Slot" type="Sprite2D" parent="Gradient/PlayerSlots"]
 position = Vector2(8, 0)
@@ -103,21 +99,24 @@ texture = ExtResource("3_c5pq0")
 position = Vector2(68, 0)
 texture = ExtResource("3_c5pq0")
 
+[node name="Marker2D" type="Marker2D" parent="Gradient/PlayerSlots"]
+position = Vector2(8, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="Gradient/PlayerSlots"]
+position = Vector2(28, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="Gradient/PlayerSlots"]
+position = Vector2(48, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="Gradient/PlayerSlots"]
+position = Vector2(68, 0)
+
 [node name="PlayerCards" parent="Gradient" node_paths=PackedStringArray("slots") instance=ExtResource("4_rakwm")]
-position = Vector2(0, -2)
+position = Vector2(-10, 0)
 scale = Vector2(1e-05, 1e-05)
 group_to_assign = "player_group"
+deck = Array[ExtResource("5_sie6n")]([ExtResource("8_sie6n"), ExtResource("6_sie6n"), ExtResource("8_sie6n"), ExtResource("6_sie6n")])
 slots = NodePath("../PlayerSlots")
-
-[node name="CardBase" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
-card = ExtResource("6_sie6n")
-
-[node name="CardBase2" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
-
-[node name="CardBase3" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
-card = ExtResource("8_sie6n")
-
-[node name="CardBase4" parent="Gradient/PlayerCards" instance=ExtResource("5_5r66m")]
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

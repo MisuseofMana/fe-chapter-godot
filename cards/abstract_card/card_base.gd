@@ -3,10 +3,11 @@ extends Node2D
 class_name AbstractCard
 
 @onready var control: Control = $Control
-@onready var card_base: Sprite2D = $CardBase
+@onready var card_base: Sprite2D = $Highlight/CardBase
+@onready var suit: Sprite2D = $Highlight/Suit
+@onready var strength: Sprite2D = $Highlight/Strength
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var suit: Sprite2D = $Suit
-@onready var strength: Sprite2D = $Strength
 @export var card : AbstractCardDetails
 
 var is_selected : bool = false
