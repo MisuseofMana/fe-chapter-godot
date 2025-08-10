@@ -2,15 +2,18 @@
 extends Node2D
 class_name AbstractCard
 
-@onready var control: Control = $Control
-@onready var card_base: Sprite2D = $Highlight/CardBase
-@onready var suit: Sprite2D = $Highlight/Suit
-@onready var strength: Sprite2D = $Highlight/Strength
+
+@onready var click_interaction = %ClickInteraction
+
+@onready var card_base = %CardBase
+@onready var strength = %Strength
+@onready var suit = %Suit
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var card : AbstractCardDetails
 
 var is_selected : bool = false
+var card_position : int = 0
 
 func _ready():
 	suit.texture = card.suit_texture
@@ -32,6 +35,6 @@ func play_raise_animation(event: InputEvent):
 		if is_selected:
 			unselect_card()
 		elif not is_selected:
-			get_tree().call_group('player_cards', 'unselect_card')
+			get_tree().call_group('player_cards', 'unselect_all_cards')
 			select_card()
 		

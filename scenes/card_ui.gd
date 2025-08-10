@@ -1,5 +1,5 @@
 @tool
-extends CanvasLayer
+extends Node2D
 class_name CardGui
 
 @export var anims : AnimationPlayer

@@ -1,13 +1,10 @@
 [gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=3 format=3 uid="uid://dj0ryccqxqx4d"]
 
-[ext_resource type="Script" uid="uid://dpjghe1cqo76r" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_n0ydq"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_n0ydq"]
 [ext_resource type="Texture2D" uid="uid://dr55j8teoota7" path="res://assets/cards/suits/drop.png" id="2_i3i5b"]
 
 [resource]
 script = ExtResource("1_n0ydq")
 card_type = 7
 suit_texture = ExtResource("2_i3i5b")
-destroy_effects = Array[Resource]([])
-power = 0
-card_description = ""
-metadata/_custom_type_script = "uid://dpjghe1cqo76r"
+power = 1

@@ -1,6 +1,9 @@
 extends Sprite2D
 class_name Monster
 
+@export var move_distance : int = 16
+@export var moves_until_lost_interest : int = 3
+
 @onready var on_screen_node: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var player_detection_area: Area2D = $PlayerDetectionArea
 
@@ -16,7 +19,9 @@ class_name Monster
 @onready var area_south: CollisionShape2D = $PlayerDetectionArea/South
 @onready var area_west: CollisionShape2D = $PlayerDetectionArea/West
 
-var has_just_seen_player : int = 0
+var moves_since_last_seen_player : int = 0
+var players_last_known_position : Vector2 = Vector2(0,0)
+var tracking_player : bool = false
 
 # associates cardinal rays with their corresponding vision collision shapes
 func rays_paired_to_vision_areas() -> Dictionary[RayCast2D, CollisionShape2D]: 
@@ -56,6 +61,15 @@ func update_active_vision_areas():
 			pairs[ray].disabled = true
 		else:
 			pairs[ray].disabled = false
+	if can_see_player():
+		players_last_known_position = get_tree().get_first_node_in_group('player_node').global_position
+		moves_since_last_seen_player = 0
+		grunt()
+	else:
+		moves_since_last_seen_player += 1
+		if moves_since_last_seen_player >= moves_until_lost_interest:
+			moves_since_last_seen_player = 0
+			players_last_known_position = Vector2(0,0)
 
 func disable_vision() -> void :
 	var all_vision_shapes = [area_north, area_east, area_south, area_west]
@@ -63,12 +77,27 @@ func disable_vision() -> void :
 		shape.disabled = true
 
 func can_see_player() -> bool:
-	if player_detection_area.has_overlapping_areas():
-		has_just_seen_player += 1
-	else: 
-		has_just_seen_player = 0
-	return player_detection_area.has_overlapping_areas()
+	print(self, 'can see player = ', player_detection_area.get_overlapping_areas())
+	return not player_detection_area.get_overlapping_areas().is_empty()
 
+func get_vector_direction_to_last_known_location() -> Vector2:
+	var normalized_vector : Vector2 = (players_last_known_position - global_position).normalized()
+	return normalized_vector * move_distance
+	
+func move_monster():
+	var move_to : Vector2
+	var valid_moves = get_all_valid_movement_vectors()
+	if not valid_moves.is_empty():
+		if players_last_known_position:
+			move_to = get_vector_direction_to_last_known_location()
+		else:
+			valid_moves.shuffle()
+			move_to = valid_moves[0] * move_distance
+	
+	#disable_vision()
+	var move_tween : Tween = create_tween()
+	move_tween.finished.connect(update_active_vision_areas)
+	move_tween.tween_property(self, "position", move_to, 0.2).as_relative()
+	
 func grunt() -> void:
-	if has_just_seen_player == 1:
-		grunt_sfx.play()
+	grunt_sfx.play()
