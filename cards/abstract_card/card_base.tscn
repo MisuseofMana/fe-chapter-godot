@@ -7,6 +7,33 @@
 [ext_resource type="Texture2D" uid="uid://f1nka4d87oiv" path="res://assets/cards/card_slot/highlight.png" id="4_qk2ya"]
 [ext_resource type="Texture2D" uid="uid://b62o6xgke0wvr" path="res://assets/cards/suits/club.png" id="5_qk2ya"]
 
+[sub_resource type="Animation" id="Animation_qkoea"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%CardBase/..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Highlight:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qk2ya"]
 resource_name = "select"
 length = 0.2
@@ -34,33 +61,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(0.513678, 1, 0.48175, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_qkoea"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("%CardBase/..:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%Highlight:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qkoea"]
@@ -93,7 +93,7 @@ unique_name_in_owner = true
 position = Vector2(0, 5)
 texture = ExtResource("4_bdmmp")
 hframes = 10
-frame = 9
+frame = 2
 region_rect = Rect2(0, 0, 48, 30)
 
 [node name="Suit" type="Sprite2D" parent="Container"]

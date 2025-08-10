@@ -1,20 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://jrijq5330mc3"]
+[gd_scene load_steps=4 format=3 uid="uid://jrijq5330mc3"]
 
 [ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="1_3m5pa"]
 [ext_resource type="Script" uid="uid://bvq7rvfjft8vc" path="res://actors/monster.gd" id="2_3m5pa"]
-[ext_resource type="AudioStream" uid="uid://ca6wo70q3gs2q" path="res://assets/audio/twinkle.mp3" id="3_e7hpd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7hpd"]
-size = Vector2(16, 72)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5xkk"]
-size = Vector2(72, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngyjr"]
-size = Vector2(16, 72)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4ejo"]
-size = Vector2(72, 16)
+[ext_resource type="AudioStream" uid="uid://diqoykdckjljq" path="res://assets/audio/grunt.wav" id="3_e7hpd"]
 
 [node name="MonsterSprite" type="Sprite2D" groups=["monster_sprite"]]
 scale = Vector2(0.5, 0.5)
@@ -24,8 +12,38 @@ region_rect = Rect2(64, 128, 32, 32)
 script = ExtResource("2_3m5pa")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, -9.53674e-07)
-scale = Vector2(0.8, 0.8)
+position = Vector2(9.53674e-07, 1.90735e-06)
+scale = Vector2(1.6, 1.6)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_e7hpd")
+volume_db = -4.353
+
+[node name="Vision" type="Node2D" parent="."]
+
+[node name="NorthEyes" type="RayCast2D" parent="Vision"]
+target_position = Vector2(0, -80)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="EastEyes" type="RayCast2D" parent="Vision"]
+target_position = Vector2(80, 0)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="SouthEyes" type="RayCast2D" parent="Vision"]
+target_position = Vector2(0, 80)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="WestEyes" type="RayCast2D" parent="Vision"]
+target_position = Vector2(-80, 0)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="WallDetection" type="Node2D" parent="."]
 
@@ -40,28 +58,3 @@ target_position = Vector2(0, 32)
 
 [node name="West" type="RayCast2D" parent="WallDetection"]
 target_position = Vector2(-32, 0)
-
-[node name="PlayerDetectionArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="North" type="CollisionShape2D" parent="PlayerDetectionArea"]
-position = Vector2(0, -44)
-shape = SubResource("RectangleShape2D_e7hpd")
-
-[node name="East" type="CollisionShape2D" parent="PlayerDetectionArea"]
-position = Vector2(44, 0)
-shape = SubResource("RectangleShape2D_m5xkk")
-
-[node name="South" type="CollisionShape2D" parent="PlayerDetectionArea"]
-position = Vector2(0, 44)
-shape = SubResource("RectangleShape2D_ngyjr")
-
-[node name="West" type="CollisionShape2D" parent="PlayerDetectionArea"]
-position = Vector2(-44, 0)
-shape = SubResource("RectangleShape2D_i4ejo")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_e7hpd")
-pitch_scale = 0.24

@@ -9,9 +9,8 @@ signal monsters_finished_moving
 func handle_monster_movement():
 	var all_monsters = get_children()
 	for monster : Monster in all_monsters:
-		print(monster)
 		if monster.on_screen():
-			monster.move_monster()
+			monster.check_for_visible_player.call_deferred()
 	monsters_finished_moving.emit()
 
 func pick_random_movement_direction(monster: Monster) -> Vector2:

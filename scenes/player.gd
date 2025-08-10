@@ -8,6 +8,8 @@ class_name PlayerContainer
 @onready var up: RayCast2D = $Area2D/Up
 @onready var left: RayCast2D = $Area2D/Left
 
+@onready var collision_shape_2d = $Area2D/CollisionShape2D
+
 var move_distance : int = 16
 var bounce_distance : int = 4
 var lock_movement : bool = false
@@ -19,6 +21,10 @@ func unlock_movement():
 	
 func move_all_monsters():
 	player_just_moved.emit()
+
+func wait():
+	lock_movement = true
+	move_all_monsters()
 
 func invalid_movement(relative_pos: Vector2):
 	lock_movement = true
@@ -35,7 +41,7 @@ func valid_movement(relative_pos: Vector2):
 	lvl_tween.tween_callback(move_all_monsters)
 	
 func _input(event: InputEvent) -> void:
-	const actions = ['W', 'A', 'S', 'D']
+	const actions = ['W', 'A', 'S', 'D', 'Space']
 	var is_valid_input = actions.has(event.as_text())
 	if lock_movement or not is_valid_input:
 		return
@@ -70,6 +76,10 @@ func _input(event: InputEvent) -> void:
 		else: 
 			movement_vector = Vector2(move_distance, 0)
 			valid_move = true
+			
+	if Input.is_action_just_pressed('wait'):
+		movement_vector = Vector2(0, 0)
+		valid_move = true
 		
 	if valid_move:
 		valid_movement(movement_vector)
