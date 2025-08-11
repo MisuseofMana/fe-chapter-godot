@@ -3,12 +3,10 @@ class_name PlayerContainer
 
 @onready var player: Sprite2D = $PlayerSprite
 
-@onready var down: RayCast2D = $Area2D/Down
-@onready var right: RayCast2D = $Area2D/Right
-@onready var up: RayCast2D = $Area2D/Up
-@onready var left: RayCast2D = $Area2D/Left
-
-@onready var collision_shape_2d = $Area2D/CollisionShape2D
+@onready var down : RayCast2D = $WallDetection/Down
+@onready var right : RayCast2D = $WallDetection/Right
+@onready var up : RayCast2D = $WallDetection/Up
+@onready var left : RayCast2D = $WallDetection/Left
 
 var move_distance : int = 16
 var bounce_distance : int = 4

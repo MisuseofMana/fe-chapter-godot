@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://jrijq5330mc3"]
+[gd_scene load_steps=5 format=3 uid="uid://jrijq5330mc3"]
 
 [ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="1_3m5pa"]
 [ext_resource type="Script" uid="uid://bvq7rvfjft8vc" path="res://actors/monster.gd" id="2_3m5pa"]
 [ext_resource type="AudioStream" uid="uid://diqoykdckjljq" path="res://assets/audio/grunt.wav" id="3_e7hpd"]
+[ext_resource type="Script" uid="uid://b8bi0on1bnfxe" path="res://actors/vision_raycasting.gd" id="4_m5xkk"]
 
 [node name="MonsterSprite" type="Sprite2D" groups=["monster_sprite"]]
 scale = Vector2(0.5, 0.5)
@@ -10,6 +11,7 @@ texture = ExtResource("1_3m5pa")
 region_enabled = true
 region_rect = Rect2(64, 128, 32, 32)
 script = ExtResource("2_3m5pa")
+movement_repeat = 4
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(9.53674e-07, 1.90735e-06)
@@ -19,42 +21,26 @@ scale = Vector2(1.6, 1.6)
 stream = ExtResource("3_e7hpd")
 volume_db = -4.353
 
-[node name="Vision" type="Node2D" parent="."]
+[node name="Vision" type="Node2D" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("4_m5xkk")
+parent = NodePath("..")
 
-[node name="NorthEyes" type="RayCast2D" parent="Vision"]
-target_position = Vector2(0, -80)
+[node name="North" type="RayCast2D" parent="Vision"]
+target_position = Vector2(0, -64)
 collision_mask = 3
 collide_with_areas = true
-collide_with_bodies = false
 
-[node name="EastEyes" type="RayCast2D" parent="Vision"]
-target_position = Vector2(80, 0)
+[node name="East" type="RayCast2D" parent="Vision"]
+target_position = Vector2(64, 0)
 collision_mask = 3
 collide_with_areas = true
-collide_with_bodies = false
 
-[node name="SouthEyes" type="RayCast2D" parent="Vision"]
-target_position = Vector2(0, 80)
+[node name="South" type="RayCast2D" parent="Vision"]
+target_position = Vector2(0, 64)
 collision_mask = 3
 collide_with_areas = true
-collide_with_bodies = false
 
-[node name="WestEyes" type="RayCast2D" parent="Vision"]
-target_position = Vector2(-80, 0)
+[node name="West" type="RayCast2D" parent="Vision"]
+target_position = Vector2(-64, 0)
 collision_mask = 3
 collide_with_areas = true
-collide_with_bodies = false
-
-[node name="WallDetection" type="Node2D" parent="."]
-
-[node name="North" type="RayCast2D" parent="WallDetection"]
-target_position = Vector2(0, -32)
-
-[node name="East" type="RayCast2D" parent="WallDetection"]
-target_position = Vector2(32, 0)
-
-[node name="South" type="RayCast2D" parent="WallDetection"]
-target_position = Vector2(0, 32)
-
-[node name="West" type="RayCast2D" parent="WallDetection"]
-target_position = Vector2(-32, 0)
