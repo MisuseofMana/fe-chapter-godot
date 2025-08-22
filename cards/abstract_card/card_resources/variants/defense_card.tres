@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=3 format=3 uid="uid://bgsmottr3yfhl"]
+
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_0s4i6"]
+[ext_resource type="Texture2D" uid="uid://dglvb7bnxdm8u" path="res://assets/cards/suits/defense.png" id="2_plnai"]
+
+[resource]
+script = ExtResource("1_0s4i6")
+card_type = 13
+suit_texture = ExtResource("2_plnai")
+power = 0
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

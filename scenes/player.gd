@@ -24,18 +24,13 @@ func wait():
 	lock_movement = true
 	move_all_monsters()
 
-func invalid_movement(relative_pos: Vector2):
+func attempt_movement(relative_pos: Vector2, can_move_here: bool = true):
 	lock_movement = true
 	var origin_pos = position
 	var lvl_tween : Tween = create_tween()
-	lvl_tween.tween_property(self, "position", position + relative_pos, 0.1)
-	lvl_tween.tween_property(self, "position", origin_pos, 0.1)
-	lvl_tween.tween_callback(move_all_monsters)
-	
-func valid_movement(relative_pos: Vector2):
-	lock_movement = true
-	var lvl_tween : Tween = create_tween()
 	lvl_tween.tween_property(self, "position", position + relative_pos, 0.2)
+	if not can_move_here:
+		lvl_tween.tween_property(self, "position", origin_pos, 0.2)
 	lvl_tween.tween_callback(move_all_monsters)
 	
 func _input(event: InputEvent) -> void:
@@ -56,10 +51,10 @@ func _input(event: InputEvent) -> void:
 			
 	if Input.is_action_just_pressed('down'):
 		if down.is_colliding():
-			movement_vector = Vector2(0, bounce_distance) 
+			movement_vector = Vector2(0, bounce_distance)
 		else:
-			valid_move = true
 			movement_vector = Vector2(0, move_distance)
+			valid_move = true
 	
 	if Input.is_action_just_pressed('left'):
 		if left.is_colliding():
@@ -79,7 +74,4 @@ func _input(event: InputEvent) -> void:
 		movement_vector = Vector2(0, 0)
 		valid_move = true
 		
-	if valid_move:
-		valid_movement(movement_vector)
-	else:
-		invalid_movement(movement_vector)
+	attempt_movement(movement_vector, valid_move)

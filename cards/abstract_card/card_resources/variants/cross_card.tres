@@ -7,5 +7,5 @@
 script = ExtResource("1_8wt8l")
 card_type = 4
 suit_texture = ExtResource("2_0uo7e")
-power = 2
+power = 5
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

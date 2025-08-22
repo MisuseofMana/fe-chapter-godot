@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=3 format=3 uid="uid://d0ujjdxt8j537"]
+
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_5fdcq"]
+[ext_resource type="Texture2D" uid="uid://yns8gbtp44qk" path="res://assets/cards/suits/ranged_attack.png" id="2_rtu4i"]
+
+[resource]
+script = ExtResource("1_5fdcq")
+card_type = 9
+suit_texture = ExtResource("2_rtu4i")
+power = 0
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

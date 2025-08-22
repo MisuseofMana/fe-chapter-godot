@@ -10,6 +10,12 @@ enum CARD_TYPE {
 	WAVE,
 	STAR,
 	DROP,
+	MOVE,
+	RANGED_ATTACK,
+	MELEE_ATTACK,
+	HEAL,
+	DRAW,
+	DEFEND,
 }
 
 @export var card_type : CARD_TYPE

@@ -10,7 +10,6 @@ class_name Monster
 
 @onready var grunt_sfx: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-var moves_since_last_seen_player : int = 0
 var players_last_known_position : Vector2 = Vector2.ZERO
 var moves_since_direction_change : int = 0
 
@@ -34,19 +33,20 @@ func move_monster():
 	if valid_moves.is_empty():
 		return
 	
-	## first check if the players location is known
-	#if players_last_known_position != Vector2(0,0):
-		## if known move closer to player
-		#move_to = get_vector_direction_to_last_known_location()
 	var random_valid_movement = valid_moves.pick_random()
 	# pick a random move direction	
 	if moves_since_direction_change >= movement_repeat or moves_since_direction_change == 0:
 		current_direction = random_valid_movement
 		moves_since_direction_change = 0
 	
+	if not valid_moves.has(current_direction):
+		current_direction = random_valid_movement
+		
 #	execute movement
 	var move_tween : Tween = create_tween()
 	move_tween.tween_property(self, "position", current_direction * move_distance, 0.2).as_relative()
+	moves_since_direction_change += 1
+	
 
 func grunt() -> void:
 	grunt_sfx.play()

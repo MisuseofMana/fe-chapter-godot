@@ -11,4 +11,3 @@ func handle_monster_movement():
 	for monster : Monster in all_monsters:
 		monster.move_monster()
 	monsters_finished_moving.emit()
-	

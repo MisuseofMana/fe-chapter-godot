@@ -17,41 +17,45 @@ class_name MonsterVision
 
 var collision_data : Dictionary[Vector2, Dictionary] = {}
 
-func get_vision_data():
+func _ready():
+	update_vision_data.call_deferred()
+
+func update_vision_data():
+#	Clear out collision data
 	collision_data.clear()
+	
+#	loop through vector keys paired to raycasts
 	for vector : Vector2 in raycast_pairs:
 		var ray : RayCast2D = raycast_pairs[vector]
-		var key = collision_data.get_or_add(vector, {})
 		ray.force_raycast_update()
+		
+#		if ray hits something
 		if ray.is_colliding():
-			var collider : Node = ray.get_collider()
-			var distance_to_collision : Vector2 = ray.get_collision_point()
-			key.get_or_add('detected_node', collider)
-			key.get_or_add('is_player', collider.name == 'Hitbox')
-			if collider.name == 'Walls':
-				if wall_is_adjacent(distance_to_collision):
-					key.get_or_add('valid_direction', false)
-				else:
-					key.get_or_add('valid_direction', true)
-			else:
-				key.get_or_add('valid_direction', true)
-				 
-		else:
-			key.get_or_add('valid_direction', true)
+			var collision_point : Vector2 = ray.get_collision_point() - parent.global_position
+			print(collision_point)
+			print(ray.get_collision_normal())
+			
+#			Should we put whiskey in this coffee?
+
 	return collision_data
 
-func wall_is_adjacent(vector: Vector2):
-	# make vector positive	
-	var to_local = self.to_local(vector.abs())
-	return vector.x >= parent.move_distance or vector.y >= parent.move_distance
+func check_for_wall_collision(collider_keys):
+	print(parent.move_distance)
+	print(collider_keys)
+	var to_local : Vector2 = Vector2.ZERO
+	if collider_keys.is_wall:
+		to_local = collider_keys.vector.abs()
+	return
+	
+	# make vector positive
+	return to_local.x <= parent.move_distance or to_local.y <= parent.move_distance
 
 func get_valid_movement() -> Array[Vector2]:
-	var movements = get_vision_data()
-	var only_valid_movements : Array[Vector2] = []
-	for dir in movements:
-		var vectorDir : Dictionary = movements[dir]
-		var is_valid_dir = vectorDir.get('valid_direction', false)
-		if is_valid_dir:
-			only_valid_movements.push_front(dir)
+	var allowed_vector_movements : Array[Vector2] = [ Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
+	for vectorKey : Vector2 in collision_data:
+		var vectorDir : Dictionary = collision_data[vectorKey]
+		var is_allowed_movement_vector = vectorDir.get('valid_direction')
+		if not is_allowed_movement_vector:
+			
 	return only_valid_movements
 	

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=3 format=3 uid="uid://cw0t88b7ouphq"]
+
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_nb5pp"]
+[ext_resource type="Texture2D" uid="uid://cssa4w653mtnf" path="res://assets/cards/suits/draw.png" id="2_12xh8"]
+
+[resource]
+script = ExtResource("1_nb5pp")
+card_type = 12
+suit_texture = ExtResource("2_12xh8")
+power = 1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
