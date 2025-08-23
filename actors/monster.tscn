@@ -12,9 +12,6 @@ texture = ExtResource("1_3m5pa")
 region_enabled = true
 region_rect = Rect2(64, 128, 32, 32)
 script = ExtResource("2_3m5pa")
-move_distance = null
-moves_until_lost_interest = null
-movement_repeat = 4
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(9.53674e-07, 1.90735e-06)

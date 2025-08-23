@@ -16,12 +16,29 @@
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dj1s0"]
 load_path = "res://.godot/imported/slot.png-d636e6a544fb0d8297382b6b90021c92.ctex"
 
-[sub_resource type="Animation" id="Animation_2lf6f"]
+[sub_resource type="Animation" id="Animation_5fsmm"]
+resource_name = "hide_drawer"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardGui/AnimNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(96, 144), Vector2(96, 176)]
+}
+
+[sub_resource type="Animation" id="Animation_lx8rw"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CardGui/Gradient:position")
+tracks/0/path = NodePath("CardGui/AnimNode:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,84 +48,62 @@ tracks/0/keys = {
 "values": [Vector2(96, 144)]
 }
 
-[sub_resource type="Animation" id="Animation_pm21f"]
-resource_name = "show_drawer"
-length = 0.5
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardGui/Gradient:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 2),
-"update": 0,
-"values": [Vector2(96, 176), Vector2(96, 144)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7iits"]
 _data = {
-&"RESET": SubResource("Animation_2lf6f"),
-&"slide": SubResource("Animation_pm21f")
+&"RESET": SubResource("Animation_lx8rw"),
+&"hide_drawer": SubResource("Animation_5fsmm")
 }
 
-[node name="CardGui" type="CanvasLayer"]
+[node name="CardGui" type="CanvasLayer" node_paths=PackedStringArray("anims")]
 script = ExtResource("1_lx8rw")
+anims = NodePath("CardGuiAnimations")
 
-[node name="Gradient" type="Sprite2D" parent="."]
+[node name="AnimNode" type="Node2D" parent="."]
 position = Vector2(96, 144)
+
+[node name="Gradient" type="Sprite2D" parent="AnimNode"]
+position = Vector2(3.8147e-06, 0)
 scale = Vector2(8, 1)
 texture = ExtResource("2_0mfce")
 region_enabled = true
 region_rect = Rect2(0, 0, 24, 32)
 
-[node name="PlayerSlots" type="Node2D" parent="."]
-position = Vector2(96, 144)
-scale = Vector2(8, 1)
+[node name="PlayerSlots" type="Node2D" parent="AnimNode"]
 
-[node name="Slot1" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(-7, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot1" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(-70, 0)
 texture = SubResource("CompressedTexture2D_dj1s0")
 
-[node name="Slot2" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(-4.5, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot2" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(-50, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot3" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(-2, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot3" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(10, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot4" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(0.5, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot4" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(-30, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot5" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(3, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot5" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(-10, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot6" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(5.5, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot6" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(30, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot7" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(8, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot7" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(50, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="Slot8" type="Sprite2D" parent="PlayerSlots"]
-position = Vector2(10.5, 0)
-scale = Vector2(0.125, 1)
+[node name="Slot8" type="Sprite2D" parent="AnimNode/PlayerSlots"]
+position = Vector2(70, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="PlayerCards" parent="." node_paths=PackedStringArray("slots") groups=["player_cards"] instance=ExtResource("4_rakwm")]
+[node name="PlayerCards" parent="AnimNode" node_paths=PackedStringArray("slots") groups=["player_cards"] instance=ExtResource("4_rakwm")]
+position = Vector2(-12, -144)
 group_to_assign = "player_group"
 deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("7_lx8rw"), ExtResource("8_0mfce"), ExtResource("9_c5pq0"), ExtResource("10_rakwm"), ExtResource("6_x57sj"), ExtResource("7_5fsmm")])
 slots = NodePath("../PlayerSlots")

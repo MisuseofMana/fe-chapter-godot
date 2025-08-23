@@ -15,8 +15,6 @@ class_name MonsterVision
 
 @export var parent : Monster
 
-var last_chosen_movement : Vector2
-
 func get_vision_data() -> Dictionary:
 	var vision_dictionary := {}
 	
@@ -45,18 +43,7 @@ func get_vision_data() -> Dictionary:
 	print(vision_dictionary) 
 	return vision_dictionary 
 
-func check_for_wall_collision(collider_keys):
-	print(parent.move_distance)
-	print(collider_keys)
-	var to_local : Vector2 = Vector2.ZERO
-	if collider_keys.is_wall:
-		to_local = collider_keys.vector.abs()
-	return
-	
-	# make vector positive
-	return to_local.x <= parent.move_distance or to_local.y <= parent.move_distance
-
-func get_a_valid_movement_direction() -> Vector2:
+func get_valid_movement_directions() -> Array[Vector2]:
 	var allowed_vector_movements : Array[Vector2] = []
 	var collisions : Dictionary = get_vision_data()
 	for vectorKey : Vector2 in collisions:
@@ -64,7 +51,5 @@ func get_a_valid_movement_direction() -> Vector2:
 		if visionData.get('is_valid_direction'):
 			allowed_vector_movements.push_front(vectorKey)
 	
-	var random_movement = allowed_vector_movements.pick_random()
-	last_chosen_movement = random_movement
-	return random_movement
+	return allowed_vector_movements
 	

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgq2d5kp0ve06"]
+
+[ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="1_mh826"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udix4"]
+atlas = ExtResource("1_mh826")
+region = Rect2(0, 544, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di3tu"]
+atlas = ExtResource("1_mh826")
+region = Rect2(32, 544, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwar4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udix4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di3tu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Chest" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_uwar4")
+frame_progress = 0.380663
