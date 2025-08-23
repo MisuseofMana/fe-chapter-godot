@@ -15,14 +15,10 @@ class_name MonsterVision
 
 @export var parent : Monster
 
-var collision_data : Dictionary[Vector2, Dictionary] = {}
+var last_chosen_movement : Vector2
 
-func _ready():
-	update_vision_data.call_deferred()
-
-func update_vision_data():
-#	Clear out collision data
-	collision_data.clear()
+func get_vision_data() -> Dictionary:
+	var vision_dictionary := {}
 	
 #	loop through vector keys paired to raycasts
 	for vector : Vector2 in raycast_pairs:
@@ -31,13 +27,23 @@ func update_vision_data():
 		
 #		if ray hits something
 		if ray.is_colliding():
-			var collision_point : Vector2 = ray.get_collision_point() - parent.global_position
-			print(collision_point)
-			print(ray.get_collision_normal())
+#			get the absolute vector (positive distance to the collision)
+			var collision_point : Vector2 = (ray.get_collision_point() - parent.global_position).abs()
+			var sum_of_vector_directions = collision_point.x + collision_point.y
 			
-#			Should we put whiskey in this coffee?
-
-	return collision_data
+#			if collision is further than 8, can move there
+			if sum_of_vector_directions > 8:
+				vision_dictionary.get_or_add(vector, {'is_valid_direction': true})
+#			if collision is 8 or less, can't move there
+			elif sum_of_vector_directions <= 8:
+				vision_dictionary.get_or_add(vector, {'is_valid_direction': false})
+#		if no collision detected, can move here
+		else:
+			vision_dictionary.get_or_add(vector, {'is_valid_direction': true})
+			
+#		Should we put whiskey in this coffee?
+	print(vision_dictionary) 
+	return vision_dictionary 
 
 func check_for_wall_collision(collider_keys):
 	print(parent.move_distance)
@@ -50,12 +56,15 @@ func check_for_wall_collision(collider_keys):
 	# make vector positive
 	return to_local.x <= parent.move_distance or to_local.y <= parent.move_distance
 
-func get_valid_movement() -> Array[Vector2]:
-	var allowed_vector_movements : Array[Vector2] = [ Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT]
-	for vectorKey : Vector2 in collision_data:
-		var vectorDir : Dictionary = collision_data[vectorKey]
-		var is_allowed_movement_vector = vectorDir.get('valid_direction')
-		if not is_allowed_movement_vector:
-			
-	return only_valid_movements
+func get_a_valid_movement_direction() -> Vector2:
+	var allowed_vector_movements : Array[Vector2] = []
+	var collisions : Dictionary = get_vision_data()
+	for vectorKey : Vector2 in collisions:
+		var visionData : Dictionary = collisions[vectorKey]
+		if visionData.get('is_valid_direction'):
+			allowed_vector_movements.push_front(vectorKey)
+	
+	var random_movement = allowed_vector_movements.pick_random()
+	last_chosen_movement = random_movement
+	return random_movement
 	

@@ -28,19 +28,15 @@ func move_monster():
 	if not is_on_screen:
 		return
 	
-	var valid_moves : Array[Vector2] = vision.get_valid_movement()
+	var valid_direction : Vector2 = vision.get_a_valid_movement_direction()
 	
-	if valid_moves.is_empty():
-		return
-	
-	var random_valid_movement = valid_moves.pick_random()
 	# pick a random move direction	
-	if moves_since_direction_change >= movement_repeat or moves_since_direction_change == 0:
-		current_direction = random_valid_movement
-		moves_since_direction_change = 0
+	#if moves_since_direction_change >= movement_repeat or moves_since_direction_change == 0:
+		#current_direction = random_valid_movement
+		#moves_since_direction_change = 0
 	
-	if not valid_moves.has(current_direction):
-		current_direction = random_valid_movement
+	#if not valid_moves.has(current_direction):
+		#current_direction = random_valid_movement
 		
 #	execute movement
 	var move_tween : Tween = create_tween()
