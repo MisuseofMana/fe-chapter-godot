@@ -15,6 +15,10 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://globals/game_manager.gd"
+
 [display]
 
 window/size/viewport_width=192
@@ -35,6 +39,8 @@ player_cards="For getting all the player card nodes."
 monster_cards="for all the monster cards"
 monster_sprite=""
 player_node=""
+player_rays="group for players raycast colliders"
+interactable_item="group containing all interactable objects in the game"
 
 [input]
 

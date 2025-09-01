@@ -40,7 +40,7 @@ func get_vision_data() -> Dictionary:
 			vision_dictionary.get_or_add(vector, {'is_valid_direction': true})
 			
 #		Should we put whiskey in this coffee?
-	print(vision_dictionary) 
+
 	return vision_dictionary 
 
 func get_valid_movement_directions() -> Array[Vector2]:

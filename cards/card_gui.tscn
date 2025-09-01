@@ -1,20 +1,39 @@
-[gd_scene load_steps=17 format=3 uid="uid://fty5ct3prfsh"]
+[gd_scene load_steps=21 format=3 uid="uid://fty5ct3prfsh"]
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
+[ext_resource type="Script" uid="uid://cwrjpy13tae8m" path="res://cards/ui_tab.gd" id="2_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="5_sie6n"]
 [ext_resource type="Resource" uid="uid://286ug7nhviok" path="res://cards/abstract_card/card_resources/variants/melee_attack_card.tres" id="6_5fsmm"]
 [ext_resource type="Resource" uid="uid://dtpe8ecmufqsp" path="res://cards/abstract_card/card_resources/variants/cross_card.tres" id="6_x57sj"]
-[ext_resource type="Resource" uid="uid://bycibian8yfrc" path="res://cards/abstract_card/card_resources/variants/star_card.tres" id="7_5fsmm"]
 [ext_resource type="Resource" uid="uid://b34fbfx5cdmbg" path="res://cards/abstract_card/card_resources/variants/move_card.tres" id="7_lx8rw"]
 [ext_resource type="Resource" uid="uid://bgsmottr3yfhl" path="res://cards/abstract_card/card_resources/variants/defense_card.tres" id="8_0mfce"]
 [ext_resource type="Resource" uid="uid://crlu17bqx1xet" path="res://cards/abstract_card/card_resources/variants/heal_card.tres" id="9_c5pq0"]
 [ext_resource type="Resource" uid="uid://cw0t88b7ouphq" path="res://cards/abstract_card/card_resources/variants/draw_card.tres" id="10_rakwm"]
+[ext_resource type="Resource" uid="uid://dlttlrd4rml8t" path="res://cards/abstract_card/card_resources/variants/open_card.tres" id="13_0mfce"]
+[ext_resource type="AudioStream" uid="uid://dwtkys0bhbkem" path="res://assets/audio/ui/ui_slide.wav" id="14_0mfce"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5fsmm"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dj1s0"]
 load_path = "res://.godot/imported/slot.png-d636e6a544fb0d8297382b6b90021c92.ctex"
+
+[sub_resource type="Animation" id="Animation_lx8rw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardGui/AnimNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 144)]
+}
 
 [sub_resource type="Animation" id="Animation_5fsmm"]
 resource_name = "hide_drawer"
@@ -33,26 +52,16 @@ tracks/0/keys = {
 "values": [Vector2(96, 144), Vector2(96, 176)]
 }
 
-[sub_resource type="Animation" id="Animation_lx8rw"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardGui/AnimNode:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(96, 144)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7iits"]
 _data = {
 &"RESET": SubResource("Animation_lx8rw"),
 &"hide_drawer": SubResource("Animation_5fsmm")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0mfce"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("14_0mfce")
 
 [node name="CardGui" type="CanvasLayer" node_paths=PackedStringArray("anims")]
 script = ExtResource("1_lx8rw")
@@ -60,6 +69,14 @@ anims = NodePath("CardGuiAnimations")
 
 [node name="AnimNode" type="Node2D" parent="."]
 position = Vector2(96, 144)
+
+[node name="TextureRect" type="TextureRect" parent="AnimNode"]
+offset_left = -87.0
+offset_top = -24.0
+offset_right = -74.0
+offset_bottom = -16.0
+texture = SubResource("PlaceholderTexture2D_5fsmm")
+script = ExtResource("2_lx8rw")
 
 [node name="Gradient" type="Sprite2D" parent="AnimNode"]
 position = Vector2(3.8147e-06, 0)
@@ -105,7 +122,7 @@ texture = ExtResource("3_c5pq0")
 [node name="PlayerCards" parent="AnimNode" node_paths=PackedStringArray("slots") groups=["player_cards"] instance=ExtResource("4_rakwm")]
 position = Vector2(-12, -144)
 group_to_assign = "player_group"
-deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("7_lx8rw"), ExtResource("8_0mfce"), ExtResource("9_c5pq0"), ExtResource("10_rakwm"), ExtResource("6_x57sj"), ExtResource("7_5fsmm")])
+deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("7_lx8rw"), ExtResource("8_0mfce"), ExtResource("9_c5pq0"), ExtResource("10_rakwm"), ExtResource("6_x57sj"), ExtResource("13_0mfce")])
 slots = NodePath("../PlayerSlots")
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]
@@ -113,3 +130,9 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_7iits")
 }
+
+[node name="UISlideSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_0mfce")
+
+[connection signal="gui_input" from="AnimNode/TextureRect" to="AnimNode/TextureRect" method="_on_gui_input"]
+[connection signal="menu_icon_pressed" from="AnimNode/TextureRect" to="." method="toggle_drawer"]

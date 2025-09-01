@@ -7,6 +7,7 @@ class_name PlayerContainer
 @onready var right : RayCast2D = $WallDetection/Right
 @onready var up : RayCast2D = $WallDetection/Up
 @onready var left : RayCast2D = $WallDetection/Left
+@onready var wall_detection = $WallDetection
 
 var move_distance : int = 16
 var bounce_distance : int = 4
@@ -35,10 +36,15 @@ func attempt_movement(relative_pos: Vector2, can_move_here: bool = true):
 	
 func _input(event: InputEvent) -> void:
 	const actions = ['W', 'A', 'S', 'D', 'Space']
+		
 	var is_valid_input = actions.has(event.as_text())
 	if lock_movement or not is_valid_input:
 		return
 		
+	if GameManager.active_card != AbstractCardDetails.CARD_TYPE.NONE:
+		return
+		
+	
 	var movement_vector : Vector2
 	var valid_move : bool = false
 	

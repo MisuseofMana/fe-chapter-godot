@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgq2d5kp0ve06"]
+
+[ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="1_uw0it"]
+[ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="2_j045r"]
+[ext_resource type="AudioStream" uid="uid://butbvrsu67l2v" path="res://assets/audio/interactions/open_chest.wav" id="3_ehp4q"]
+[ext_resource type="AudioStream" uid="uid://dj8lpwtdbhhl5" path="res://assets/audio/interactions/open_chest_2.wav" id="4_itjgx"]
+[ext_resource type="Texture2D" uid="uid://d1nj7imnb53eq" path="res://assets/ui/selection.png" id="5_j045r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udix4"]
+atlas = ExtResource("1_uw0it")
+region = Rect2(0, 544, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di3tu"]
+atlas = ExtResource("1_uw0it")
+region = Rect2(32, 544, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uwar4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udix4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di3tu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i0lni"]
+streams_count = 2
+stream_0/stream = ExtResource("3_ehp4q")
+stream_1/stream = ExtResource("4_itjgx")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw0it"]
+size = Vector2(16, 16)
+
+[node name="Chest" type="Node2D" node_paths=PackedStringArray("inital_interaction_sound", "selector_indicator") groups=["interactable_item"]]
+script = ExtResource("2_j045r")
+inital_interaction_sound = NodePath("InteractionSound")
+interactable_name = 14
+selector_indicator = NodePath("SelectorIndicator")
+
+[node name="ChestSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_uwar4")
+frame_progress = 0.380663
+
+[node name="InteractionSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_i0lni")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+
+[node name="Collider" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_uw0it")
+debug_color = Color(0.00724442, 0.651222, 0, 0.42)
+
+[node name="SelectorIndicator" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.392157)
+texture = ExtResource("5_j045r")

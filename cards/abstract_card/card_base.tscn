@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb7gepmf8q7sj"]
+[gd_scene load_steps=16 format=3 uid="uid://bb7gepmf8q7sj"]
 
 [ext_resource type="Script" uid="uid://ci047ic300ye2" path="res://cards/abstract_card/card_base.gd" id="1_7fqoo"]
 [ext_resource type="Texture2D" uid="uid://c3i44cv0hagnu" path="res://assets/cards/card_texture/basic_card_sheet.png" id="1_bdmmp"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dm4582hptiuvf" path="res://assets/cards/card_texture/card_numbers/number-sheet.png" id="4_bdmmp"]
 [ext_resource type="Texture2D" uid="uid://f1nka4d87oiv" path="res://assets/cards/card_slot/highlight.png" id="4_qk2ya"]
 [ext_resource type="Texture2D" uid="uid://b62o6xgke0wvr" path="res://assets/cards/suits/club.png" id="5_qk2ya"]
+[ext_resource type="AudioStream" uid="uid://d234sjmx02as0" path="res://assets/audio/cards/card_1.wav" id="7_uw1ru"]
+[ext_resource type="AudioStream" uid="uid://chun1a75kk7aw" path="res://assets/audio/cards/card_2.wav" id="8_h7bgh"]
+[ext_resource type="AudioStream" uid="uid://c1kcv8b2g0ey5" path="res://assets/audio/cards/card_3.wav" id="9_64ikw"]
+[ext_resource type="AudioStream" uid="uid://d35hwbeo55er8" path="res://assets/audio/cards/card_4.wav" id="10_y55qv"]
+[ext_resource type="AudioStream" uid="uid://ciku4rh6ftga4" path="res://assets/audio/cards/card_5.wav" id="11_f4tkh"]
 
 [sub_resource type="Animation" id="Animation_qkoea"]
 length = 0.001
@@ -69,6 +74,14 @@ _data = {
 &"select": SubResource("Animation_qk2ya")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qk2ya"]
+streams_count = 5
+stream_0/stream = ExtResource("7_uw1ru")
+stream_1/stream = ExtResource("8_h7bgh")
+stream_2/stream = ExtResource("9_64ikw")
+stream_3/stream = ExtResource("10_y55qv")
+stream_4/stream = ExtResource("11_f4tkh")
+
 [node name="CardBase" type="Node2D"]
 script = ExtResource("1_7fqoo")
 card = ExtResource("2_qk2ya")
@@ -85,7 +98,6 @@ texture = ExtResource("4_qk2ya")
 unique_name_in_owner = true
 texture = ExtResource("1_bdmmp")
 hframes = 8
-frame = 7
 region_rect = Rect2(0, 0, 96, 144)
 
 [node name="Strength" type="Sprite2D" parent="Container"]
@@ -117,5 +129,10 @@ root_node = NodePath("../Container/CardBase")
 libraries = {
 &"": SubResource("AnimationLibrary_qkoea")
 }
+
+[node name="CardClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_qk2ya")
+volume_db = -20.0
+pitch_scale = 0.7
 
 [connection signal="gui_input" from="Container/ClickInteraction" to="." method="play_raise_animation"]

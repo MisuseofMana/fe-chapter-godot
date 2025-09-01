@@ -16,6 +16,8 @@ enum CARD_TYPE {
 	HEAL,
 	DRAW,
 	DEFEND,
+	OPEN,
+	NONE = -1,
 }
 
 @export var card_type : CARD_TYPE

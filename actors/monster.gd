@@ -34,7 +34,6 @@ func move_monster():
 		return
 	
 	var valid_directions : Array[Vector2] = vision.get_valid_movement_directions()
-	var random_valid_direction : Vector2
 	
 	# pick a random move direction	
 	if ready_for_new_direction():
