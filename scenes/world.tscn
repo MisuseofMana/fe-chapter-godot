@@ -63,3 +63,4 @@ script = ExtResource("9_w7kh3")
 
 [connection signal="monsters_finished_moving" from="Level/MonsterContainer" to="Player" method="unlock_movement"]
 [connection signal="player_just_moved" from="Player" to="Level/MonsterContainer" method="handle_monster_movement"]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]
