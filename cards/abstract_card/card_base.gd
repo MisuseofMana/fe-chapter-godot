@@ -16,7 +16,7 @@ var is_selected : bool = false
 var card_position : int = 0
 
 func _ready():
-	suit.texture = card.suit_texture
+	suit.texture = card.get_card_suit()
 	card_base.frame = randi_range(0, 7)
 	strength.frame = card.power
 

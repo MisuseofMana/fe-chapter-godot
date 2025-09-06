@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgq2d5kp0ve06"]
+[gd_scene load_steps=13 format=3 uid="uid://cgq2d5kp0ve06"]
 
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="1_uw0it"]
+[ext_resource type="Texture2D" uid="uid://n3dorx1j32k6" path="res://assets/cards/suits/open.png" id="2_ehp4q"]
 [ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="2_j045r"]
 [ext_resource type="AudioStream" uid="uid://butbvrsu67l2v" path="res://assets/audio/interactions/open_chest.wav" id="3_ehp4q"]
 [ext_resource type="AudioStream" uid="uid://dj8lpwtdbhhl5" path="res://assets/audio/interactions/open_chest_2.wav" id="4_itjgx"]
@@ -29,26 +30,39 @@ animations = [{
 }]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i0lni"]
-streams_count = 2
+streams_count = 1
 stream_0/stream = ExtResource("3_ehp4q")
-stream_1/stream = ExtResource("4_itjgx")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ehp4q"]
+streams_count = 1
+stream_0/stream = ExtResource("4_itjgx")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw0it"]
 size = Vector2(16, 16)
 
-[node name="Chest" type="Node2D" node_paths=PackedStringArray("inital_interaction_sound", "selector_indicator") groups=["interactable_item"]]
+[node name="Chest" type="Node2D" node_paths=PackedStringArray("inital_interaction_sound", "secondary_interaction_sound", "selector_indicator") groups=["interactable_item"]]
 script = ExtResource("2_j045r")
 inital_interaction_sound = NodePath("InteractionSound")
+secondary_interaction_sound = NodePath("SecondaryInteractionSound")
 interactable_name = 14
 selector_indicator = NodePath("SelectorIndicator")
 
-[node name="ChestSprite" type="AnimatedSprite2D" parent="."]
+[node name="InteractionIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+texture = ExtResource("2_ehp4q")
+
+[node name="InteractionSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_uwar4")
 frame_progress = 0.380663
 
 [node name="InteractionSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_i0lni")
+
+[node name="SecondaryInteractionSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ehp4q")
+pitch_scale = 0.9
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_mask = 0

@@ -46,8 +46,13 @@ inital_interaction_sound = NodePath("DoorOpen")
 secondary_interaction_sound = NodePath("DoorClose")
 interactable_name = 4
 selector_indicator = NodePath("SelectorIndicator")
+can_become_walkable = true
 
-[node name="DoorSprite" type="AnimatedSprite2D" parent="."]
+[node name="InteractionIcon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+
+[node name="InteractionSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_nmwkn")
 

@@ -83,7 +83,7 @@ ToggleCards={
 
 2d_physics/layer_1="WallDetection"
 2d_physics/layer_2="PlayerHitbox"
-2d_physics/layer_3="Layer3"
+2d_physics/layer_3="Layer 3"
 
 [rendering]
 

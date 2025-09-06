@@ -25,6 +25,14 @@ func wait():
 	lock_movement = true
 	move_all_monsters()
 
+func interaction_possible(target) -> bool:
+	var subject : Node2D = target.get_collider().owner
+	if subject is Interactable:
+		if subject.can_interact:
+			subject.interact_with()
+			return true
+	return false
+
 func attempt_movement(relative_pos: Vector2, can_move_here: bool = true):
 	lock_movement = true
 	var origin_pos = position
@@ -34,6 +42,29 @@ func attempt_movement(relative_pos: Vector2, can_move_here: bool = true):
 		lvl_tween.tween_property(self, "position", origin_pos, 0.2)
 	lvl_tween.tween_callback(move_all_monsters)
 	
+func handle_move_direction_input(ray: RayCast2D):
+	var movement_vector : Vector2
+	var valid_move : bool = false
+	
+	var movement_map : Dictionary[RayCast2D, Vector2] = {
+		up: Vector2.UP,
+		down: Vector2.DOWN,
+		left: Vector2.LEFT,
+		right: Vector2.RIGHT
+	}
+	
+#	if direction is colliding with something
+	if ray.is_colliding():
+#		if that collision is an interactable thing
+		if interaction_possible(ray):
+			return
+#		if it isn't interactable bounce away
+		else:
+			attempt_movement(movement_map[ray] * bounce_distance, false) 
+#	if able to move here, move to that location
+	else:
+		attempt_movement(movement_map[ray] * move_distance, true)
+
 func _input(event: InputEvent) -> void:
 	const actions = ['W', 'A', 'S', 'D', 'Space']
 		
@@ -41,43 +72,20 @@ func _input(event: InputEvent) -> void:
 	if lock_movement or not is_valid_input:
 		return
 		
-	if GameManager.active_card != AbstractCardDetails.CARD_TYPE.NONE:
-		return
-		
-	
-	var movement_vector : Vector2
 	var valid_move : bool = false
 	
 	if Input.is_action_just_pressed('up'):
-		if up.is_colliding():
-			movement_vector = Vector2(0, -bounce_distance) 
-		else:
-			valid_move = true
-			movement_vector = Vector2(0, -move_distance)
+		handle_move_direction_input(up)
 			
 	if Input.is_action_just_pressed('down'):
-		if down.is_colliding():
-			movement_vector = Vector2(0, bounce_distance)
-		else:
-			movement_vector = Vector2(0, move_distance)
-			valid_move = true
+		handle_move_direction_input(down)
 	
 	if Input.is_action_just_pressed('left'):
-		if left.is_colliding():
-			movement_vector = Vector2(-bounce_distance, 0) 
-		else: 
-			movement_vector = Vector2(-move_distance, 0)
-			valid_move = true
+		handle_move_direction_input(left)
 		
 	if Input.is_action_just_pressed('right'):
-		if right.is_colliding():
-			movement_vector = Vector2(bounce_distance, 0) 
-		else: 
-			movement_vector = Vector2(move_distance, 0)
-			valid_move = true
+		handle_move_direction_input(right)
 			
 	if Input.is_action_just_pressed('wait'):
-		movement_vector = Vector2(0, 0)
-		valid_move = true
+		attempt_movement(Vector2.ZERO)
 		
-	attempt_movement(movement_vector, valid_move)

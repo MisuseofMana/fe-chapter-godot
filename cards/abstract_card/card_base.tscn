@@ -98,7 +98,7 @@ texture = ExtResource("4_qk2ya")
 unique_name_in_owner = true
 texture = ExtResource("1_bdmmp")
 hframes = 8
-frame = 5
+frame = 1
 region_rect = Rect2(0, 0, 96, 144)
 
 [node name="Strength" type="Sprite2D" parent="Container"]

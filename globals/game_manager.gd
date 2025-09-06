@@ -3,8 +3,10 @@ extends Node
 var active_card : AbstractCardDetails.CARD_TYPE = AbstractCardDetails.CARD_TYPE.NONE
 
 func activate_card_action(card_type : AbstractCardDetails.CARD_TYPE) -> void:
-	print(card_type)
 	active_card = card_type
+	for interactable : Interactable in get_tree().get_nodes_in_group('interactable_item'):
+		if interactable.interactable_name == active_card:
+			interactable.show_icon()
 	activate_neighbor_squares()
 	
 func activate_neighbor_squares():
@@ -19,3 +21,6 @@ func deactivate_card_action():
 	active_card = AbstractCardDetails.CARD_TYPE.NONE
 	for interactable : Interactable in get_tree().get_nodes_in_group('interactable_item'):
 		interactable.deactivate_interactability()
+		interactable.hide_icon()
+		
+		
