@@ -12,7 +12,8 @@ class_name CardGui
 var drawer_visible : bool = false
 
 func _ready() -> void:
-	toggle_drawer()
+	pass
+	#toggle_drawer()
 
 func _input(event: InputEvent) -> void:
 	const actions = ['ToggleCards']

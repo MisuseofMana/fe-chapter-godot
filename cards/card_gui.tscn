@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
+[ext_resource type="Texture2D" uid="uid://fevfbagg1sr5" path="res://assets/ui/drawer_tab-export.png" id="2_c5pq0"]
 [ext_resource type="Script" uid="uid://cwrjpy13tae8m" path="res://cards/ui_tab.gd" id="2_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
@@ -14,8 +15,6 @@
 [ext_resource type="Resource" uid="uid://cw0t88b7ouphq" path="res://cards/abstract_card/card_resources/variants/draw_card.tres" id="10_rakwm"]
 [ext_resource type="Resource" uid="uid://dlttlrd4rml8t" path="res://cards/abstract_card/card_resources/variants/open_card.tres" id="13_0mfce"]
 [ext_resource type="AudioStream" uid="uid://dwtkys0bhbkem" path="res://assets/audio/ui/ui_slide.wav" id="14_0mfce"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5fsmm"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dj1s0"]
 load_path = "res://.godot/imported/slot.png-d636e6a544fb0d8297382b6b90021c92.ctex"
@@ -32,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(96, 144)]
+"values": [Vector2(96, 176)]
 }
 
 [sub_resource type="Animation" id="Animation_5fsmm"]
@@ -68,14 +67,14 @@ script = ExtResource("1_lx8rw")
 anims = NodePath("CardGuiAnimations")
 
 [node name="AnimNode" type="Node2D" parent="."]
-position = Vector2(96, 144)
+position = Vector2(96, 176)
 
 [node name="TextureRect" type="TextureRect" parent="AnimNode"]
-offset_left = -87.0
-offset_top = -24.0
-offset_right = -74.0
+offset_left = -93.0
+offset_top = -28.0
+offset_right = -77.0
 offset_bottom = -16.0
-texture = SubResource("PlaceholderTexture2D_5fsmm")
+texture = ExtResource("2_c5pq0")
 script = ExtResource("2_lx8rw")
 
 [node name="Gradient" type="Sprite2D" parent="AnimNode"]
