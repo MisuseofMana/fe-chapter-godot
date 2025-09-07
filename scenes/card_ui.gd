@@ -15,8 +15,7 @@ func _ready() -> void:
 	pass
 	#toggle_drawer()
 
-func _input(event: InputEvent) -> void:
-	const actions = ['ToggleCards']
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed('ToggleCards'):
 		toggle_drawer()
 	

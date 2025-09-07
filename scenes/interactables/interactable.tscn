@@ -1,28 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgq2d5kp0ve06"]
+[gd_scene load_steps=12 format=3 uid="uid://nfj2em8xgqtt"]
 
-[ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="1_uw0it"]
-[ext_resource type="Texture2D" uid="uid://n3dorx1j32k6" path="res://assets/cards/suits/open.png" id="2_ehp4q"]
-[ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="2_j045r"]
-[ext_resource type="AudioStream" uid="uid://butbvrsu67l2v" path="res://assets/audio/interactions/open_chest.wav" id="3_ehp4q"]
-[ext_resource type="AudioStream" uid="uid://dj8lpwtdbhhl5" path="res://assets/audio/interactions/open_chest_2.wav" id="4_itjgx"]
-[ext_resource type="Texture2D" uid="uid://d1nj7imnb53eq" path="res://assets/ui/selection.png" id="5_j045r"]
+[ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="1_cfryh"]
+[ext_resource type="Texture2D" uid="uid://n3dorx1j32k6" path="res://assets/cards/suits/open.png" id="2_n2tmg"]
+[ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="3_et2dc"]
+[ext_resource type="AudioStream" uid="uid://butbvrsu67l2v" path="res://assets/audio/interactions/open_chest.wav" id="4_efswn"]
+[ext_resource type="AudioStream" uid="uid://dj8lpwtdbhhl5" path="res://assets/audio/interactions/open_chest_2.wav" id="5_nouqi"]
+[ext_resource type="Texture2D" uid="uid://d1nj7imnb53eq" path="res://assets/ui/selection.png" id="6_0uw3a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_udix4"]
-atlas = ExtResource("1_uw0it")
-region = Rect2(0, 544, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_di3tu"]
-atlas = ExtResource("1_uw0it")
-region = Rect2(32, 544, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm40l"]
+atlas = ExtResource("3_et2dc")
+region = Rect2(128, 544, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uwar4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_udix4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_di3tu")
+"texture": SubResource("AtlasTexture_sm40l")
 }],
 "loop": true,
 "name": &"default",
@@ -31,26 +24,26 @@ animations = [{
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i0lni"]
 streams_count = 1
-stream_0/stream = ExtResource("3_ehp4q")
+stream_0/stream = ExtResource("4_efswn")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ehp4q"]
 streams_count = 1
-stream_0/stream = ExtResource("4_itjgx")
+stream_0/stream = ExtResource("5_nouqi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uw0it"]
 size = Vector2(16, 16)
 
-[node name="Chest" type="Node2D" node_paths=PackedStringArray("inital_interaction_sound", "secondary_interaction_sound", "selector_indicator") groups=["interactable_item"]]
-script = ExtResource("2_j045r")
+[node name="Interactable" type="Node2D" node_paths=PackedStringArray("inital_interaction_sound", "secondary_interaction_sound", "selector_indicator") groups=["interactable_item"]]
+script = ExtResource("1_cfryh")
 inital_interaction_sound = NodePath("InteractionSound")
 secondary_interaction_sound = NodePath("SecondaryInteractionSound")
-interactable_name = 14
+interactable_name = 10
 selector_indicator = NodePath("SelectorIndicator")
 
 [node name="InteractionIcon" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -12)
-texture = ExtResource("2_ehp4q")
+texture = ExtResource("2_n2tmg")
 
 [node name="InteractionSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -75,4 +68,6 @@ debug_color = Color(0.00724442, 0.651222, 0, 0.42)
 [node name="SelectorIndicator" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 1, 0.392157)
-texture = ExtResource("5_j045r")
+texture = ExtResource("6_0uw3a")
+
+[node name="RewardContainer" type="Node2D" parent="."]

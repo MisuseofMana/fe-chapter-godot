@@ -8,14 +8,25 @@ class_name Interactable
 @export var can_become_walkable : bool = false
 
 @onready var interaction_area = $InteractionArea
-
 @onready var interaction_icon = $InteractionIcon
 @onready var interaction_sprite = $InteractionSprite
+@onready var reward_container = $RewardContainer
+
+@export var interactable_card_reward : AbstractCardDetails = null
+
+const CARD_COLLECTIBLE = preload("res://cards/card_collectible.tscn")
 
 var can_interact : bool = false
 var has_been_interacted : bool = false
+var has_claimed_collectable : bool = false
+
+var reward_target_node : CollectibleCard
 
 func _ready():
+	if interactable_card_reward:
+		var card_reward_node = CARD_COLLECTIBLE.instantiate()
+		card_reward_node.card_details = interactable_card_reward
+		reward_container.add_child(card_reward_node)
 	interaction_icon.texture = AbstractCardDetails.card_icon[interactable_name]
 
 func activate_interactability():
@@ -26,20 +37,34 @@ func deactivate_interactability():
 	can_interact = false
 	selector_indicator.visible = false
 
-func interact_with():
-	if has_been_interacted:
-		if can_become_walkable:
-			interaction_area.set_collision_layer_value(1, true)
-		interaction_sprite.frame = 0
-		secondary_interaction_sound.play()
-		has_been_interacted = false
-	elif not has_been_interacted :
-		if can_become_walkable:
-			interaction_area.set_collision_layer_value(1, false)
-		interaction_sprite.frame = 1
-		inital_interaction_sound.play()
-		has_been_interacted = true
+func claim_collectable():
+	has_claimed_collectable = true
+	var reward : CollectibleCard = reward_container.get_child(0)
+	reward.reveal_self()
 
+func initial_interaction_handler():
+	if not has_claimed_collectable and interactable_card_reward != null:
+		claim_collectable()
+	if can_become_walkable:
+		interaction_area.set_collision_layer_value(1, false)
+	interaction_sprite.frame = 1
+	inital_interaction_sound.play()
+	has_been_interacted = true
+	
+func secondary_interaction_handler():
+	if can_become_walkable:
+		interaction_area.set_collision_layer_value(1, true)
+	interaction_sprite.frame = 0
+	secondary_interaction_sound.play()
+	has_been_interacted = false
+
+func interact_with():
+	if not has_been_interacted:
+		initial_interaction_handler()
+	elif has_been_interacted :
+		secondary_interaction_handler()
+	GameManager.reduce_used_card_value()
+	
 func show_icon():
 	interaction_icon.show()
 

@@ -18,7 +18,7 @@
 
 [sub_resource type="Resource" id="Resource_xo05s"]
 script = ExtResource("16_dss4m")
-card_type = 10
+card_type = 14
 power = 1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 

@@ -46,6 +46,9 @@ static var card_icon : Array[Resource] = [
 func get_card_suit():
 	return card_icon[card_type]
 
+func reduce_card_power_by_one():
+	power -= 1
+
 func get_color():
 	match card_type:
 		[0, 1]: return 'red'

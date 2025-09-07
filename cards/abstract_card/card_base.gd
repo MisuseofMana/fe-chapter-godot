@@ -10,15 +10,18 @@ class_name AbstractCard
 @onready var suit = %Suit
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@export var card : AbstractCardDetails
+@export var card_details : AbstractCardDetails
 
 var is_selected : bool = false
 var card_position : int = 0
 
+func is_active_card() -> bool :
+	return GameManager.active_card == self
+
 func _ready():
-	suit.texture = card.get_card_suit()
+	suit.texture = card_details.get_card_suit()
 	card_base.frame = randi_range(0, 7)
-	strength.frame = card.power
+	strength.frame = card_details.power
 
 func unselect_card():
 	if is_selected:
@@ -31,7 +34,7 @@ func select_card():
 	if not is_selected:
 		is_selected = true
 		card_click_sound.play()
-		GameManager.activate_card_action(card.card_type)
+		GameManager.activate_card_action(self)
 		animation_player.play('select')
 
 func play_raise_animation(event: InputEvent):
@@ -41,4 +44,9 @@ func play_raise_animation(event: InputEvent):
 		elif not is_selected:
 			get_tree().call_group('player_cards', 'unselect_all_cards')
 			select_card()
+
+func reduce_power_by_one():
+	card_details.power -= 1
 		
+func add_card_to_inventory(passed_card_details: AbstractCardDetails):
+	card_details.power += passed_card_details.power

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://fty5ct3prfsh"]
+[gd_scene load_steps=16 format=3 uid="uid://fty5ct3prfsh"]
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
@@ -8,11 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="5_sie6n"]
 [ext_resource type="Resource" uid="uid://286ug7nhviok" path="res://cards/abstract_card/card_resources/variants/melee_attack_card.tres" id="6_5fsmm"]
-[ext_resource type="Resource" uid="uid://dtpe8ecmufqsp" path="res://cards/abstract_card/card_resources/variants/cross_card.tres" id="6_x57sj"]
-[ext_resource type="Resource" uid="uid://b34fbfx5cdmbg" path="res://cards/abstract_card/card_resources/variants/move_card.tres" id="7_lx8rw"]
-[ext_resource type="Resource" uid="uid://bgsmottr3yfhl" path="res://cards/abstract_card/card_resources/variants/defense_card.tres" id="8_0mfce"]
-[ext_resource type="Resource" uid="uid://crlu17bqx1xet" path="res://cards/abstract_card/card_resources/variants/heal_card.tres" id="9_c5pq0"]
-[ext_resource type="Resource" uid="uid://cw0t88b7ouphq" path="res://cards/abstract_card/card_resources/variants/draw_card.tres" id="10_rakwm"]
 [ext_resource type="Resource" uid="uid://dlttlrd4rml8t" path="res://cards/abstract_card/card_resources/variants/open_card.tres" id="13_0mfce"]
 [ext_resource type="AudioStream" uid="uid://dwtkys0bhbkem" path="res://assets/audio/ui/ui_slide.wav" id="14_0mfce"]
 
@@ -121,7 +116,7 @@ texture = ExtResource("3_c5pq0")
 [node name="PlayerCards" parent="AnimNode" node_paths=PackedStringArray("slots") groups=["player_cards"] instance=ExtResource("4_rakwm")]
 position = Vector2(-12, -144)
 group_to_assign = "player_group"
-deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("7_lx8rw"), ExtResource("8_0mfce"), ExtResource("9_c5pq0"), ExtResource("10_rakwm"), ExtResource("6_x57sj"), ExtResource("13_0mfce")])
+deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("13_0mfce")])
 slots = NodePath("../PlayerSlots")
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]
