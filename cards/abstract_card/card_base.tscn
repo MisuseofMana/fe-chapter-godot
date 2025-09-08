@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bb7gepmf8q7sj"]
+[gd_scene load_steps=15 format=3 uid="uid://bb7gepmf8q7sj"]
 
 [ext_resource type="Script" uid="uid://ci047ic300ye2" path="res://cards/abstract_card/card_base.gd" id="1_7fqoo"]
 [ext_resource type="Texture2D" uid="uid://c3i44cv0hagnu" path="res://assets/cards/card_texture/basic_card_sheet.png" id="1_bdmmp"]
-[ext_resource type="Resource" uid="uid://dokcxi0d0gij" path="res://cards/abstract_card/card_resources/variants/club_card.tres" id="2_qk2ya"]
 [ext_resource type="Texture2D" uid="uid://dm4582hptiuvf" path="res://assets/cards/card_texture/card_numbers/number-sheet.png" id="4_bdmmp"]
 [ext_resource type="Texture2D" uid="uid://f1nka4d87oiv" path="res://assets/cards/card_slot/highlight.png" id="4_qk2ya"]
 [ext_resource type="Texture2D" uid="uid://b62o6xgke0wvr" path="res://assets/cards/suits/club.png" id="5_qk2ya"]
@@ -84,7 +83,6 @@ stream_4/stream = ExtResource("11_f4tkh")
 
 [node name="CardBase" type="Node2D"]
 script = ExtResource("1_7fqoo")
-card = ExtResource("2_qk2ya")
 
 [node name="Container" type="Node2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -97,7 +95,7 @@ texture = ExtResource("4_qk2ya")
 [node name="CardBase" type="Sprite2D" parent="Container"]
 unique_name_in_owner = true
 texture = ExtResource("1_bdmmp")
-hframes = 8
+hframes = 9
 frame = 1
 region_rect = Rect2(0, 0, 96, 144)
 
@@ -112,6 +110,7 @@ region_rect = Rect2(0, 0, 48, 30)
 [node name="Suit" type="Sprite2D" parent="Container"]
 unique_name_in_owner = true
 position = Vector2(0, -4)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_qk2ya")
 region_rect = Rect2(0, 0, 60, 54)
 
