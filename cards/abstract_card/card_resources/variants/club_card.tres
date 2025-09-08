@@ -1,10 +1,8 @@
-[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=3 format=3 uid="uid://dokcxi0d0gij"]
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=2 format=3 uid="uid://dokcxi0d0gij"]
 
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_y17nb"]
-[ext_resource type="Texture2D" uid="uid://b62o6xgke0wvr" path="res://assets/cards/suits/club.png" id="2_ujuvk"]
 
 [resource]
 script = ExtResource("1_y17nb")
 card_type = 2
-suit_texture = ExtResource("2_ujuvk")
 power = 2

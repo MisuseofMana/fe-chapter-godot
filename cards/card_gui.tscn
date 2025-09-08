@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://fty5ct3prfsh"]
+[gd_scene load_steps=15 format=3 uid="uid://fty5ct3prfsh"]
 
 [ext_resource type="Script" uid="uid://cdon31h08nft3" path="res://scenes/card_ui.gd" id="1_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://h2ekex2vx1a0" path="res://assets/cards/gradient.png" id="2_0mfce"]
 [ext_resource type="Texture2D" uid="uid://fevfbagg1sr5" path="res://assets/ui/drawer_tab-export.png" id="2_c5pq0"]
 [ext_resource type="Script" uid="uid://cwrjpy13tae8m" path="res://cards/ui_tab.gd" id="2_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
-[ext_resource type="PackedScene" uid="uid://vt3gq8bkoh3b" path="res://cards/card_container.tscn" id="4_rakwm"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="5_sie6n"]
 [ext_resource type="Resource" uid="uid://286ug7nhviok" path="res://cards/abstract_card/card_resources/variants/melee_attack_card.tres" id="6_5fsmm"]
 [ext_resource type="Resource" uid="uid://dlttlrd4rml8t" path="res://cards/abstract_card/card_resources/variants/open_card.tres" id="13_0mfce"]
@@ -57,9 +56,9 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("14_0mfce")
 
-[node name="CardGui" type="CanvasLayer" node_paths=PackedStringArray("anims")]
+[node name="CardGui" type="CanvasLayer"]
 script = ExtResource("1_lx8rw")
-anims = NodePath("CardGuiAnimations")
+deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("13_0mfce")])
 
 [node name="AnimNode" type="Node2D" parent="."]
 position = Vector2(96, 176)
@@ -113,11 +112,7 @@ texture = ExtResource("3_c5pq0")
 position = Vector2(70, 0)
 texture = ExtResource("3_c5pq0")
 
-[node name="PlayerCards" parent="AnimNode" node_paths=PackedStringArray("slots") groups=["player_cards"] instance=ExtResource("4_rakwm")]
-position = Vector2(-12, -144)
-group_to_assign = "player_group"
-deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("13_0mfce")])
-slots = NodePath("../PlayerSlots")
+[node name="CardContainer" type="Node2D" parent="AnimNode"]
 
 [node name="CardGuiAnimations" type="AnimationPlayer" parent="."]
 root_node = NodePath("../..")

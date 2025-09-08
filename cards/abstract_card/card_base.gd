@@ -12,11 +12,13 @@ class_name AbstractCard
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var card_details : AbstractCardDetails
 
-var is_selected : bool = false
-var card_position : int = 0
+signal card_selected(card: AbstractCard)
 
-func is_active_card() -> bool :
-	return GameManager.active_card == self
+var is_selected : bool = false : 
+	set(newValue):
+		is_selected = newValue
+		if newValue == true:
+			card_selected.emit(self)
 
 func _ready():
 	suit.texture = card_details.get_card_suit()
