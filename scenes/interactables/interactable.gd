@@ -6,6 +6,7 @@ class_name Interactable
 @export var interactable_name : AbstractCardDetails.CARD_TYPE
 @export var selector_indicator : Sprite2D
 @export var can_become_walkable : bool = false
+@export var oneshot_interaction : bool = false
 
 @onready var interaction_area = $InteractionArea
 @onready var interaction_icon = $InteractionIcon
@@ -27,24 +28,25 @@ func _ready():
 		var card_reward_node = CARD_COLLECTIBLE.instantiate()
 		card_reward_node.card_details = interactable_card_reward
 		reward_container.add_child(card_reward_node)
-	interaction_icon.texture = AbstractCardDetails.card_icon[interactable_name]
+	interaction_icon.frame = interactable_name
 
 func activate_interactability():
-	can_interact = true
-	selector_indicator.visible = true
+	if not has_been_interacted && not oneshot_interaction:
+		can_interact = true
+		selector_indicator.visible = true
 
 func deactivate_interactability():
 	can_interact = false
 	selector_indicator.visible = false
 
-func claim_collectable():
-	has_claimed_collectable = true
-	var reward : CollectibleCard = reward_container.get_child(0)
-	reward.reveal_self()
+func attempt_to_claim_collectable():
+	if not has_claimed_collectable && interactable_card_reward != null:
+		has_claimed_collectable = true
+		var reward : CollectibleCard = reward_container.get_child(0)
+		reward.reveal_self()
 
 func initial_interaction_handler():
-	if not has_claimed_collectable and interactable_card_reward != null:
-		claim_collectable()
+	attempt_to_claim_collectable()
 	if can_become_walkable:
 		interaction_area.set_collision_layer_value(1, false)
 	interaction_sprite.frame = 1

@@ -9,7 +9,9 @@ const CARD_BASE = preload("res://cards/abstract_card/card_base.tscn")
 @export var deck : Array[AbstractCardDetails]
 @onready var slots: Node2D = $AnimNode/PlayerSlots
 @onready var card_container: Node2D = $AnimNode/CardContainer
-			
+
+var overflow_cards : Array[AbstractCardDetails] = []
+
 var selected_card : AbstractCard = null
 var drawer_visible : bool = false
 
@@ -49,8 +51,15 @@ func toggle_drawer():
 func unselect_all_cards():
 	for card : AbstractCard in card_container.get_children():
 		card.unselect_card()
-
-func decrease_used_card_value():
-	for card : AbstractCard in card_container.get_children():
-		if card.is_selected:
-			card.reduce_power_by_one()
+		
+func aquire_new_card(collected_card : AbstractCardDetails):
+	var number_of_cards_in_inventory = card_container.get_children().size()
+	var number_of_slots_in_inventory = slots.get_children().size()
+	if number_of_cards_in_inventory < number_of_slots_in_inventory:
+		var open_slot_index = number_of_cards_in_inventory
+		var baseCard : AbstractCard = CARD_BASE.instantiate()
+		baseCard.card_details = collected_card
+		card_container.add_child(baseCard)
+		baseCard.global_position = slots.get_children()[open_slot_index].global_position
+	else:
+		overflow_cards.push_front(collected_card)

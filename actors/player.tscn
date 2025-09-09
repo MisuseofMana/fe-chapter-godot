@@ -13,7 +13,7 @@ script = ExtResource("1_mvpqy")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_1yqc4")
 region_enabled = true
-region_rect = Rect2(96, 0, 32, 32)
+region_rect = Rect2(32, 128, 32, 32)
 
 [node name="WallDetection" type="Node2D" parent="."]
 
@@ -43,3 +43,4 @@ shape = SubResource("RectangleShape2D_i7141")
 debug_color = Color(0.967637, 3.85046e-07, 0.472992, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)

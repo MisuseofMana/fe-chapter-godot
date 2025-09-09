@@ -56,7 +56,7 @@ random_pitch = 1.2
 streams_count = 1
 stream_0/stream = ExtResource("14_0mfce")
 
-[node name="CardGui" type="CanvasLayer" groups=["card_gui"]]
+[node name="CardGui" type="CanvasLayer"]
 script = ExtResource("1_lx8rw")
 deck = Array[ExtResource("5_sie6n")]([ExtResource("6_5fsmm"), ExtResource("13_0mfce")])
 

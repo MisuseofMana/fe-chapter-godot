@@ -6,8 +6,8 @@ class_name AbstractCard
 @onready var card_click_sound = $CardClickSound
 
 @onready var card_base = %CardBase
-@onready var strength = %Strength
-@onready var suit = %Suit
+@onready var card_uses_remaining = $Container/CardUsesRemaining
+@onready var suit : AnimatedSprite2D = %Suit
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var card_details : AbstractCardDetails
@@ -21,9 +21,15 @@ var is_selected : bool = false :
 			card_selected.emit(self)
 
 func _ready():
-	suit.texture = card_details.get_card_suit()
-	card_base.frame = randi_range(0, 7)
-	strength.frame = card_details.power
+	suit.frame = card_details.card_type
+	update_card_visuals()
+	
+func update_card_visuals():
+	card_uses_remaining.text = str(card_details.power)
+	if card_details.power > 0:
+		card_base.frame = card_details.power - 1
+	else:
+		animation_player.animation_set_next('select', 'dissolve')
 
 func unselect_card():
 	if is_selected:
@@ -31,6 +37,7 @@ func unselect_card():
 		card_click_sound.play()
 		GameManager.deactivate_card_action()
 		animation_player.play_backwards('select')
+			
 	
 func select_card():
 	if not is_selected:
@@ -48,7 +55,11 @@ func play_raise_animation(event: InputEvent):
 			select_card()
 
 func reduce_power_by_one():
-	card_details.power -= 1
+	if is_selected:
+		card_details.power -= 1
+		update_card_visuals()
 		
-func add_card_to_inventory(passed_card_details: AbstractCardDetails):
+func collect_card(passed_card_details: AbstractCardDetails):
 	card_details.power += passed_card_details.power
+	card_uses_remaining.text = str(card_details.power)
+	card_base.frame = card_details.power - 1

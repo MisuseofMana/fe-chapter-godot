@@ -11,7 +11,7 @@ func _ready():
 	set_card_visuals()
 
 func set_card_visuals():
-	card_suit_sprite.texture = card_details.get_card_suit()
+	card_suit_sprite.frame = card_details.card_type
 	card_power.text = str(card_details.power)
 	
 func reveal_self():

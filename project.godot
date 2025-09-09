@@ -41,6 +41,7 @@ monster_sprite=""
 player_node=""
 player_rays="group for players raycast colliders"
 interactable_item="group containing all interactable objects in the game"
+card_gui="contains the card drawer node"
 
 [input]
 

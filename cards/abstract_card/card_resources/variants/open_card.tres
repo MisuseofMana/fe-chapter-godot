@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_0un31")
-card_type = 14
-power = 2
+card_type = 12
+power = 1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

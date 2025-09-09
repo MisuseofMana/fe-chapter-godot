@@ -22,16 +22,19 @@ func activate_neighbor_squares():
 func deactivate_card_action():
 	movement_locked = false
 	active_card = null
-	get_tree().call_group('player_cards', 'unselect_all_cards')
+	get_tree().call_group('player_cards', 'unselect_card')
 	for interactable : Interactable in get_tree().get_nodes_in_group('interactable_item'):
 		interactable.deactivate_interactability()
 		interactable.hide_icon()
 
 func reduce_used_card_value():
-	get_tree().call_group('player_cards', 'decrease_used_card_value')
+	active_card.reduce_power_by_one()
 	deactivate_card_action()
 	
 func add_card_to_inventory(card : AbstractCardDetails):
-	for inventory_card : AbstractCard in get_tree().get_first_node_in_group('player_cards').get_children():
-		if inventory_card.is_active_card():
-			inventory_card.add_card_to_inventory(card)
+	for inventory_card : AbstractCard in get_tree().get_nodes_in_group('player_cards'):
+		if inventory_card.card_details.card_type == card.card_type:
+			inventory_card.collect_card(card)
+			return
+	var card_gui : CardGui = get_tree().get_first_node_in_group('card_gui')
+	card_gui.aquire_new_card(card)

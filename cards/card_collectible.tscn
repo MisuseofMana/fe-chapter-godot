@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c3i44cv0hagnu" path="res://assets/cards/card_texture/basic_card_sheet.png" id="1_pf251"]
 [ext_resource type="Script" uid="uid://y0ddvikqkeu8" path="res://cards/collectible_card.gd" id="1_svpus"]
-[ext_resource type="Texture2D" uid="uid://bf2k3ydq5y33w" path="res://assets/cards/suits/melee_attack.png" id="3_lgfln"]
+[ext_resource type="SpriteFrames" uid="uid://d3x15gt5uunh" path="res://resources/card_suit_sprite_frames.tres" id="3_lgfln"]
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="3_svpus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lakw3"]
@@ -163,9 +163,10 @@ modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_efswn")
 
-[node name="CardSuitSprite" type="Sprite2D" parent="CardSprite"]
-position = Vector2(0, -4)
-texture = ExtResource("3_lgfln")
+[node name="CardSuitSprite" type="AnimatedSprite2D" parent="CardSprite"]
+position = Vector2(0, -3)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("3_lgfln")
 
 [node name="CardPower" type="Label" parent="CardSprite"]
 offset_left = -6.0
@@ -174,8 +175,8 @@ offset_right = 8.0
 offset_bottom = 11.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_svpus")
-theme_override_font_sizes/font_size = 16
-text = "6"
+theme_override_font_sizes/font_size = 14
+text = "0"
 horizontal_alignment = 1
 
 [node name="CollectibleAnimations" type="AnimationPlayer" parent="."]
@@ -184,4 +185,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_et2dc")
 }
 
-[connection signal="animation_finished" from="CollectibleAnimations" to="CardSprite" method="_on_collectible_animations_animation_finished"]
+[connection signal="animation_finished" from="CollectibleAnimations" to="." method="_on_collectible_animations_animation_finished"]
