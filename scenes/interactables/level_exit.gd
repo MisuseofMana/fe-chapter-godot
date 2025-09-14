@@ -12,6 +12,4 @@ func transition_to_new_level():
 #	remove old level
 #	add new level
 # 	when the new level enters it should teleport the player to the spawn location
-#  
 	pass
-	

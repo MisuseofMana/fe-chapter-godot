@@ -11,34 +11,40 @@ const CARD_BASE = preload("res://cards/abstract_card/card_base.tscn")
 @onready var card_container: Node2D = $AnimNode/CardContainer
 
 var overflow_cards : Array[AbstractCardDetails] = []
-
-var selected_card : AbstractCard = null
+var active_card : AbstractCard = null
 var drawer_visible : bool = false
 
 func _ready() -> void:
+	GameManager.ACTION_OCCURED.connect(consume_card)
 	var current_index : int = 0
 	for card : AbstractCardDetails in deck:
 		var baseCard : AbstractCard = CARD_BASE.instantiate()
 		baseCard.card_details = card
 		card_container.add_child(baseCard)
+		baseCard.card_clicked.connect(handle_card_click)
 		baseCard.global_position = slots.get_children()[current_index].global_position
 		current_index += 1
-		
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed('ToggleCards'):
-		toggle_drawer()
-	if Input.is_action_just_pressed('cycle_cards_left'):
-		if selected_card:
-			pass
-#		if no card is selected:
-#			select the right most card
-#		otherwise select the card at one index lower than the currently selected card
-	if Input.is_action_just_pressed('cycle_cards_left'):
-		pass
-		#if no card is selected
-#			select the left most card
-#		otherwise selext the card at one index higher
-	
+
+func card_is_active(card: AbstractCard) -> bool:
+	return active_card == card
+
+func handle_card_click(clicked_card: AbstractCard):
+#	if no card selected
+	if active_card == null:
+		active_card = clicked_card
+		clicked_card.activate_card()
+#	if a selected card is clicked
+	elif active_card == clicked_card:
+		active_card.deactivate_card()
+		active_card = null
+		GameManager.ACTION_UNPRIMED.emit()
+#	if a card is selected and a different card is clicked
+	else:
+		active_card.deactivate_card()
+		clicked_card.activate_card()
+		active_card = clicked_card
+		GameManager.ACTION_PRIMED.emit()
+
 func toggle_drawer():
 	ui_slide_sound.play()
 	if drawer_visible:
@@ -47,11 +53,12 @@ func toggle_drawer():
 	else:
 		anims.play_backwards('hide_drawer')
 		drawer_visible = true
-		
-func unselect_all_cards():
-	for card : AbstractCard in card_container.get_children():
-		card.unselect_card()
-		
+
+func consume_card(card_type : AbstractCardDetails.CARD_TYPE):
+	for card : AbstractCard in get_children():
+		if card.card_details.card_type == card_type:
+			card.consume_one()
+
 func aquire_new_card(collected_card : AbstractCardDetails):
 	var number_of_cards_in_inventory = card_container.get_children().size()
 	var number_of_slots_in_inventory = slots.get_children().size()
@@ -63,3 +70,4 @@ func aquire_new_card(collected_card : AbstractCardDetails):
 		baseCard.global_position = slots.get_children()[open_slot_index].global_position
 	else:
 		overflow_cards.push_front(collected_card)
+	

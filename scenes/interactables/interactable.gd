@@ -23,21 +23,14 @@ var has_claimed_collectable : bool = false
 
 var reward_target_node : CollectibleCard
 
+signal interaction_succeded(interaction_type : AbstractCardDetails.CARD_TYPE)
+
 func _ready():
 	if interactable_card_reward:
 		var card_reward_node = CARD_COLLECTIBLE.instantiate()
 		card_reward_node.card_details = interactable_card_reward
 		reward_container.add_child(card_reward_node)
 	interaction_icon.frame = interactable_name
-
-func activate_interactability():
-	if not has_been_interacted && not oneshot_interaction:
-		can_interact = true
-		selector_indicator.visible = true
-
-func deactivate_interactability():
-	can_interact = false
-	selector_indicator.visible = false
 
 func attempt_to_claim_collectable():
 	if not has_claimed_collectable && interactable_card_reward != null:
@@ -60,15 +53,37 @@ func secondary_interaction_handler():
 	secondary_interaction_sound.play()
 	has_been_interacted = false
 
-func interact_with():
-	if not has_been_interacted:
+func attempt_interaction():
+	if not has_been_interacted and can_interact:
 		initial_interaction_handler()
-	elif has_been_interacted :
+	elif has_been_interacted and can_interact:
 		secondary_interaction_handler()
-	GameManager.reduce_used_card_value()
-	
-func show_icon():
-	interaction_icon.show()
+	elif not can_interact:
+#		should play an error sound
+		pass
+	GameManager.ACTION_ATTEMPTED_FOR.emit(interactable_name)
 
-func hide_icon():
-	interaction_icon.hide()
+func matches_selected_card(card_type: AbstractCardDetails.CARD_TYPE) -> bool:
+	return interactable_name == card_type
+
+func handle_interaction_icon_visibility(card_type : AbstractCardDetails.CARD_TYPE = AbstractCardDetails.CARD_TYPE['NONE']):
+	if matches_selected_card(card_type):
+		interaction_icon.show()
+	else:
+		interaction_icon.hide()
+
+func handle_within_reach_status(card_type : AbstractCardDetails.CARD_TYPE):
+	if matches_selected_card(card_type):
+		selector_indicator.show()
+		can_interact = true
+	else:
+		selector_indicator.hide()
+		can_interact = false
+	
+func hide_details(interaction_type : AbstractCardDetails.CARD_TYPE):
+	if interaction_type == interactable_name:
+		if selector_indicator.visible:
+			selector_indicator.hide()
+		if interaction_icon.visible:
+			interaction_icon.hide()
+			

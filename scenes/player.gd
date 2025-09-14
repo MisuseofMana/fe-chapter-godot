@@ -51,10 +51,9 @@ func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
 func attempt_action(ray : RayCast2D):
 #	handle action pressed 
 	if ray.is_colliding():
-		var subject = ray.get_collider().owner
-		if subject is Interactable:
-			if subject.interactable_name == GameManager.active_card.card_details.card_type:
-				subject.interact_with()
+		var interactable = ray.get_collider().owner
+		if interactable is Interactable:
+			interactable.attempt_interaction()
 
 func handle_direction_input(ray: RayCast2D):
 #	if movement is locked (card is selected) and there is an active card 
