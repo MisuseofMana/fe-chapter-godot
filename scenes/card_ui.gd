@@ -14,36 +14,33 @@ var overflow_cards : Array[AbstractCardDetails] = []
 var active_card : AbstractCard = null
 var drawer_visible : bool = false
 
+signal card_action_primed(card_type : AbstractCardDetails.CARD_TYPE)
+
 func _ready() -> void:
-	GameManager.ACTION_OCCURED.connect(consume_card)
 	var current_index : int = 0
 	for card : AbstractCardDetails in deck:
 		var baseCard : AbstractCard = CARD_BASE.instantiate()
 		baseCard.card_details = card
 		card_container.add_child(baseCard)
-		baseCard.card_clicked.connect(handle_card_click)
+		baseCard.card_activated.connect(handle_card_activated)
 		baseCard.global_position = slots.get_children()[current_index].global_position
 		current_index += 1
 
 func card_is_active(card: AbstractCard) -> bool:
 	return active_card == card
 
-func handle_card_click(clicked_card: AbstractCard):
-#	if no card selected
-	if active_card == null:
-		active_card = clicked_card
-		clicked_card.activate_card()
+func handle_card_activated(clicked_card: AbstractCard):
 #	if a selected card is clicked
-	elif active_card == clicked_card:
-		active_card.deactivate_card()
+	if active_card == clicked_card:
+		active_card.lower_card()
 		active_card = null
-		GameManager.ACTION_UNPRIMED.emit()
 #	if a card is selected and a different card is clicked
 	else:
-		active_card.deactivate_card()
-		clicked_card.activate_card()
+		if active_card:
+			active_card.lower_card()
+		clicked_card.raise_card()
 		active_card = clicked_card
-		GameManager.ACTION_PRIMED.emit()
+		card_action_primed.emit(clicked_card.card_details.card_type)
 
 func toggle_drawer():
 	ui_slide_sound.play()

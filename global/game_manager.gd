@@ -4,23 +4,11 @@ var movement_locked : bool = false
 
 signal CARD_CLICKED(card: AbstractCard)
 signal ACTION_OCCURED(interactable_name : AbstractCardDetails.CARD_TYPE)
-signal ACTION_PRIMED(card_type: AbstractCardDetails.CARD_TYPE)
-signal ACTION_UNPRIMED
-
-func activate_neighbor_squares(abstract_card : AbstractCard):
-	for ray : RayCast2D in get_tree().get_nodes_in_group('player_rays'):
-		if ray.is_colliding():
-			var interactable : Node2D = ray.get_collider().owner
-			if interactable is Interactable:
-				interactable.handle_within_reach_status(abstract_card.card_details.card_type)
+signal NEW_ACTION_PRIMED(card_type: AbstractCardDetails.CARD_TYPE)
+signal ACTION_UNPRIMED(card_type: AbstractCardDetails.CARD_TYPE)
 
 func deactivate_neighbor_squares():
 	get_tree().call_group('interactable_items', 'handle_within_reach_status')
-
-func show_corresponding_interactable_icons(abstract_card : AbstractCard) -> void:
-	movement_locked = true
-	get_tree().call_group('interactable_item', 'handle_interaction_icon_visibility', abstract_card.card_details.card_type)
-	activate_neighbor_squares(abstract_card)
 		
 func hide_interaction_icons():
 	movement_locked = false

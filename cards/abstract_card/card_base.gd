@@ -12,7 +12,9 @@ class_name AbstractCard
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var card_details : AbstractCardDetails
 
-signal card_clicked(card: AbstractCard)
+var is_active : bool = false
+
+signal card_activated(card: AbstractCard)
 
 func _ready():
 	suit.frame = card_details.card_type
@@ -25,11 +27,11 @@ func update_card_visuals():
 	else:
 		animation_player.animation_set_next('select', 'dissolve')
 
-func activate_card():
+func raise_card():
 	card_click_sound.play()
 	animation_player.play('select')
 
-func deactivate_card():
+func lower_card():
 	card_click_sound.play()
 	animation_player.play_backwards('select')
 
@@ -45,4 +47,5 @@ func collect_card(passed_card_details: AbstractCardDetails):
 func on_card_clicked(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			card_clicked.emit(self)
+			is_active = true
+			card_activated.emit(self)

@@ -20,16 +20,10 @@ var bounce_distance : int = 4
 }
 
 signal player_just_moved
-
-func unlock_movement():
-	GameManager.movement_locked = false
+signal action_attempted_on(interactable : Interactable)
 	
 func move_all_monsters():
 	player_just_moved.emit()
-
-func wait():
-	GameManager.movement_locked = true
-	move_all_monsters()
 
 func interaction_possible(target) -> bool:
 	var subject : Node2D = target.get_collider().owner
@@ -53,10 +47,10 @@ func attempt_action(ray : RayCast2D):
 	if ray.is_colliding():
 		var interactable = ray.get_collider().owner
 		if interactable is Interactable:
-			interactable.attempt_interaction()
+			action_attempted_on.emit(interactable)
 
 func handle_direction_input(ray: RayCast2D):
-#	if movement is locked (card is selected) and there is an active card 
+#	if movement is locked there is an active card 
 	if GameManager.movement_locked:
 		attempt_action(ray)
 		return

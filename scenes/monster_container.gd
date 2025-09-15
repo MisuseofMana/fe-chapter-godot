@@ -10,4 +10,4 @@ func handle_monster_movement():
 	var all_monsters = get_children()
 	for monster : Monster in all_monsters:
 		monster.move_monster()
-	monsters_finished_moving.emit()
+	GameManager.movement_locked = false

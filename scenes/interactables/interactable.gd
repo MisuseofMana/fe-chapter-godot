@@ -18,6 +18,9 @@ class_name Interactable
 const CARD_COLLECTIBLE = preload("res://cards/card_collectible.tscn")
 
 var can_interact : bool = false
+var hint_icon_visible : bool = false
+
+
 var has_been_interacted : bool = false
 var has_claimed_collectable : bool = false
 
@@ -61,7 +64,6 @@ func attempt_interaction():
 	elif not can_interact:
 #		should play an error sound
 		pass
-	GameManager.ACTION_ATTEMPTED_FOR.emit(interactable_name)
 
 func matches_selected_card(card_type: AbstractCardDetails.CARD_TYPE) -> bool:
 	return interactable_name == card_type
@@ -72,18 +74,9 @@ func handle_interaction_icon_visibility(card_type : AbstractCardDetails.CARD_TYP
 	else:
 		interaction_icon.hide()
 
-func handle_within_reach_status(card_type : AbstractCardDetails.CARD_TYPE):
-	if matches_selected_card(card_type):
-		selector_indicator.show()
-		can_interact = true
-	else:
-		selector_indicator.hide()
-		can_interact = false
+func hide_interaction_icon():
+	interaction_icon.hide()
 	
-func hide_details(interaction_type : AbstractCardDetails.CARD_TYPE):
-	if interaction_type == interactable_name:
-		if selector_indicator.visible:
-			selector_indicator.hide()
-		if interaction_icon.visible:
-			interaction_icon.hide()
-			
+func show_interaction_icon():
+	interaction_icon.show()
+	
