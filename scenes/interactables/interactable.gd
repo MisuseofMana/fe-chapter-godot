@@ -57,11 +57,12 @@ func secondary_interaction_handler():
 	has_been_interacted = false
 
 func attempt_interaction():
-	if not has_been_interacted and can_interact:
-		initial_interaction_handler()
-	elif has_been_interacted and can_interact:
-		secondary_interaction_handler()
-	elif not can_interact:
+	if can_interact:
+		if not has_been_interacted:
+			initial_interaction_handler()
+		elif has_been_interacted:
+			secondary_interaction_handler()
+	else:
 #		should play an error sound
 		pass
 

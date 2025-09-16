@@ -66,7 +66,7 @@ bg_color = Color(0.27623, 0.148609, 0, 0.890196)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t5mc"]
 texture = ExtResource("13_xo05s")
 
-[node name="GameManager" type="Node2D"]
+[node name="World" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-24, -40)
@@ -233,6 +233,7 @@ Monsters move after you move (they do nothing for now.)"
 [connection signal="action_attempted_on" from="Player" to="Interactables" method="_on_player_action_attempted_on"]
 [connection signal="player_just_moved" from="Player" to="MonsterContainer" method="handle_monster_movement"]
 [connection signal="monsters_finished_moving" from="MonsterContainer" to="Player" method="unlock_movement"]
-[connection signal="card_action_primed" from="CardGui" to="Interactables" method="handle_interaction_icon_display"]
+[connection signal="card_action_primed" from="CardGui" to="Interactables" method="handle_card_selection"]
+[connection signal="card_action_unprimed" from="CardGui" to="Interactables" method="handle_card_deselection"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="PanelContainer" method="_on_button_pressed"]

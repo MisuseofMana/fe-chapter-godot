@@ -12,22 +12,19 @@ func get_interactables_by_type(card_type : AbstractCardDetails.CARD_TYPE) -> Arr
 			aggregator.push_front(interactable)
 	return aggregator
 	
-func handle_interaction_icon_display(card_type : AbstractCardDetails.CARD_TYPE = AbstractCardDetails.CARD_TYPE['NONE']):
-	hide_interaction_icons_by_type()
+func handle_card_selection(card_type : AbstractCardDetails.CARD_TYPE = AbstractCardDetails.CARD_TYPE['NONE']):
 	active_interaction_type = card_type
 	for interactable : Interactable in get_interactables_by_type(card_type):
 		interactable.show_interaction_icon()
 
-func hide_interaction_icons_by_type():
+func handle_card_deselection(card_type : AbstractCardDetails.CARD_TYPE):
+	for interactable : Interactable in get_interactables_by_type(card_type):
+		interactable.hide_interaction_icon()
+
+func hide_interaction_icons_by_type(card_type: AbstractCardDetails.CARD_TYPE):
 	if active_interaction_type != AbstractCardDetails.CARD_TYPE['NONE']:
 		for interactable : Interactable in get_interactables_by_type(active_interaction_type):
 			interactable.hide_interaction_icon()
-
-func handle_toggle_selector_visibility():
-	pass
-	
-func handle_action_occured():
-	pass
 
 func disable_all_indicators(card_type : AbstractCardDetails.CARD_TYPE):
 	for interactable : Interactable in get_interactables_by_type(card_type):

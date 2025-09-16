@@ -15,6 +15,7 @@ var active_card : AbstractCard = null
 var drawer_visible : bool = false
 
 signal card_action_primed(card_type : AbstractCardDetails.CARD_TYPE)
+signal card_action_unprimed(card_type : AbstractCardDetails.CARD_TYPE)
 
 func _ready() -> void:
 	var current_index : int = 0
@@ -30,14 +31,15 @@ func card_is_active(card: AbstractCard) -> bool:
 	return active_card == card
 
 func handle_card_activated(clicked_card: AbstractCard):
-#	if a selected card is clicked
-	if active_card == clicked_card:
-		active_card.lower_card()
+#	three states, card picked, card swapped, card unpicked
+	if card_is_active(clicked_card):
+		clicked_card.lower_card()
+		card_action_unprimed.emit(clicked_card.card_details.card_type)
 		active_card = null
-#	if a card is selected and a different card is clicked
 	else:
 		if active_card:
 			active_card.lower_card()
+			card_action_unprimed.emit(active_card.card_details.card_type)
 		clicked_card.raise_card()
 		active_card = clicked_card
 		card_action_primed.emit(clicked_card.card_details.card_type)

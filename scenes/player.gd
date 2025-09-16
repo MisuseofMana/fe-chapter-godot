@@ -37,9 +37,11 @@ func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
 	GameManager.movement_locked = true
 	var origin_pos = position
 	var lvl_tween : Tween = create_tween()
-	lvl_tween.tween_property(self, "position", position + relative_pos, 0.2)
+	if can_move_here:
+		lvl_tween.tween_property(self, "position", position + relative_pos, 0.2)
 	if not can_move_here:
-		lvl_tween.tween_property(self, "position", origin_pos, 0.2)
+		lvl_tween.tween_property(self, "position", position + relative_pos, 0.1)
+		lvl_tween.tween_property(self, "position", origin_pos, 0.1)
 	lvl_tween.tween_callback(move_all_monsters)
 
 func attempt_action(ray : RayCast2D):
