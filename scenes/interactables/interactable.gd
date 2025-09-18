@@ -3,7 +3,7 @@ class_name Interactable
 
 @export var inital_interaction_sound : AudioStreamPlayer2D
 @export var secondary_interaction_sound : AudioStreamPlayer2D
-@export var interactable_name : AbstractCardDetails.CARD_TYPE
+@export var interactable_name : GameData.ACTIONS
 @export var selector_indicator : Sprite2D
 @export var can_become_walkable : bool = false
 @export var oneshot_interaction : bool = false
@@ -26,7 +26,7 @@ var has_claimed_collectable : bool = false
 
 var reward_target_node : CollectibleCard
 
-signal interaction_succeded(interaction_type : AbstractCardDetails.CARD_TYPE)
+signal interaction_succeded(interaction_type : GameData.ACTIONS)
 
 func _ready():
 	if interactable_card_reward:
@@ -66,10 +66,10 @@ func attempt_interaction():
 #		should play an error sound
 		pass
 
-func matches_selected_card(card_type: AbstractCardDetails.CARD_TYPE) -> bool:
+func matches_selected_card(card_type: GameData.ACTIONS) -> bool:
 	return interactable_name == card_type
 
-func handle_interaction_icon_visibility(card_type : AbstractCardDetails.CARD_TYPE = AbstractCardDetails.CARD_TYPE['NONE']):
+func handle_interaction_icon_visibility(card_type : GameData.ACTIONS = GameData.ACTIONS['NONE']):
 	if matches_selected_card(card_type):
 		interaction_icon.show()
 	else:

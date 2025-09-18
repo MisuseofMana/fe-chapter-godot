@@ -14,8 +14,8 @@ var overflow_cards : Array[AbstractCardDetails] = []
 var active_card : AbstractCard = null
 var drawer_visible : bool = false
 
-signal card_action_primed(card_type : AbstractCardDetails.CARD_TYPE)
-signal card_action_unprimed(card_type : AbstractCardDetails.CARD_TYPE)
+signal card_action_primed(card_type : GameData.ACTIONS)
+signal card_action_unprimed(card_type : GameData.ACTIONS)
 
 func _ready() -> void:
 	var current_index : int = 0
@@ -53,7 +53,7 @@ func toggle_drawer():
 		anims.play_backwards('hide_drawer')
 		drawer_visible = true
 
-func consume_card(card_type : AbstractCardDetails.CARD_TYPE):
+func consume_card(card_type : GameData.ACTIONS):
 	for card : AbstractCard in get_children():
 		if card.card_details.card_type == card_type:
 			card.consume_one()

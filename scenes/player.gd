@@ -1,6 +1,8 @@
 extends Node2D
 class_name PlayerContainer
 
+var game_data = load("res://resources/game_data.gd")
+
 @onready var player: Sprite2D = $PlayerSprite
 
 @onready var down : RayCast2D = $WallDetection/Down
@@ -34,7 +36,7 @@ func interaction_possible(target) -> bool:
 	return false
 
 func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
-	GameManager.movement_locked = true
+	game_data.movement_locked = true
 	var origin_pos = position
 	var lvl_tween : Tween = create_tween()
 	if can_move_here:
@@ -53,7 +55,7 @@ func attempt_action(ray : RayCast2D):
 
 func handle_direction_input(ray: RayCast2D):
 #	if movement is locked there is an active card 
-	if GameManager.movement_locked:
+	if game_data.movement_locked:
 		attempt_action(ray)
 		return
 		

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameData" load_steps=2 format=3 uid="uid://cppqpv5iybpa2"]
+
+[ext_resource type="Script" uid="uid://dpg3moj3jop2t" path="res://resources/game_data.gd" id="1_f6hr2"]
+
+[resource]
+script = ExtResource("1_f6hr2")
+movement_locked = false
+active_cards = Array[int]([])
+metadata/_custom_type_script = "uid://dpg3moj3jop2t"
