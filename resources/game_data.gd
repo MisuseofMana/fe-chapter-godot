@@ -21,5 +21,19 @@ enum ACTIONS {
 	NONE = -1,
 }
 
+signal new_action_primed()
+signal action_cleared
+
 @export var movement_locked : bool = false
-@export var active_cards : Array[ACTIONS]
+
+var active_card : AbstractCard = null
+
+func prime_action(card : AbstractCard):
+	active_card = card
+
+func unprime_action():
+	active_card = null
+	
+func get_active_action():
+	return active_card.card_details.card_type
+	

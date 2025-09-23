@@ -2,8 +2,7 @@ extends Node2D
 class_name InteractableController
 
 @export var player_node : PlayerContainer
-
-var active_interaction_type : GameData.ACTIONS = GameData.ACTIONS['NONE']
+@export var game_data : GameData
 
 func get_interactables_by_type(card_type : GameData.ACTIONS) -> Array[Interactable]:
 	var aggregator : Array[Interactable] = []
@@ -13,7 +12,7 @@ func get_interactables_by_type(card_type : GameData.ACTIONS) -> Array[Interactab
 	return aggregator
 	
 func handle_card_selection(card_type : GameData.ACTIONS = GameData.ACTIONS['NONE']):
-	active_interaction_type = card_type
+	game_data.active_action = card_type
 	for interactable : Interactable in get_interactables_by_type(card_type):
 		interactable.show_interaction_icon()
 
@@ -21,9 +20,9 @@ func handle_card_deselection(card_type : GameData.ACTIONS):
 	for interactable : Interactable in get_interactables_by_type(card_type):
 		interactable.hide_interaction_icon()
 
-func hide_interaction_icons_by_type(card_type: GameData.ACTIONS):
-	if active_interaction_type != GameData.ACTIONS['NONE']:
-		for interactable : Interactable in get_interactables_by_type(active_interaction_type):
+func hide_interaction_icons_by_type(action: GameData.ACTIONS):
+	if game_data.active_action:
+		for interactable : Interactable in get_interactables_by_type(game_data.active_card_type):
 			interactable.hide_interaction_icon()
 
 func disable_all_indicators(card_type : GameData.ACTIONS):

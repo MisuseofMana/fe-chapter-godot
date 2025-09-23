@@ -1,7 +1,8 @@
-[gd_scene load_steps=27 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=28 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
+[ext_resource type="Resource" uid="uid://cppqpv5iybpa2" path="res://resources/game_data.tres" id="3_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
@@ -92,6 +93,7 @@ tile_set = ExtResource("1_m33p3")
 
 [node name="Interactables" type="Node2D" parent="."]
 script = ExtResource("2_dss4m")
+game_data = ExtResource("3_7t5mc")
 
 [node name="Door2" parent="Interactables" instance=ExtResource("5_jhx03")]
 position = Vector2(-24, -40)
@@ -134,6 +136,7 @@ interactable_card_reward = SubResource("Resource_dss4m")
 
 [node name="Player" parent="." instance=ExtResource("5_71j4m")]
 position = Vector2(-56, -8)
+game_data = ExtResource("3_7t5mc")
 
 [node name="MonsterContainer" parent="." instance=ExtResource("3_k0juu")]
 position = Vector2(-24, 15)

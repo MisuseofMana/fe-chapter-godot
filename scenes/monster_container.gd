@@ -1,7 +1,7 @@
 extends Node2D
 class_name MonsterContainer
 
-var game_data = load("res://resources/game_data.gd")
+var game_data = load("res://resources/game_data.tres")
 
 var move_distance : int = 32
 var lock_movement : bool = false

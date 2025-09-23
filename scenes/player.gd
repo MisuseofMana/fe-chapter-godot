@@ -1,15 +1,14 @@
 extends Node2D
 class_name PlayerContainer
 
-var game_data = load("res://resources/game_data.gd")
-
 @onready var player: Sprite2D = $PlayerSprite
-
 @onready var down : RayCast2D = $WallDetection/Down
 @onready var right : RayCast2D = $WallDetection/Right
 @onready var up : RayCast2D = $WallDetection/Up
 @onready var left : RayCast2D = $WallDetection/Left
 @onready var wall_detection = $WallDetection
+
+@export var game_data : GameData
 
 var move_distance : int = 16
 var bounce_distance : int = 4

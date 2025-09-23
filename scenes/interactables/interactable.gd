@@ -20,7 +20,6 @@ const CARD_COLLECTIBLE = preload("res://cards/card_collectible.tscn")
 var can_interact : bool = false
 var hint_icon_visible : bool = false
 
-
 var has_been_interacted : bool = false
 var has_claimed_collectable : bool = false
 
