@@ -19,5 +19,5 @@ func reveal_self():
 
 func _on_collectible_animations_animation_finished(anim_name):
 	if anim_name == 'reveal_collectible':
-		#GameManager.add_card_to_inventory(card_details)
+		EventBus.new_card_aquired.emit(card_details)
 		queue_free()

@@ -26,7 +26,6 @@ animations = [{
 }]
 
 [node name="Chest" instance=ExtResource("1_4fxdc")]
-interactable_name = 14
 
 [node name="InteractionSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_0us0j")

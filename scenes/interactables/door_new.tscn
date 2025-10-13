@@ -42,7 +42,7 @@ stream_2/stream = ExtResource("6_6lyxi")
 [node name="Door" instance=ExtResource("1_bo30t")]
 can_become_walkable = true
 
-[node name="InteractionSprite" parent="." index="1"]
+[node name="InteractionSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_pj1ub")
 frame_progress = 0.0
 

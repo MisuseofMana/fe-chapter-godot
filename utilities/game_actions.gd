@@ -1,0 +1,22 @@
+extends Resource
+class_name GameActions
+
+enum ACTIONS {
+	HEART,
+	DIAMOND,
+	CLUB,
+	SPADE,
+	CROSS,
+	WAVE,
+	STAR,
+	DROP,
+	RANGED_ATTACK,
+	MELEE_ATTACK,
+	BURST,
+	SWIRL,
+	OPEN,
+	LOCK,
+	REST,
+	COMPASS,
+	NONE = -1,
+}

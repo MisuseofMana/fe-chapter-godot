@@ -2,7 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
-[ext_resource type="Resource" uid="uid://cppqpv5iybpa2" path="res://resources/game_data.tres" id="3_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
@@ -51,13 +50,19 @@ metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="Resource" id="Resource_xo05s"]
 script = ExtResource("16_dss4m")
-card_type = 9
-power = 1
+card_type = 12
+power = 2
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="Resource" id="Resource_pm21f"]
 script = ExtResource("16_dss4m")
-card_type = 12
+card_type = 9
+power = 1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_7iits"]
+script = ExtResource("16_dss4m")
+card_type = 10
 power = 1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
@@ -70,8 +75,8 @@ texture = ExtResource("13_xo05s")
 [node name="World" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-24, -40)
-scale = Vector2(1.9375, 272)
+position = Vector2(-24, -32)
+scale = Vector2(1.9375, 288)
 texture = SubResource("GradientTexture1D_dss4m")
 
 [node name="Level" type="Node2D" parent="."]
@@ -79,11 +84,11 @@ position = Vector2(0, -1)
 scale = Vector2(0.5, 0.5)
 
 [node name="SpawnPoint" type="Marker2D" parent="Level"]
-position = Vector2(-240, -78)
+position = Vector2(-176, -14)
 
 [node name="Ground" type="TileMapLayer" parent="Level"]
 position = Vector2(0, 2)
-tile_map_data = PackedByteArray("AAD3//3/AwAAAAYAAAD3//7/AwABAAYAAAD3////AwAAAAYAAAD4////AwAAAAYAAAD5////AwADAAkAAAD6//7/AwADABcAAAD6////AwAAAAYAAAD7////AwADAAoAAAD6/wEAAwACAAcAAAD4//v/AwAAAAYAAAD5//r/AwAAAAYAAAD5//v/AwACAAkAAAD6//r/AwAAAAYAAAD6//v/AwAAAAYAAAD7//r/AwAAAAYAAAD7//v/AwAAAAYAAAD8//r/AwADAAkAAAD9//r/AwAAAAYAAAD+//r/AwAAAA0AAAD+//v/AwAAAAYAAAD1//r/AwAAAAYAAAD2//v/AwABAAgAAAD3//r/AwAAAAYAAAD3//v/AwAAAAYAAAD0//r/AwAAAA0AAAD0//v/AwAAAAYAAAD0//z/AwAAAAYAAAD0//3/AwACAAYAAAD0//7/AwAAAAYAAAD0////AwAAAAYAAAD0/wAAAwAAAA0AAAD0/wEAAwAAAA0AAAD1//z/AwADAAkAAAD1//3/AwAAAAYAAAD1//7/AwACAAcAAAD1////AwABAAYAAAD1/wAAAwADABcAAAD1/wEAAwAAAAYAAAD2//z/AwAAAAYAAAD3//z/AwAAAAYAAAD9//z/AwAAAAYAAAD+//z/AwAAAAYAAAD+//3/AwAAAAYAAAD9//3/AwAAAAYAAAD8//3/AwACAAkAAAD8//7/AwAAAAYAAAD8/wAAAwABABUAAAD9/wAAAwADABcAAAD9////AwAAAAYAAAD9//7/AwAAAAYAAAD2/wAAAwABAAkAAAD2////AwAAAAYAAAD2//7/AwAAAAYAAAD2//3/AwAAAAYAAAD7//z/AwABAAgAAAD7//3/AwAAAAYAAAD7//7/AwABAAgAAAD2/wEAAwAAAAYAAAD3/wEAAwABAAYAAAD4/wEAAwAAAAYAAAD5/wEAAwAAAAYAAAD7/wEAAwAAAAYAAAD8/wEAAwAAAAYAAAD9/wEAAwAAAAYAAAD9//v/AwAAAAYAAAD5//3/AwAAAAYAAAD4//3/AwAAAAYAAAD6//3/AwAAAAYAAAD4//z/AwAAAAYAAAD5//z/AwAAAAYAAAD6//z/AwAAAAYAAAD4//7/AwADABcAAAD5//7/AwADAAgAAAADAP3/AwACAAcAAAAGAP3/AwAAAAYAAAAEAPv/AwAAAAYAAAAEAPz/AwABAAcAAAAEAP//AwAAAAYAAAAEAAAAAwAHABAAAAAFAPv/AwABABMAAAAFAPz/AwAAABYAAAAFAP//AwAAAAYAAAAFAAAAAwAAAAYAAAAGAPv/AwAAABQAAAAGAPz/AwAOABAAAAAGAP7/AwAAAAYAAAAGAAAAAwAAAAYAAAAHAPv/AwAAAAYAAAAHAPz/AwABABQAAAAHAP7/AwAAAAYAAAAHAP//AwAAAAYAAAAHAAAAAwAAAAYAAAD8////AwAAAAYAAAAAAP3/AwABAAgAAAAHAP3/AwABABYAAAD1//v/AwAAABYAAADv/wQAAwACAAgAAADw/wUAAwACAAgAAADx/wQAAwADAAgAAADz/wIAAwABAAgAAADz/wMAAwADAAgAAAD0/wIAAwACAAgAAAD2/wMAAwACAAgAAAD2/wQAAwABAAgAAAD3/wIAAwACAAgAAAD3/wMAAwADAAgAAAD6/wMAAwABAAgAAAD6/wQAAwABAAgAAAD7/wQAAwABAAgAAAD8/wMAAwABAAgAAAD9/wIAAwACAAgAAAACAAUAAwACAAgAAAADAAIAAwABAAgAAAAEAAIAAwABAAgAAAAEAAMAAwABAAgAAAAEAAQAAwADAAgAAAAFAAUAAwABAAgAAAAGAAQAAwACAAgAAAAJAAIAAwABAAgAAAAJAAQAAwADAAgAAAANAAUAAwABAAgAAAD//wAAAwABAAgAAAAAAAAAAwACAAgAAAACAAEAAwABAAgAAAAJAP//AwADAAgAAAAJAAAAAwABAAgAAAAKAPz/AwABAAgAAAAKAP//AwABAAgAAAALAPv/AwABAAgAAAAMAPr/AwADAAgAAAAMAPz/AwADAAgAAAAMAP//AwABAAgAAAANAPX/AwABAAgAAAANAPn/AwADAAgAAAANAPv/AwACAAgAAAANAP//AwACAAgAAAD///X/AwADAAgAAAD///f/AwADAAgAAAAAAPb/AwACAAgAAAAAAPf/AwACAAgAAAACAPX/AwACAAgAAAACAPn/AwADAAgAAAADAPf/AwADAAgAAAAEAPX/AwACAAgAAAAEAPf/AwADAAgAAAAGAPj/AwADAAgAAAAHAPj/AwACAAgAAADx//j/AwADAAgAAADy//j/AwABAAgAAADz//j/AwABAAgAAAD4//j/AwACAAgAAAD5//X/AwABAAgAAAD6//f/AwACAAgAAAD7//b/AwABAAgAAAD8//j/AwABAAgAAADv//7/AwACAAgAAADv/wAAAwADAAgAAADx//r/AwADAAgAAADz//r/AwABAAgAAADz//7/AwACAAgAAADz/wAAAwABAAgAAADz/wEAAwABAAgAAAD///v/AwACAAgAAAAIAPX/AwACAAgAAAAJAPX/AwACAAgAAAAKAPX/AwABAAgAAAAKAPb/AwACAAgAAAAJAPj/AwACAAgAAAAJAPn/AwABAAgAAAA=")
+tile_map_data = PackedByteArray("AAD3//3/AwAAAAYAAAD3//7/AwABAAYAAAD3////AwAAAAYAAAD4////AwAAAAYAAAD5////AwADAAkAAAD6////AwAAAAYAAAD7////AwADAAoAAAD6/wEAAwACAAcAAAD4//v/AwAAAAYAAAD5//r/AwAAAAYAAAD5//v/AwACAAkAAAD6//r/AwAAAAYAAAD6//v/AwAAAAYAAAD7//r/AwAAAAYAAAD7//v/AwAAAAYAAAD8//r/AwADAAkAAAD9//r/AwAAAAYAAAD+//r/AwAAAA0AAAD+//v/AwAAAAYAAAD1//r/AwAAAAYAAAD2//v/AwABAAgAAAD3//r/AwAAAAYAAAD3//v/AwAAAAYAAAD0//r/AwAAAA0AAAD0//v/AwAAAAYAAAD0//z/AwAAAAYAAAD0//3/AwACAAYAAAD0//7/AwAAAAYAAAD0////AwAAAAYAAAD0/wAAAwAAAA0AAAD0/wEAAwAAAA0AAAD1//z/AwADAAkAAAD1//3/AwAAAAYAAAD1//7/AwACAAcAAAD1////AwABAAYAAAD1/wAAAwADABcAAAD1/wEAAwAAAAYAAAD2//z/AwAAAAYAAAD3//z/AwAAAAYAAAD9//z/AwAAAAYAAAD+//z/AwAAAAYAAAD+//3/AwAAAAYAAAD9//3/AwAAAAYAAAD8//3/AwACAAkAAAD8//7/AwAAAAYAAAD8/wAAAwABABUAAAD9/wAAAwADABcAAAD9////AwAAAAYAAAD9//7/AwAAAAYAAAD2/wAAAwABAAkAAAD2////AwAAAAYAAAD2//7/AwAAAAYAAAD2//3/AwAAAAYAAAD7//z/AwABAAgAAAD7//3/AwAAAAYAAAD7//7/AwABAAgAAAD2/wEAAwAAAAYAAAD3/wEAAwABAAYAAAD4/wEAAwAAAAYAAAD5/wEAAwAAAAYAAAD7/wEAAwAAAAYAAAD8/wEAAwAAAAYAAAD9/wEAAwAAAAYAAAD9//v/AwAAAAYAAAD5//3/AwAAAAYAAAD4//3/AwAAAAYAAAD6//3/AwAAAAYAAAD4//z/AwAAAAYAAAD5//z/AwAAAAYAAAD6//z/AwAAAAYAAAD5//7/AwADAAgAAAADAP3/AwACAAcAAAAGAP3/AwAAAAYAAAAEAPv/AwAAAAYAAAAEAPz/AwABAAcAAAAEAP//AwAAAAYAAAAEAAAAAwAHABAAAAAFAPv/AwABABMAAAAFAPz/AwAAABYAAAAFAP//AwAAAAYAAAAFAAAAAwAAAAYAAAAGAPv/AwAAABQAAAAGAPz/AwAOABAAAAAGAP7/AwAAAAYAAAAGAAAAAwAAAAYAAAAHAPv/AwAAAAYAAAAHAPz/AwABABQAAAAHAP7/AwAAAAYAAAAHAP//AwAAAAYAAAAHAAAAAwAAAAYAAAD8////AwAAAAYAAAAAAP3/AwABAAgAAAAHAP3/AwABABYAAAD1//v/AwAAABYAAADv/wQAAwACAAgAAADw/wUAAwACAAgAAADx/wQAAwADABgAAADz/wIAAwABAAgAAADz/wMAAwADAAgAAAD0/wIAAwACAAgAAAD2/wMAAwACAAgAAAD2/wQAAwABAAgAAAD3/wIAAwACAAgAAAD3/wMAAwADAAgAAAD6/wMAAwABAAgAAAD6/wQAAwABAAgAAAD7/wQAAwABAAgAAAD8/wMAAwABAAgAAAD9/wIAAwACAAgAAAACAAUAAwAAABkAAAADAAIAAwABAAgAAAAEAAIAAwABAAgAAAAEAAMAAwABAAgAAAAEAAQAAwADAAgAAAAFAAUAAwADABkAAAAGAAQAAwACAAgAAAAJAAIAAwABAAgAAAAJAAQAAwADAAgAAAANAAUAAwACABkAAAD//wAAAwABAAgAAAAAAAAAAwADABgAAAACAAEAAwABAAgAAAAJAP//AwADAAgAAAAJAAAAAwABAAgAAAAKAPz/AwADABgAAAAKAP//AwAAABkAAAALAPv/AwABAAgAAAAMAPr/AwADAAgAAAAMAPz/AwADAAgAAAAMAP//AwABAAgAAAANAPX/AwABAAgAAAANAPn/AwADABgAAAANAPv/AwACAAgAAAANAP//AwACAAgAAAD///X/AwADAAgAAAD///f/AwADAAgAAAAAAPb/AwABABkAAAAAAPf/AwACAAgAAAACAPX/AwABABkAAAACAPn/AwADAAgAAAADAPf/AwADAAgAAAAEAPX/AwACAAgAAAAEAPf/AwADAAgAAAAGAPj/AwADAAgAAAAHAPj/AwACAAgAAADx//j/AwADAAgAAADy//j/AwABAAgAAADz//j/AwABAAgAAAD4//j/AwACAAgAAAD5//X/AwABAAgAAAD6//f/AwADABkAAAD7//b/AwABAAgAAAD8//j/AwABAAgAAADv//7/AwADABgAAADv/wAAAwABABkAAADx//r/AwADAAgAAADz//r/AwABAAgAAADz//7/AwACAAgAAADz/wAAAwABAAgAAADz/wEAAwABAAgAAAD///v/AwACAAgAAAAIAPX/AwACAAgAAAAJAPX/AwACAAgAAAAKAPX/AwABAAgAAAAKAPb/AwACAAgAAAAJAPj/AwACAAgAAAAJAPn/AwABAAgAAAD3/wUAAwADABgAAAD3/wYAAwADABkAAAD1/wQAAwADABgAAAD1/wUAAwADABkAAADx/wUAAwADABkAAADw/wMAAwADABgAAADw/wQAAwADABkAAADv////AwADABkAAADw//v/AwADABgAAADw//z/AwADABkAAADw//b/AwADABgAAADw//f/AwADABkAAADx//X/AwADABgAAADx//b/AwADABkAAAD3//X/AwADABgAAAD3//b/AwADABkAAAD6//b/AwADABgAAAD9//X/AwADABgAAAD9//b/AwADABkAAAABAPj/AwADABgAAAABAPn/AwADABkAAAAAAAEAAwADABkAAAD9/wMAAwADABgAAAD9/wQAAwADABkAAAD8/wQAAwADABgAAAD8/wUAAwADABkAAAAFAAQAAwADABgAAAAGAAUAAwADABgAAAAGAAYAAwADABkAAAAMAAMAAwADABgAAAAMAAQAAwADABkAAAANAAAAAwADABgAAAANAAEAAwADABkAAAALAP3/AwADABgAAAALAP7/AwADABkAAAAKAP3/AwADABkAAAANAPr/AwADABkAAAAKAPf/AwADABgAAAAKAPj/AwADABkAAAAGAPX/AwADABgAAAAGAPb/AwADABkAAAD5//b/AwACABkAAAD2//X/AwACABkAAAD1//b/AwACABkAAADv//j/AwACABkAAADv//f/AwACABkAAADw//X/AwACABkAAADv//3/AwACABkAAADw////AwACABkAAADv/wEAAwACABkAAADv/wUAAwACABkAAADw/wYAAwACABkAAAD2/wYAAwACABkAAAD9/wYAAwACABkAAAABAAIAAwACABkAAAAAAAMAAwABABkAAAABAAMAAwAAABkAAAABAAYAAwAAABkAAAD//wUAAwAAABkAAAD4/wYAAwAAABkAAAD5/wQAAwAAABkAAADz/wYAAwAAABkAAADy/wYAAwABABkAAAAFAAYAAwABABkAAAAIAAUAAwABABkAAAAJAAYAAwABABkAAAAKAAMAAwABABkAAAAKAAUAAwACABkAAAALAAYAAwACABkAAAAMAAUAAwACABkAAAALAAUAAwAAABkAAAAMAAEAAwAAABkAAAALAPr/AwAAABkAAAAMAPn/AwAAABkAAAANAPj/AwABABkAAAALAPf/AwABABkAAAAFAPb/AwABABkAAAAHAPf/AwABABkAAAD+//b/AwACABkAAAD8//f/AwACABkAAAABAPX/AwACABkAAAADAPX/AwACABkAAAAEAPb/AwACABkAAAAAAPX/AwAAABkAAAD4//X/AwAAABkAAAA=")
 tile_set = ExtResource("1_m33p3")
 
 [node name="Colliders" type="TileMapLayer" parent="Level"]
@@ -93,60 +98,72 @@ tile_set = ExtResource("1_m33p3")
 
 [node name="Interactables" type="Node2D" parent="."]
 script = ExtResource("2_dss4m")
-game_data = ExtResource("3_7t5mc")
 
 [node name="Door2" parent="Interactables" instance=ExtResource("5_jhx03")]
 position = Vector2(-24, -40)
-interactable_name = 12
+action = 12
 oneshot_interaction = true
 
 [node name="Door" parent="Interactables" instance=ExtResource("5_jhx03")]
 position = Vector2(-152, -24)
-interactable_name = 12
+action = 12
 oneshot_interaction = true
 
 [node name="Barrel2" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-40, -88)
-interactable_name = 9
+action = 9
 oneshot_interaction = true
 interactable_card_reward = SubResource("Resource_7t5mc")
 
 [node name="Barrel" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-168, -8)
-interactable_name = 9
+action = 10
 oneshot_interaction = true
 interactable_card_reward = SubResource("Resource_lakw3")
 
 [node name="Barrel3" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-136, -88)
-interactable_name = 9
+action = 9
 oneshot_interaction = true
 interactable_card_reward = SubResource("Resource_2lf6f")
 
 [node name="Barrel4" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-120, -88)
-interactable_name = 9
+action = 9
 oneshot_interaction = true
 
 [node name="Chest" parent="Interactables" instance=ExtResource("15_dss4m")]
 position = Vector2(-104, -40)
-interactable_name = 12
+action = 12
+oneshot_interaction = true
+interactable_card_reward = SubResource("Resource_dss4m")
+
+[node name="Chest3" parent="Interactables" instance=ExtResource("15_dss4m")]
+position = Vector2(-88, -24)
+action = 12
+oneshot_interaction = true
+interactable_card_reward = SubResource("Resource_dss4m")
+
+[node name="Chest2" parent="Interactables" instance=ExtResource("15_dss4m")]
+position = Vector2(-120, -24)
+action = 12
 oneshot_interaction = true
 interactable_card_reward = SubResource("Resource_dss4m")
 
 [node name="Player" parent="." instance=ExtResource("5_71j4m")]
-position = Vector2(-56, -8)
-game_data = ExtResource("3_7t5mc")
+position = Vector2(-104, -8)
 
 [node name="MonsterContainer" parent="." instance=ExtResource("3_k0juu")]
 position = Vector2(-24, 15)
 scale = Vector2(1, 1)
 
 [node name="MonsterSprite" parent="MonsterContainer" instance=ExtResource("4_71j4m")]
-position = Vector2(112, -55)
+position = Vector2(-48, -87)
+moves_until_lost_interest = 9
+max_movement_repeat = 3
 
 [node name="CardGui" parent="." instance=ExtResource("5_qfnet")]
-deck = Array[ExtResource("16_dss4m")]([SubResource("Resource_xo05s"), SubResource("Resource_pm21f")])
+deck = Array[ExtResource("16_dss4m")]([SubResource("Resource_xo05s"), SubResource("Resource_pm21f"), SubResource("Resource_7iits")])
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_7r4gi")
@@ -233,10 +250,7 @@ Movement is disabled when cards are selected.
 Monsters move after you move (they do nothing for now.)"
 
 [connection signal="child_entered_tree" from="Interactables" to="Interactables" method="_on_child_entered_tree"]
-[connection signal="action_attempted_on" from="Player" to="Interactables" method="_on_player_action_attempted_on"]
-[connection signal="player_just_moved" from="Player" to="MonsterContainer" method="handle_monster_movement"]
-[connection signal="monsters_finished_moving" from="MonsterContainer" to="Player" method="unlock_movement"]
-[connection signal="card_action_primed" from="CardGui" to="Interactables" method="handle_card_selection"]
-[connection signal="card_action_unprimed" from="CardGui" to="Interactables" method="handle_card_deselection"]
+[connection signal="players_turn_over" from="Player" to="MonsterContainer" method="handle_monster_movement"]
+[connection signal="monster_turn_over" from="MonsterContainer" to="Player" method="unlock_movement"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="PanelContainer" method="_on_button_pressed"]

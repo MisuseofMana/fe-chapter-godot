@@ -15,13 +15,18 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EventBus="*res://autoloads/event_bus.tscn"
+
 [display]
 
 window/size/viewport_width=192
 window/size/viewport_height=160
-window/size/window_width_override=576
-window/size/window_height_override=480
+window/size/window_width_override=960
+window/size/window_height_override=800
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 window/dpi/allow_hidpi=false
 

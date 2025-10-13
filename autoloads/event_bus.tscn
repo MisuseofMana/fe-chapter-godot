@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0ijb4s8qd6ty"]
+
+[ext_resource type="Script" uid="uid://pxfgc55ff41k" path="res://autoloads/event_bus.gd" id="1_oxe2c"]
+
+[node name="EventBus" type="Node2D"]
+script = ExtResource("1_oxe2c")
+
+[connection signal="card_deselected" from="." to="." method="_on_card_deselected"]
+[connection signal="selected_card_changed" from="." to="." method="_on_selected_card_changed"]

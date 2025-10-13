@@ -1,7 +1,7 @@
 extends Resource
 class_name AbstractCardDetails
 
-@export var card_type : GameData.ACTIONS
+@export var card_type : GameActions.ACTIONS
 @export var texture : CompressedTexture2D
 
 @export_category('Card Stats')

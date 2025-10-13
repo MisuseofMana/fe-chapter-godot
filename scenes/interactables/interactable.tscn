@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://nfj2em8xgqtt"]
+[gd_scene load_steps=13 format=3 uid="uid://nfj2em8xgqtt"]
 
 [ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="1_cfryh"]
 [ext_resource type="SpriteFrames" uid="uid://d3x15gt5uunh" path="res://resources/card_suit_sprite_frames.tres" id="2_cfryh"]
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="3_et2dc"]
+[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/suits/icon-bg.png" id="3_n2tmg"]
 [ext_resource type="AudioStream" uid="uid://butbvrsu67l2v" path="res://assets/audio/interactions/open_chest.wav" id="4_efswn"]
 [ext_resource type="AudioStream" uid="uid://dj8lpwtdbhhl5" path="res://assets/audio/interactions/open_chest_2.wav" id="5_nouqi"]
 [ext_resource type="Texture2D" uid="uid://d1nj7imnb53eq" path="res://assets/ui/selection.png" id="6_0uw3a"]
@@ -37,7 +38,6 @@ size = Vector2(16, 16)
 script = ExtResource("1_cfryh")
 inital_interaction_sound = NodePath("InteractionSound")
 secondary_interaction_sound = NodePath("SecondaryInteractionSound")
-interactable_name = 10
 selector_indicator = NodePath("SelectorIndicator")
 
 [node name="InteractionSprite" type="AnimatedSprite2D" parent="."]
@@ -45,10 +45,15 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_uwar4")
 frame_progress = 0.380663
 
-[node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
+[node name="InteractionIconBG" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -16)
 scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_n2tmg")
+
+[node name="InteractionIcon" type="AnimatedSprite2D" parent="InteractionIconBG"]
+position = Vector2(-4.76837e-07, 1.19209e-07)
+scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("2_cfryh")
 
 [node name="InteractionSound" type="AudioStreamPlayer2D" parent="."]

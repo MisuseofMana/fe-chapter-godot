@@ -12,10 +12,6 @@ class_name AbstractCard
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var card_details : AbstractCardDetails
 
-var is_active : bool = false
-
-signal card_activated(card: AbstractCard)
-
 func _ready():
 	suit.frame = card_details.card_type
 	update_card_visuals()
@@ -24,19 +20,29 @@ func update_card_visuals():
 	card_uses_remaining.text = str(card_details.power)
 	if card_details.power > 0:
 		card_base.frame = card_details.power - 1
-	else:
-		animation_player.animation_set_next('select', 'dissolve')
 
 func raise_card():
+	get_tree().call_group('active_card', 'lower_card')
+	add_to_group('active_card')
 	card_click_sound.play()
 	animation_player.play('select')
+	EventBus.selected_card_changed.emit(self.card_details.card_type)
 
 func lower_card():
+	remove_from_group('active_card')
+	EventBus.card_deselected.emit()
 	card_click_sound.play()
 	animation_player.play_backwards('select')
 
 func consume_one():
 	card_details.power -= 1
+	update_card_visuals()
+	if card_details.power <= 0:
+		animation_player.animation_set_next('select', 'dissolve')
+	lower_card()
+
+func increase_card_use_by(howMuch: int):
+	card_details.power += 1
 	update_card_visuals()
 
 func collect_card(passed_card_details: AbstractCardDetails):
@@ -47,5 +53,8 @@ func collect_card(passed_card_details: AbstractCardDetails):
 func on_card_clicked(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			is_active = true
-			card_activated.emit(self)
+			if is_in_group('active_card'):
+				EventBus.card_deselected.emit()
+				lower_card()
+			else: 
+				raise_card()
