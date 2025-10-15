@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://fevfbagg1sr5" path="res://assets/ui/drawer_tab-export.png" id="2_c5pq0"]
 [ext_resource type="Script" uid="uid://cwrjpy13tae8m" path="res://cards/ui_tab.gd" id="2_lx8rw"]
 [ext_resource type="Texture2D" uid="uid://bnk3f140ylwv" path="res://assets/cards/card_slot/slot.png" id="3_c5pq0"]
-[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="5_sie6n"]
-[ext_resource type="Resource" uid="uid://286ug7nhviok" path="res://cards/abstract_card/card_resources/variants/melee_attack_card.tres" id="6_5fsmm"]
-[ext_resource type="Resource" uid="uid://dlttlrd4rml8t" path="res://cards/abstract_card/card_resources/variants/open_card.tres" id="13_0mfce"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="5_sie6n"]
+[ext_resource type="Resource" path="res://cards/abstract_card/card_resources/variants/melee_attack_card.tres" id="6_5fsmm"]
+[ext_resource type="Resource" path="res://cards/abstract_card/card_resources/variants/open_card.tres" id="13_0mfce"]
 [ext_resource type="AudioStream" uid="uid://dwtkys0bhbkem" path="res://assets/audio/ui/ui_slide.wav" id="14_0mfce"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dj1s0"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://8uqlohigjsfq"]
+
+[ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/carousel_container.gd" id="1_ok7b7"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="2_p5m3y"]
+[ext_resource type="Resource" uid="uid://b86718do7pdq4" path="res://cards/abstract_card/card_resources/variants/melee.tres" id="3_lv5bi"]
+
+[sub_resource type="Resource" id="Resource_lv5bi"]
+script = ExtResource("2_p5m3y")
+card_type = 8
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_l2xf7"]
+script = ExtResource("2_p5m3y")
+card_type = 12
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_lpes1"]
+script = ExtResource("2_p5m3y")
+card_type = 11
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_lfspl"]
+script = ExtResource("2_p5m3y")
+card_type = 7
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_6hcxj"]
+script = ExtResource("2_p5m3y")
+card_type = 13
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_4lte0"]
+script = ExtResource("2_p5m3y")
+card_type = -1
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_fow8y"]
+script = ExtResource("2_p5m3y")
+card_type = -1
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Curve2D" id="Curve2D_ok7b7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 92, 156, 0, 0, 0, 0, 72, 143.977, 0, 0, 0, 0, 96, 131.955, 0, 0, 0, 0, 120, 143.977, 0, 0, -31.835, -0.179859, 100, 156)
+}
+point_count = 5
+
+[node name="CardCarousel" type="CanvasLayer"]
+script = ExtResource("1_ok7b7")
+card_actions = Array[ExtResource("2_p5m3y")]([ExtResource("3_lv5bi"), SubResource("Resource_lv5bi"), SubResource("Resource_l2xf7"), SubResource("Resource_lpes1"), SubResource("Resource_lfspl"), SubResource("Resource_6hcxj"), SubResource("Resource_4lte0"), SubResource("Resource_fow8y")])
+metadata/_edit_vertical_guides_ = [96.0]
+
+[node name="CarouselPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3.8147e-06, 0.291672)
+scale = Vector2(1, 0.998131)
+curve = SubResource("Curve2D_ok7b7")

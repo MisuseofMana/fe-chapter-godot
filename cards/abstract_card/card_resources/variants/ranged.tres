@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=2 format=3 uid="uid://cxe8qeqorjm50"]
+
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="1_xihjl"]
+
+[resource]
+script = ExtResource("1_xihjl")
+card_type = 8
+actions_to_cooldown = 5
+usage_limit = -1
+power = 1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

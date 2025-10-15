@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv2e5rxm83byl"
-path="res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"
+uid="uid://b1c6n6xubilxi"
+path="res://.godot/imported/melee.png-fb915e92f22f312d58d2e10354a408c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/suits/star.png"
-dest_files=["res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"]
+source_file="res://assets/cards/suits/melee.png"
+dest_files=["res://.godot/imported/melee.png-fb915e92f22f312d58d2e10354a408c1.ctex"]
 
 [params]
 

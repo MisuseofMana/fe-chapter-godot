@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqtu0p2n537g8"]
+
+[ext_resource type="Texture2D" uid="uid://bpdg2e184l73l" path="res://assets/cards/card_texture/card_texture1.png" id="1_qg3xv"]
+[ext_resource type="Script" uid="uid://b27fcoyllmytp" path="res://resources/carousel_card_action.gd" id="2_8bdjv"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8bdjv"]
+load_path = "res://.godot/imported/club.png-74b312a22ff9f37bb79bbc9d6934d7c9.ctex"
+
+[node name="CardAction" type="PathFollow2D"]
+rotates = false
+script = ExtResource("2_8bdjv")
+
+[node name="Card" type="Sprite2D" parent="."]
+texture = ExtResource("1_qg3xv")
+
+[node name="ActionIcon" type="Sprite2D" parent="Card"]
+unique_name_in_owner = true
+scale = Vector2(0.75, 0.75)
+texture = SubResource("CompressedTexture2D_8bdjv")

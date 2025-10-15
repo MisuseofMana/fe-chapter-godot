@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="AbstractCardDetails" load_steps=2 format=3 uid="uid://dlttlrd4rml8t"]
-
-[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="1_0un31"]
-
-[resource]
-script = ExtResource("1_0un31")
-card_type = 12
-power = 1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

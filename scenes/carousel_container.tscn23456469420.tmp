@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://8uqlohigjsfq"]
+
+[ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/carousel_container.gd" id="1_ok7b7"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="2_p5m3y"]
+
+[sub_resource type="Resource" id="Resource_lfspl"]
+script = ExtResource("2_p5m3y")
+card_type = -1
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_p5m3y"]
+script = ExtResource("2_p5m3y")
+card_type = -1
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Curve2D" id="Curve2D_ok7b7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 120, 144.27, 0, 0, 0, 0, 96, 152.285, 0, 0, 0, 0, 72, 144.27, 0, 0, 0, 0, 96, 132.247)
+}
+point_count = 5
+
+[node name="CardCarousel" type="CanvasLayer"]
+script = ExtResource("1_ok7b7")
+card_actions = Array[ExtResource("2_p5m3y")]([SubResource("Resource_lfspl"), SubResource("Resource_p5m3y")])
+metadata/_edit_vertical_guides_ = [96.0]
+
+[node name="CarouselPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -4)
+scale = Vector2(1, 0.998131)
+curve = SubResource("Curve2D_ok7b7")

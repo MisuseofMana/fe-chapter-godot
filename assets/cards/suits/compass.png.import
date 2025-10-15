@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv2e5rxm83byl"
-path="res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"
+uid="uid://in4lhayd7blt"
+path="res://.godot/imported/compass.png-a1ef4373a4f3482fecf3860eb00cc9f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/suits/star.png"
-dest_files=["res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"]
+source_file="res://assets/cards/suits/compass.png"
+dest_files=["res://.godot/imported/compass.png-a1ef4373a4f3482fecf3860eb00cc9f4.ctex"]
 
 [params]
 

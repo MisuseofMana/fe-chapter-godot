@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=30 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
 [ext_resource type="PackedScene" uid="uid://b7otmjo2e4xrn" path="res://scenes/interactables/barrel-new.tscn" id="5_dss4m"]
 [ext_resource type="PackedScene" uid="uid://c01s78h32o2yq" path="res://scenes/interactables/door_new.tscn" id="5_jhx03"]
-[ext_resource type="PackedScene" uid="uid://fty5ct3prfsh" path="res://cards/card_gui.tscn" id="5_qfnet"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
 [ext_resource type="Script" uid="uid://jjhmygbyoyxh" path="res://scenes/tutorial_panel.gd" id="10_q5onr"]
@@ -15,7 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://c2lh06iu0xsxg" path="res://assets/ui/close_icon-export.png" id="12_o8fc1"]
 [ext_resource type="Texture2D" uid="uid://n0afdi5g4623" path="res://assets/cards/card_texture/card_texture8.png" id="13_xo05s"]
 [ext_resource type="PackedScene" uid="uid://bvvjl7supfis8" path="res://scenes/interactables/chest-new.tscn" id="15_dss4m"]
-[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/card_detail_base.gd" id="16_dss4m"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="16_dss4m"]
+[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/carousel_container.tscn" id="17_7t5mc"]
 
 [sub_resource type="Gradient" id="Gradient_xo05s"]
 offsets = PackedFloat32Array(0)
@@ -27,43 +27,64 @@ gradient = SubResource("Gradient_xo05s")
 [sub_resource type="Resource" id="Resource_7t5mc"]
 script = ExtResource("16_dss4m")
 card_type = 12
-power = 1
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="Resource" id="Resource_lakw3"]
 script = ExtResource("16_dss4m")
 card_type = 12
-power = 1
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="Resource" id="Resource_2lf6f"]
 script = ExtResource("16_dss4m")
 card_type = 9
-power = 1
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="Resource" id="Resource_dss4m"]
 script = ExtResource("16_dss4m")
 card_type = 12
-power = 1
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
-[sub_resource type="Resource" id="Resource_xo05s"]
+[sub_resource type="Resource" id="Resource_oo54l"]
 script = ExtResource("16_dss4m")
-card_type = 12
-power = 2
+card_type = -1
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
-[sub_resource type="Resource" id="Resource_pm21f"]
+[sub_resource type="Resource" id="Resource_kpybi"]
 script = ExtResource("16_dss4m")
-card_type = 9
-power = 1
+card_type = 1
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
-[sub_resource type="Resource" id="Resource_7iits"]
+[sub_resource type="Resource" id="Resource_ctatt"]
 script = ExtResource("16_dss4m")
-card_type = 10
-power = 1
+card_type = 2
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_xgqkh"]
+script = ExtResource("16_dss4m")
+card_type = 3
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_munwf"]
+script = ExtResource("16_dss4m")
+card_type = 6
+actions_to_cooldown = 0
+usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo05s"]
@@ -162,8 +183,8 @@ position = Vector2(-48, -87)
 moves_until_lost_interest = 9
 max_movement_repeat = 3
 
-[node name="CardGui" parent="." instance=ExtResource("5_qfnet")]
-deck = Array[ExtResource("16_dss4m")]([SubResource("Resource_xo05s"), SubResource("Resource_pm21f"), SubResource("Resource_7iits")])
+[node name="CardCarousel" parent="." instance=ExtResource("17_7t5mc")]
+card_actions = Array[ExtResource("16_dss4m")]([SubResource("Resource_oo54l"), SubResource("Resource_kpybi"), SubResource("Resource_ctatt"), SubResource("Resource_xgqkh"), SubResource("Resource_munwf")])
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_7r4gi")

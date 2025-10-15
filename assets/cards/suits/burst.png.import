@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv2e5rxm83byl"
-path="res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"
+uid="uid://dy3mr70vaebe2"
+path="res://.godot/imported/burst.png-8e8eb0096a4ee88f8500a01e51beac1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/suits/star.png"
-dest_files=["res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"]
+source_file="res://assets/cards/suits/burst.png"
+dest_files=["res://.godot/imported/burst.png-8e8eb0096a4ee88f8500a01e51beac1c.ctex"]
 
 [params]
 

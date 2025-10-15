@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv2e5rxm83byl"
-path="res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"
+uid="uid://bjlgqktjkt3dy"
+path="res://.godot/imported/wheel.png-28cd18ef739562d3a1c10ea1ebae2cc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/suits/star.png"
-dest_files=["res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"]
+source_file="res://assets/cards/suits/wheel.png"
+dest_files=["res://.godot/imported/wheel.png-28cd18ef739562d3a1c10ea1ebae2cc1.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv2e5rxm83byl"
-path="res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"
+uid="uid://bj4qldcds3q75"
+path="res://.godot/imported/swirl.png-f7b79bbc8378894c7251cc65b0eabc49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/suits/star.png"
-dest_files=["res://.godot/imported/star.png-bb0aefabf015591eeb75622af4f6ce97.ctex"]
+source_file="res://assets/cards/suits/swirl.png"
+dest_files=["res://.godot/imported/swirl.png-f7b79bbc8378894c7251cc65b0eabc49.ctex"]
 
 [params]
 
