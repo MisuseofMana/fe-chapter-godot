@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://8uqlohigjsfq"]
+[gd_scene load_steps=10 format=3 uid="uid://8uqlohigjsfq"]
 
 [ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/carousel_container.gd" id="1_ok7b7"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="2_p5m3y"]
@@ -45,34 +45,6 @@ actions_to_cooldown = 0
 usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
-[sub_resource type="Resource" id="Resource_4lte0"]
-script = ExtResource("2_p5m3y")
-card_type = 6
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_fow8y"]
-script = ExtResource("2_p5m3y")
-card_type = 7
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_jl8mh"]
-script = ExtResource("2_p5m3y")
-card_type = 8
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_ys7gq"]
-script = ExtResource("2_p5m3y")
-card_type = 9
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
 [sub_resource type="Curve2D" id="Curve2D_ok7b7"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 120, 144.27, 0, 0, 0, 0, 96, 152.285, 0, 0, 0, 0, 72, 144.27, 0, 0, 0, 0, 96, 132.247)
@@ -81,12 +53,12 @@ point_count = 5
 
 [node name="CardCarousel" type="CanvasLayer"]
 script = ExtResource("1_ok7b7")
-card_actions = Array[ExtResource("2_p5m3y")]([SubResource("Resource_lfspl"), SubResource("Resource_lv5bi"), SubResource("Resource_p5m3y"), SubResource("Resource_l2xf7"), SubResource("Resource_lpes1"), SubResource("Resource_6hcxj"), SubResource("Resource_4lte0"), SubResource("Resource_fow8y"), SubResource("Resource_jl8mh"), SubResource("Resource_ys7gq")])
+card_actions = Array[ExtResource("2_p5m3y")]([SubResource("Resource_lfspl"), SubResource("Resource_lv5bi"), SubResource("Resource_p5m3y"), SubResource("Resource_l2xf7"), SubResource("Resource_lpes1"), SubResource("Resource_6hcxj")])
 cycle_speed = 0.1
 metadata/_edit_vertical_guides_ = [96.0]
 
 [node name="CarouselPath" type="Path2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -9)
+position = Vector2(0, -4)
 scale = Vector2(1, 0.998131)
 curve = SubResource("Curve2D_ok7b7")
