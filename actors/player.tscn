@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7ffejioelqqr"]
+[gd_scene load_steps=5 format=3 uid="uid://b7ffejioelqqr"]
 
 [ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="1_mvpqy"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="2_1yqc4"]
+[ext_resource type="Material" uid="uid://cpjixaqg8mhuy" path="res://resources/teleport_particles.tres" id="3_1yqc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
 size = Vector2(8, 8)
@@ -44,3 +45,13 @@ debug_color = Color(0.967637, 3.85046e-07, 0.472992, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
+
+[node name="TeleportParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.5
+randomness = 0.5
+local_coords = true
+process_material = ExtResource("3_1yqc4")

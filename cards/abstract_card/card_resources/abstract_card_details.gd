@@ -6,6 +6,15 @@ class_name AbstractCardDetails
 @export_range(0, 100, 1) var actions_to_cooldown : int = 0
 @export_range(-1, 10) var usage_limit: int = -1
 
+var card_is_active : bool = false:
+	set(new):
+		card_is_active = new
+		if new == false:
+			EventBus.card_deselected.emit()
+		if new == true:
+			EventBus.selected_card_changed.emit(card_type)
+			
+
 var texture_lookup: Dictionary[GameActions.ACTIONS, CompressedTexture2D] = {
 	GameActions.ACTIONS.HEART: preload("res://assets/cards/suits/heart.png"),
 	GameActions.ACTIONS.DIAMOND: preload("res://assets/cards/suits/diamond.png"),
@@ -23,6 +32,7 @@ var texture_lookup: Dictionary[GameActions.ACTIONS, CompressedTexture2D] = {
 	GameActions.ACTIONS.LOCK: preload("res://assets/cards/suits/lock.png"),
 	GameActions.ACTIONS.REST: preload("res://assets/cards/suits/rest.png"),
 	GameActions.ACTIONS.COMPASS: preload("res://assets/cards/suits/compass.png"),
+	GameActions.ACTIONS.ICE_BOLT: preload("res://assets/cards/suits/ice_bolt.png"),
 	GameActions.ACTIONS.NONE: preload("res://assets/cards/suits/placeholder.png"),
 }
 

@@ -18,5 +18,6 @@ enum ACTIONS {
 	LOCK,
 	REST,
 	COMPASS,
+	ICE_BOLT,
 	NONE = -1,
 }

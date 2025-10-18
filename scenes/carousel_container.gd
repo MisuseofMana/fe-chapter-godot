@@ -7,12 +7,13 @@ class_name CarouselContainer
 
 @onready var carousel_path = %CarouselPath
 @onready var cycle_timer: Timer = %CycleTimer
+@onready var confirm_button : ActivationButton = %ConfirmButton
 
 const CAROUSEL_CARD_ACTION = preload("res://resources/carousel_card_action.tscn")
 var mod_base : Color = Color(1,1,1)
 
 var cycling_locked: bool = false
-var active_card : PathFollow2D
+var focused_card : CarouselCardAction
 
 var cycle_speed : float
 
@@ -38,7 +39,7 @@ func recalculate_card_properties(behavior : String) -> void:
 		var index_in_tree: int = path.get_index()
 		
 		if index_in_tree == 0:
-			active_card = path
+			focused_card = path
 		
 		var progress_ratio : float
 		
@@ -51,7 +52,7 @@ func recalculate_card_properties(behavior : String) -> void:
 		
 		var float_progress : float = abs(float(progress_ratio) - int(progress_ratio))
 		var percentage_from_center = abs(0.5 - float_progress) * 2
-		var 	modulate_percentage = 0.9 - (0.9 * percentage_from_center)
+		var 	modulate_percentage = 0.8 - (0.8 * percentage_from_center)
 		
 		var tween : Tween = get_tree().create_tween()
 		tween.set_parallel()
@@ -66,6 +67,8 @@ func recalculate_card_properties(behavior : String) -> void:
 			cycle_speed = clamp(cycle_speed - 0.05, 0.1, cycle_speed_base)
 			cycle_timer.start()
 
+var movement_inputs : Array[StringName] = ['up', 'down', 'left', 'right']
+
 func _input(event):
 	if cycling_locked:
 		return
@@ -74,15 +77,21 @@ func _input(event):
 		cycle_cards_left()
 	if event.is_action_pressed('cycle_cards_right', true):
 		cycle_cards_right()
+	if event.is_action_pressed('toggle_card_activation'):
+		if focused_card.card_details.card_is_active:
+			handle_card_animation(false)
+		else:
+			handle_card_animation(true)
 
 func cycle_cards_left():
+	handle_card_animation(false)
 	var first : CarouselCardAction = carousel_path.get_child(0)
 	var last : CarouselCardAction = carousel_path.get_child(-1)
 	carousel_path.move_child(first, -1)
-	
 	recalculate_card_properties('decrease')
 		
 func cycle_cards_right():
+	handle_card_animation(false)
 	var last : CarouselCardAction = carousel_path.get_child(-1)
 	var first : CarouselCardAction = carousel_path.get_child(0)
 	carousel_path.move_child(last, 0)
@@ -92,4 +101,12 @@ func toggle_cycling():
 	cycling_locked = !cycling_locked
 
 func _on_cycle_timer_timeout() -> void:
-	cycle_speed = cycle_speed_base
+	cycle_speed = cycle_speed_base	
+	
+func handle_card_animation(being_activated: bool):
+	if being_activated:
+		focused_card.raise_card()
+		confirm_button.is_active = true
+	else:
+		focused_card.lower_card()
+		confirm_button.is_active = false

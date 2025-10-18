@@ -7,6 +7,7 @@ class_name PlayerContainer
 @onready var up : RayCast2D = $WallDetection/Up
 @onready var left : RayCast2D = $WallDetection/Left
 @onready var wall_detection = $WallDetection
+@onready var teleport_particles = %TeleportParticles
 
 var move_distance : int = 16
 var bounce_distance : int = 4
@@ -23,7 +24,7 @@ var movement_locked : bool = false
 signal players_turn_over
 
 func _ready() -> void:
-	EventBus.selected_card_changed.connect(lock_movement)
+	EventBus.selected_card_changed.connect(lock_movement.unbind(1))
 	EventBus.card_deselected.connect(unlock_movement)
 	
 func move_all_monsters():
@@ -32,7 +33,7 @@ func move_all_monsters():
 func unlock_movement():
 	movement_locked = false
 	
-func lock_movement(_card_info):
+func lock_movement():
 	movement_locked = true
 
 func register_adjacent_interactions():
@@ -90,3 +91,9 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed('wait'):
 		attempt_movement(Vector2.ZERO)
 		
+func teleport_to(global_pos : Vector2):
+	lock_movement()
+	teleport_particles.emitting = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "global_position", global_pos, 0.3)
+	

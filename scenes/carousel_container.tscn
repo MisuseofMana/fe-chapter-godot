@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://8uqlohigjsfq"]
+[gd_scene load_steps=25 format=3 uid="uid://8uqlohigjsfq"]
 
 [ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/carousel_container.gd" id="1_ok7b7"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="2_p5m3y"]
 [ext_resource type="Texture2D" uid="uid://cd2mmo5qyijmb" path="res://assets/ui/pc-card-cycle-left.png" id="3_4lte0"]
 [ext_resource type="Texture2D" uid="uid://4oy4q58wag2v" path="res://assets/ui/pc-card-cycle-right.png" id="4_fow8y"]
-[ext_resource type="Texture2D" uid="uid://dneey25lxwpyj" path="res://assets/ui/pc-card-second-confirm.png" id="5_jl8mh"]
+[ext_resource type="Texture2D" uid="uid://b5c4qp604mt8k" path="res://assets/ui/pc-card-activate.png" id="5_fow8y"]
+[ext_resource type="Script" uid="uid://cxqb32e8guoyh" path="res://scenes/confirm_button.gd" id="6_fow8y"]
 [ext_resource type="Texture2D" uid="uid://y0hpsh33m1wi" path="res://assets/ui/hud-torch.png" id="6_ys7gq"]
 [ext_resource type="Texture2D" uid="uid://ch1aby736ewoh" path="res://assets/ui/hud-heart.png" id="7_rgk2x"]
 [ext_resource type="Texture2D" uid="uid://ysgbyqjs5udx" path="res://assets/ui/banner-tab.png" id="8_fow8y"]
@@ -72,6 +73,42 @@ actions_to_cooldown = 0
 usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lte0"]
+atlas = ExtResource("5_fow8y")
+region = Rect2(0, 0, 12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fow8y"]
+atlas = ExtResource("5_fow8y")
+region = Rect2(12, 0, 12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl8mh"]
+atlas = ExtResource("5_fow8y")
+region = Rect2(24, 0, 12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys7gq"]
+atlas = ExtResource("5_fow8y")
+region = Rect2(36, 0, 12, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rgk2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lte0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fow8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl8mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys7gq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
 [sub_resource type="Curve2D" id="Curve2D_ok7b7"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 120, 144.27, 0, 0, 0, 0, 96, 152.285, 0, 0, 0, 0, 72, 144.27, 0, 0, 0, 0, 96, 132.247)
@@ -95,10 +132,11 @@ texture = ExtResource("3_4lte0")
 position = Vector2(120, 148)
 texture = ExtResource("4_fow8y")
 
-[node name="ConfirmButton" type="Sprite2D" parent="ControlIcons"]
-position = Vector2(176, 144)
-texture = ExtResource("5_jl8mh")
-offset = Vector2(-80, 2)
+[node name="ConfirmButton" type="AnimatedSprite2D" parent="ControlIcons"]
+unique_name_in_owner = true
+position = Vector2(96, 148)
+sprite_frames = SubResource("SpriteFrames_rgk2x")
+script = ExtResource("6_fow8y")
 
 [node name="ManaIcon" type="Sprite2D" parent="ControlIcons"]
 position = Vector2(176, 142)
