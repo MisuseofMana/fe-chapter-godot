@@ -9,6 +9,10 @@ var card_details: AbstractCardDetails
 func _ready():
 	action_icon.texture = card_details.get_texture()
 	
+func use_card():
+	print('using card')
+	lower_card()
+	
 func raise_card():
 	if not card_details.card_is_active:
 		anims.play('raise_card')

@@ -23,8 +23,8 @@ EventBus="*res://autoloads/event_bus.tscn"
 
 window/size/viewport_width=192
 window/size/viewport_height=160
-window/size/window_width_override=960
-window/size/window_height_override=800
+window/size/window_width_override=768
+window/size/window_height_override=640
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"

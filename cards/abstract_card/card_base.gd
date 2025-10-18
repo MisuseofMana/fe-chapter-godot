@@ -34,13 +34,6 @@ func lower_card():
 	card_click_sound.play()
 	animation_player.play_backwards('select')
 
-func consume_one():
-	card_details.power -= 1
-	update_card_visuals()
-	if card_details.power <= 0:
-		animation_player.animation_set_next('select', 'dissolve')
-	lower_card()
-
 func increase_card_use_by(howMuch: int):
 	card_details.power += 1
 	update_card_visuals()

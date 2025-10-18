@@ -83,14 +83,14 @@ func _input(event):
 		else:
 			handle_card_animation(true)
 
-func cycle_cards_left():
+func cycle_cards_right():
 	handle_card_animation(false)
 	var first : CarouselCardAction = carousel_path.get_child(0)
 	var last : CarouselCardAction = carousel_path.get_child(-1)
 	carousel_path.move_child(first, -1)
 	recalculate_card_properties('decrease')
 		
-func cycle_cards_right():
+func cycle_cards_left():
 	handle_card_animation(false)
 	var last : CarouselCardAction = carousel_path.get_child(-1)
 	var first : CarouselCardAction = carousel_path.get_child(0)

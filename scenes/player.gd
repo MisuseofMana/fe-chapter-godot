@@ -75,20 +75,20 @@ func handle_direction_input(ray: RayCast2D):
 	else:
 		attempt_movement(input_direction_map[ray] * move_distance, true)
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed('up'):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed('up'):
 		handle_direction_input(up)
 			
-	if Input.is_action_just_pressed('down'):
+	if event.is_action_pressed('down'):
 		handle_direction_input(down)
 	
-	if Input.is_action_just_pressed('left'):
+	if event.is_action_pressed('left'):
 		handle_direction_input(left)
 		
-	if Input.is_action_just_pressed('right'):
+	if event.is_action_pressed('right'):
 		handle_direction_input(right)
 			
-	if Input.is_action_just_pressed('wait'):
+	if event.is_action_pressed('wait'):
 		attempt_movement(Vector2.ZERO)
 		
 func teleport_to(global_pos : Vector2):

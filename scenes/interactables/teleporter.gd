@@ -16,7 +16,7 @@ func interaction_handler():
 func attempt_interaction():
 	if not selector_indicator.visible:
 		return
-	get_tree().call_group('active_card', 'consume_one')
+	get_tree().call_group('player_cards', 'use_card')
 	interaction_handler()
 
 func update_hint(passedAction : GameActions.ACTIONS):
