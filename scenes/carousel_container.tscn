@@ -1,63 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://8uqlohigjsfq"]
+[gd_scene load_steps=20 format=3 uid="uid://8uqlohigjsfq"]
 
 [ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/carousel_container.gd" id="1_ok7b7"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="2_p5m3y"]
-
-[sub_resource type="Resource" id="Resource_lfspl"]
-script = ExtResource("2_p5m3y")
-card_type = 0
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_lv5bi"]
-script = ExtResource("2_p5m3y")
-card_type = 2
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_p5m3y"]
-script = ExtResource("2_p5m3y")
-card_type = 1
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_l2xf7"]
-script = ExtResource("2_p5m3y")
-card_type = 3
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_lpes1"]
-script = ExtResource("2_p5m3y")
-card_type = 5
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_6hcxj"]
-script = ExtResource("2_p5m3y")
-card_type = 4
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_4lte0"]
-script = ExtResource("2_p5m3y")
-card_type = 6
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
-
-[sub_resource type="Resource" id="Resource_fow8y"]
-script = ExtResource("2_p5m3y")
-card_type = 7
-actions_to_cooldown = 0
-usage_limit = -1
-metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+[ext_resource type="Texture2D" path="res://assets/ui/pc-cycle-left-icon.png" id="3_lpes1"]
+[ext_resource type="Texture2D" path="res://assets/ui/pc-confirm-icon.png" id="3_lv5bi"]
+[ext_resource type="Texture2D" path="res://assets/ui/pc-cycle-right-icon.png" id="4_lfspl"]
+[ext_resource type="Texture2D" path="res://assets/ui/mana_hud.png" id="6_6hcxj"]
+[ext_resource type="Texture2D" path="res://assets/ui/heart_hud.png" id="6_lfspl"]
+[ext_resource type="Texture2D" path="res://assets/ui/gamepad-x-icon.png" id="8_4lte0"]
+[ext_resource type="Texture2D" path="res://assets/ui/banner-tab.png" id="8_fow8y"]
 
 [sub_resource type="Resource" id="Resource_jl8mh"]
 script = ExtResource("2_p5m3y")
@@ -68,7 +19,56 @@ metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
 
 [sub_resource type="Resource" id="Resource_ys7gq"]
 script = ExtResource("2_p5m3y")
-card_type = 9
+card_type = 3
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_p5m3y"]
+script = ExtResource("2_p5m3y")
+card_type = 13
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_lv5bi"]
+script = ExtResource("2_p5m3y")
+card_type = 10
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_l2xf7"]
+script = ExtResource("2_p5m3y")
+card_type = 5
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_lpes1"]
+script = ExtResource("2_p5m3y")
+card_type = 1
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_lfspl"]
+script = ExtResource("2_p5m3y")
+card_type = 0
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_6hcxj"]
+script = ExtResource("2_p5m3y")
+card_type = 2
+actions_to_cooldown = 0
+usage_limit = -1
+metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
+
+[sub_resource type="Resource" id="Resource_4lte0"]
+script = ExtResource("2_p5m3y")
+card_type = 12
 actions_to_cooldown = 0
 usage_limit = -1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"
@@ -81,12 +81,51 @@ point_count = 5
 
 [node name="CardCarousel" type="CanvasLayer"]
 script = ExtResource("1_ok7b7")
-card_actions = Array[ExtResource("2_p5m3y")]([SubResource("Resource_lfspl"), SubResource("Resource_lv5bi"), SubResource("Resource_p5m3y"), SubResource("Resource_l2xf7"), SubResource("Resource_lpes1"), SubResource("Resource_6hcxj"), SubResource("Resource_4lte0"), SubResource("Resource_fow8y"), SubResource("Resource_jl8mh"), SubResource("Resource_ys7gq")])
-cycle_speed = 0.1
+card_actions = Array[ExtResource("2_p5m3y")]([SubResource("Resource_jl8mh"), SubResource("Resource_ys7gq"), SubResource("Resource_p5m3y"), SubResource("Resource_lv5bi"), SubResource("Resource_l2xf7"), SubResource("Resource_lpes1"), SubResource("Resource_lfspl"), SubResource("Resource_6hcxj"), SubResource("Resource_4lte0")])
+cycle_speed_base = 0.15
 metadata/_edit_vertical_guides_ = [96.0]
+
+[node name="ControlIcons" type="Node2D" parent="."]
+z_index = 999
+
+[node name="CycleLeft" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(72, 148)
+texture = ExtResource("3_lpes1")
+
+[node name="CycleRight" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(120, 148)
+texture = ExtResource("4_lfspl")
+
+[node name="ConfirmButton" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(176, 144)
+texture = ExtResource("3_lv5bi")
+offset = Vector2(-80, 2)
+
+[node name="ManaIcon" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(176, 142)
+texture = ExtResource("6_6hcxj")
+
+[node name="HeartIcon" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(16, 144)
+texture = ExtResource("6_lfspl")
+
+[node name="BannerTab" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(11, 8)
+texture = ExtResource("8_fow8y")
+
+[node name="MenuIcon" type="Sprite2D" parent="ControlIcons"]
+position = Vector2(8, 9)
+texture = ExtResource("8_4lte0")
+offset = Vector2(3, -1)
+
+[node name="CycleTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
 
 [node name="CarouselPath" type="Path2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -9)
 scale = Vector2(1, 0.998131)
 curve = SubResource("Curve2D_ok7b7")
+
+[connection signal="timeout" from="CycleTimer" to="." method="_on_cycle_timer_timeout"]

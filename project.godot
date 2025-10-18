@@ -30,6 +30,10 @@ window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 window/dpi/allow_hidpi=false
 
+[editor]
+
+movie_writer/movie_file="/Users/seanyager/fe-chapter-godot/movie_exports/game_recording.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
@@ -43,6 +47,7 @@ player_node=""
 player_rays="group for players raycast colliders"
 interactable_item="group containing all interactable objects in the game"
 card_gui="contains the card drawer node"
+action_cards="for all card actions in the card carousel"
 
 [input]
 

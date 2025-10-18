@@ -3,7 +3,6 @@ class_name CollectibleCard
 
 @onready var anims = $CollectibleAnimations
 @onready var card_suit_sprite = $CardSprite/CardSuitSprite
-@onready var card_power = $CardSprite/CardPower
 
 var card_details : AbstractCardDetails = null
 
@@ -12,7 +11,6 @@ func _ready():
 
 func set_card_visuals():
 	card_suit_sprite.frame = card_details.card_type
-	card_power.text = str(card_details.power)
 	
 func reveal_self():
 	anims.play('reveal_collectible')
