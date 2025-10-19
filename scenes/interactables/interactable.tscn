@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="1_cfryh"]
 [ext_resource type="SpriteFrames" uid="uid://d3x15gt5uunh" path="res://resources/card_suit_sprite_frames.tres" id="2_cfryh"]
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="3_et2dc"]
-[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/suits/icon-bg.png" id="3_n2tmg"]
+[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="3_n2tmg"]
 [ext_resource type="AudioStream" uid="uid://butbvrsu67l2v" path="res://assets/audio/interactions/open_chest.wav" id="4_efswn"]
 [ext_resource type="AudioStream" uid="uid://dj8lpwtdbhhl5" path="res://assets/audio/interactions/open_chest_2.wav" id="5_nouqi"]
 [ext_resource type="Texture2D" uid="uid://d1nj7imnb53eq" path="res://assets/ui/selection.png" id="6_0uw3a"]

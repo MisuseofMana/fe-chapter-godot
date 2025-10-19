@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_sbdme")
+card_category = 2
 card_type = 9
-steps_to_cooldown = null
+actions_to_cooldown = 0
 usage_limit = -1
-power = 1
 metadata/_custom_type_script = "uid://b5qe5ftfbq8er"

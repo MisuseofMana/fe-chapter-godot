@@ -22,10 +22,6 @@ var movement_locked : bool = false
 }
 
 signal players_turn_over
-
-func _ready() -> void:
-	EventBus.selected_card_changed.connect(lock_movement.unbind(1))
-	EventBus.card_deselected.connect(unlock_movement)
 	
 func move_all_monsters():
 	players_turn_over.emit()

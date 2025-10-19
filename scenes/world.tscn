@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=29 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
@@ -11,15 +11,19 @@
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
 [ext_resource type="Resource" uid="uid://dc6qj45tw8le2" path="res://cards/abstract_card/card_resources/variants/open.tres" id="10_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://607tiukkn1lq" path="res://scenes/hud.tscn" id="10_oo54l"]
+[ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="10_pm21f"]
 [ext_resource type="Script" uid="uid://jjhmygbyoyxh" path="res://scenes/tutorial_panel.gd" id="10_q5onr"]
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="11_jhx03"]
 [ext_resource type="Resource" uid="uid://b86718do7pdq4" path="res://cards/abstract_card/card_resources/variants/melee.tres" id="11_lakw3"]
 [ext_resource type="Resource" uid="uid://bxpnc6w3njvf4" path="res://cards/abstract_card/card_resources/variants/teleport.tres" id="12_2lf6f"]
 [ext_resource type="Texture2D" uid="uid://c2lh06iu0xsxg" path="res://assets/ui/close_icon-export.png" id="12_o8fc1"]
 [ext_resource type="Texture2D" uid="uid://n0afdi5g4623" path="res://assets/cards/card_texture/card_texture8.png" id="13_xo05s"]
+[ext_resource type="Resource" uid="uid://bltrtr7ko7ypd" path="res://cards/abstract_card/card_resources/variants/wait.tres" id="15_7iits"]
 [ext_resource type="PackedScene" uid="uid://bvvjl7supfis8" path="res://scenes/interactables/chest-new.tscn" id="15_dss4m"]
+[ext_resource type="Resource" uid="uid://cxe8qeqorjm50" path="res://cards/abstract_card/card_resources/variants/ranged.tres" id="16_ctatt"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="16_dss4m"]
-[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/carousel_container.tscn" id="17_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="17_7t5mc"]
 
 [sub_resource type="Gradient" id="Gradient_xo05s"]
 offsets = PackedFloat32Array(0)
@@ -129,8 +133,18 @@ position = Vector2(-288, -263)
 position = Vector2(128, -23)
 region_rect = Rect2(0, 128, 32, 32)
 
-[node name="CardCarousel" parent="." instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("16_dss4m")]([ExtResource("12_2lf6f"), ExtResource("10_7t5mc"), ExtResource("11_lakw3")])
+[node name="CarouselContainer" type="CanvasLayer" parent="."]
+script = ExtResource("10_pm21f")
+
+[node name="InteractionCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
+card_actions = Array[ExtResource("16_dss4m")]([ExtResource("10_7t5mc"), ExtResource("12_2lf6f")])
+
+[node name="CombatCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
+card_actions = Array[ExtResource("16_dss4m")]([ExtResource("11_lakw3"), ExtResource("16_ctatt"), ExtResource("15_7iits")])
+
+[node name="InventoryCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
+
+[node name="HUD" parent="." instance=ExtResource("10_oo54l")]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_7r4gi")

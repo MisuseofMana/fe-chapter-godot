@@ -1,0 +1,237 @@
+[gd_scene load_steps=24 format=3 uid="uid://bqtu0p2n537g8"]
+
+[ext_resource type="Script" uid="uid://b27fcoyllmytp" path="res://cards/carousel_card_action.gd" id="2_8bdjv"]
+[ext_resource type="Texture2D" uid="uid://dqcvhiddmwk45" path="res://assets/ui/card-selection-indicator.png" id="2_uqbyb"]
+[ext_resource type="Texture2D" uid="uid://tjvjnk1pwnlx" path="res://assets/cards/card_texture/card_textures.png" id="3_vpmqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vox7"]
+atlas = ExtResource("2_uqbyb")
+region = Rect2(0, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg6ob"]
+atlas = ExtResource("2_uqbyb")
+region = Rect2(26, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unlw5"]
+atlas = ExtResource("2_uqbyb")
+region = Rect2(52, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr6kq"]
+atlas = ExtResource("2_uqbyb")
+region = Rect2(78, 0, 26, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qdo5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vox7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg6ob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unlw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr6kq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpmqw"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sl64"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybqjb"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3yf2"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2binw"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01we5"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2nfg"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fijoo"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(112, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mphbu"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(128, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmaw2"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(144, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vmaw2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpmqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sl64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybqjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3yf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2binw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01we5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2nfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fijoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mphbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmaw2")
+}],
+"loop": false,
+"name": &"card_texures",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8bdjv"]
+load_path = "res://.godot/imported/club.png-74b312a22ff9f37bb79bbc9d6934d7c9.ctex"
+
+[sub_resource type="Animation" id="Animation_cfrx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/CardSelectionIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/CardSelectionIndicator:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_uqbyb"]
+resource_name = "raise_card"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/CardSelectionIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/CardSelectionIndicator:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cfrx7"]
+_data = {
+&"RESET": SubResource("Animation_cfrx7"),
+&"raise_card": SubResource("Animation_uqbyb")
+}
+
+[node name="CardAction" type="PathFollow2D" groups=["player_cards"]]
+rotates = false
+script = ExtResource("2_8bdjv")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CardSelectionIndicator" type="AnimatedSprite2D" parent="Node2D"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_qdo5v")
+frame = 1
+
+[node name="Card" type="AnimatedSprite2D" parent="Node2D"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_vmaw2")
+animation = &"card_texures"
+
+[node name="ActionIcon" type="Sprite2D" parent="Node2D/Card"]
+unique_name_in_owner = true
+scale = Vector2(0.75, 0.75)
+texture = SubResource("CompressedTexture2D_8bdjv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_cfrx7")
+}

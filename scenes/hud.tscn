@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=3 uid="uid://607tiukkn1lq"]
+
+[ext_resource type="Texture2D" uid="uid://y0hpsh33m1wi" path="res://assets/ui/hud-torch.png" id="1_5ysmq"]
+[ext_resource type="Script" uid="uid://wejq52gql8bi" path="res://scenes/hud.gd" id="1_hd3ao"]
+[ext_resource type="Texture2D" uid="uid://ch1aby736ewoh" path="res://assets/ui/hud-heart.png" id="2_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://ysgbyqjs5udx" path="res://assets/ui/banner-tab.png" id="3_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://cd2mmo5qyijmb" path="res://assets/ui/pc-card-cycle-left.png" id="5_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://4oy4q58wag2v" path="res://assets/ui/pc-card-cycle-right.png" id="6_mphia"]
+[ext_resource type="Texture2D" uid="uid://b5c4qp604mt8k" path="res://assets/ui/pc-card-activate.png" id="7_0m4u7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lte0"]
+atlas = ExtResource("7_0m4u7")
+region = Rect2(0, 0, 12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fow8y"]
+atlas = ExtResource("7_0m4u7")
+region = Rect2(12, 0, 12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl8mh"]
+atlas = ExtResource("7_0m4u7")
+region = Rect2(24, 0, 12, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys7gq"]
+atlas = ExtResource("7_0m4u7")
+region = Rect2(36, 0, 12, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5n1hp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lte0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fow8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl8mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys7gq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hd3ao")
+
+[node name="ManaIcon" type="Sprite2D" parent="."]
+position = Vector2(176, 142)
+texture = ExtResource("1_5ysmq")
+
+[node name="HeartIcon" type="Sprite2D" parent="."]
+position = Vector2(16, 144)
+texture = ExtResource("2_6fi6k")
+
+[node name="BannerTab" type="Sprite2D" parent="."]
+position = Vector2(12, 7)
+texture = ExtResource("3_uo2fv")
+
+[node name="CycleLeft" type="Sprite2D" parent="."]
+position = Vector2(72, 148)
+texture = ExtResource("5_0i1j5")
+
+[node name="CycleRight" type="Sprite2D" parent="."]
+position = Vector2(120, 148)
+texture = ExtResource("6_mphia")
+
+[node name="ConfirmButton" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(96, 148)
+sprite_frames = SubResource("SpriteFrames_5n1hp")

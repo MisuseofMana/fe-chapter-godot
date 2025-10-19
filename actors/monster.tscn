@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://jrijq5330mc3"]
+[gd_scene load_steps=5 format=3 uid="uid://jrijq5330mc3"]
 
 [ext_resource type="Texture2D" uid="uid://df4pma30vxaip" path="res://assets/sprites/monsters.png" id="1_3m5pa"]
 [ext_resource type="Script" uid="uid://bvq7rvfjft8vc" path="res://actors/monster.gd" id="2_3m5pa"]
 [ext_resource type="AudioStream" uid="uid://diqoykdckjljq" path="res://assets/audio/grunt.wav" id="3_e7hpd"]
 [ext_resource type="Script" uid="uid://b8bi0on1bnfxe" path="res://actors/vision_raycasting.gd" id="4_m5xkk"]
-[ext_resource type="Script" uid="uid://dljfqtcb5c183" path="res://scenes/custom_nodes/vector_ray.gd" id="5_ngyjr"]
 
 [node name="MonsterSprite" type="Sprite2D" groups=["monster_sprite"]]
 scale = Vector2(0.5, 0.5)
@@ -31,7 +30,6 @@ enabled = false
 target_position = Vector2(0, -64)
 collision_mask = 3
 collide_with_areas = true
-script = ExtResource("5_ngyjr")
 
 [node name="East" type="RayCast2D" parent="Vision"]
 enabled = false
