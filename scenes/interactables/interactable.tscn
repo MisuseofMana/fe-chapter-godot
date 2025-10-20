@@ -60,9 +60,6 @@ scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_n2tmg")
 
 [node name="InteractionIcon" type="Sprite2D" parent="InteractionIconBG"]
-position = Vector2(-4.76837e-07, 1.19209e-07)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("4_n2tmg")
 
 [node name="InteractionSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_i0lni")

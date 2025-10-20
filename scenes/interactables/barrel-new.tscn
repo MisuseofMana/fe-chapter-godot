@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7otmjo2e4xrn"]
+[gd_scene load_steps=6 format=3 uid="uid://b7otmjo2e4xrn"]
 
 [ext_resource type="PackedScene" uid="uid://nfj2em8xgqtt" path="res://scenes/interactables/interactable.tscn" id="1_hg8ly"]
-[ext_resource type="Texture2D" uid="uid://bf2k3ydq5y33w" path="res://assets/cards/suits/melee_attack.png" id="2_yo0ly"]
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="3_xhe1f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yukws"]
@@ -28,9 +27,6 @@ animations = [{
 
 [node name="Barrel" instance=ExtResource("1_hg8ly")]
 
-[node name="InteractionIcon" parent="." index="0"]
-texture = ExtResource("2_yo0ly")
-
-[node name="InteractionSprite" parent="." index="1"]
+[node name="InteractionSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_cd0gu")
 frame_progress = 0.0

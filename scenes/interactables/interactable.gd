@@ -1,5 +1,5 @@
 extends Node2D
-class_name Interactable
+class_name InteractableNode
 
 @export var inital_interaction_sound : AudioStreamPlayer2D
 @export var secondary_interaction_sound : AudioStreamPlayer2D
@@ -10,7 +10,7 @@ class_name Interactable
 
 @onready var interaction_area = $InteractionArea
 @onready var interaction_icon_bg: Sprite2D = $InteractionIconBG
-@onready var interaction_icon: Sprite2D = $InteractionIconBG/InteractionIcon
+@onready var interaction_icon = $InteractionIconBG/InteractionIcon
 @onready var interaction_sprite = $InteractionSprite
 @onready var reward_container = $RewardContainer
 
@@ -74,8 +74,8 @@ func attempt_interaction():
 	elif has_been_interacted:
 		secondary_interaction_handler()
 
-func update_hint(action : Action):
-	if action == action:
+func update_hint(passedAction : Action):
+	if action == passedAction:
 		show_interaction_icon()
 	else:
 		hide_interaction_icon()
