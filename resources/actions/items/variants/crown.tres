@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemAction" load_steps=3 format=3 uid="uid://crswbcrki1gf4"]
+
+[ext_resource type="Script" uid="uid://cl1dgh74gshjd" path="res://resources/actions/items/item_action.gd" id="1_eygsj"]
+[ext_resource type="Texture2D" uid="uid://bjn7wln50wp1" path="res://assets/cards/inventory/crown.png" id="2_eygsj"]
+
+[resource]
+script = ExtResource("1_eygsj")
+action = 2
+texture = ExtResource("2_eygsj")
+metadata/_custom_type_script = "uid://cl1dgh74gshjd"

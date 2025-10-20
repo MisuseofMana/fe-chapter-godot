@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Interaction" load_steps=3 format=3 uid="uid://qew7y3uofvmo"]
+
+[ext_resource type="Script" uid="uid://itpnpat10rwq" path="res://resources/actions/interactions/interaction.gd" id="1_bbmqc"]
+[ext_resource type="Texture2D" uid="uid://bsic6wgbagt36" path="res://assets/cards/interactions/open.png" id="2_bbmqc"]
+
+[resource]
+script = ExtResource("1_bbmqc")
+action = 0
+texture = ExtResource("2_bbmqc")
+metadata/_custom_type_script = "uid://itpnpat10rwq"

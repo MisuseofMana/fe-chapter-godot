@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1c6n6xubilxi"
-path="res://.godot/imported/melee.png-47c3de6e1c1bfc84d2cbc72f2c895fd8.ctex"
+uid="uid://bsic6wgbagt36"
+path="res://.godot/imported/open.png-47f5f0d8abdb1498a6d35b8d83a51b8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/interactions/melee.png"
-dest_files=["res://.godot/imported/melee.png-47c3de6e1c1bfc84d2cbc72f2c895fd8.ctex"]
+source_file="res://assets/cards/interactions/open.png"
+dest_files=["res://.godot/imported/open.png-47f5f0d8abdb1498a6d35b8d83a51b8f.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

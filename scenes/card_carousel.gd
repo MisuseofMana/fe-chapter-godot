@@ -2,17 +2,18 @@
 extends Node2D
 class_name CardCarousel
 
-@export var card_actions: Array[AbstractCardDetails]
+@export var card_actions: Array[Action]
 @export var cycle_speed_base: float
 
 @onready var carousel_path = %CarouselPath
 @onready var cycle_timer: Timer = %CycleTimer
 @onready var anims = %AnimationPlayer
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 const CAROUSEL_CARD_ACTION = preload("res://cards/carousel_card_action.tscn")
 var mod_base : Color = Color(1,1,1)
 
-var cycling_locked: bool = false
+var cycling_locked: bool = true
 var focused_card : CarouselCardAction
 
 var cycle_speed : float
@@ -21,20 +22,20 @@ signal confirm_button_changed(state : bool)
 
 func _ready():
 	cycle_speed = cycle_speed_base
-	for card_action : AbstractCardDetails in card_actions:
+	for card_action : Action in card_actions:
 		add_action_to_carousel(card_action)
 	recalculate_card_properties('initalize')
 
 func get_progress_ratio_incrementer() -> float:
 	return 1 / float(card_actions.size())
 
-func add_action_to_carousel(action: AbstractCardDetails):
+func add_action_to_carousel(passedAction: Action):
 	var new_action_card: CarouselCardAction = CAROUSEL_CARD_ACTION.instantiate()
-	new_action_card.card_details = action
+	new_action_card.action = passedAction
 	carousel_path.add_child(new_action_card)
 
 func recalculate_card_properties(behavior : String) -> void:
-	toggle_cycling()
+	cycling_locked = true
 	var all_paths = carousel_path.get_children()
 	
 	for path : CarouselCardAction in all_paths:
@@ -65,14 +66,16 @@ func recalculate_card_properties(behavior : String) -> void:
 		
 #		when the last tween is finished, unlock the movement
 		if path.get_index() == all_paths.size() - 1:
-			tween.tween_callback(toggle_cycling).set_delay(cycle_speed)
+			tween.tween_callback(
+				func (): cycling_locked = false
+			).set_delay(cycle_speed)
 			cycle_speed = clamp(cycle_speed - 0.05, 0.1, cycle_speed_base)
 			cycle_timer.start()
 
 var movement_inputs : Array[StringName] = ['up', 'down', 'left', 'right']
 
 func _input(event):
-	if cycling_locked:
+	if cycling_locked or not visible_on_screen_notifier_2d.is_on_screen():
 		return
 	
 	if event.is_action_pressed('cycle_cards_left', true):
@@ -80,7 +83,7 @@ func _input(event):
 	if event.is_action_pressed('cycle_cards_right', true):
 		cycle_cards_right()
 	if event.is_action_pressed('toggle_card_activation'):
-		if focused_card.card_details.card_is_active:
+		if focused_card.action.card_is_active:
 			handle_card_animation(false)
 		else:
 			handle_card_animation(true)
@@ -97,9 +100,6 @@ func cycle_cards_left():
 	carousel_path.move_child(last, 0)
 	recalculate_card_properties('increase')
 	
-func toggle_cycling(): 
-	cycling_locked = !cycling_locked
-
 func _on_cycle_timer_timeout() -> void:
 	cycle_speed = cycle_speed_base	
 	

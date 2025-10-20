@@ -10,9 +10,9 @@ func _ready():
 func update_registered_interactables(interactables: Array[Interactable]):
 	adjacent_interactions = interactables
 
-func update_primed_interactables(action: GameActions.ACTIONS):
+func update_primed_interactables(passedAction: Action):
 	for interactable: Interactable in adjacent_interactions:
-		if interactable.action == action:
+		if interactable.action == passedAction.action:
 			interactable.show_selector_indicator()
 		else:
 			interactable.hide_selector_indicator()

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Interaction" load_steps=3 format=3 uid="uid://bp3mb1hv35lk7"]
+
+[ext_resource type="Script" uid="uid://itpnpat10rwq" path="res://resources/actions/interactions/interaction.gd" id="1_l8iv4"]
+[ext_resource type="Texture2D" uid="uid://bj4qldcds3q75" path="res://assets/cards/interactions/teleport.png" id="2_l8iv4"]
+
+[resource]
+script = ExtResource("1_l8iv4")
+action = 2
+texture = ExtResource("2_l8iv4")
+metadata/_custom_type_script = "uid://itpnpat10rwq"

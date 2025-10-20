@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=3 format=3 uid="uid://dau0urwxvxth2"]
+
+[ext_resource type="Script" uid="uid://f6g62t436o0y" path="res://resources/actions/combat_actions/combat_action.gd" id="1_hf6bq"]
+[ext_resource type="Texture2D" uid="uid://bvc0ynyxxfn5p" path="res://assets/cards/combat/ranged_attack.png" id="2_hf6bq"]
+
+[resource]
+script = ExtResource("1_hf6bq")
+action = 1
+texture = ExtResource("2_hf6bq")
+metadata/_custom_type_script = "uid://f6g62t436o0y"

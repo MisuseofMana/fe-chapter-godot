@@ -4,7 +4,7 @@ class_name CollectibleCard
 @onready var anims = $CollectibleAnimations
 @onready var card_suit_sprite = $CardSprite/CardSuitSprite
 
-var card_details : AbstractCardDetails = null
+var card_details : Action = null
 
 func _ready():
 	set_card_visuals()

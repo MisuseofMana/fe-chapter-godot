@@ -5,7 +5,7 @@ class_name Teleporter
 @export var teleport_destination : Node
 
 func _ready():
-	interaction_icon.frame = action
+	interaction_icon.texture = action.texture
 
 func interaction_handler():
 	interaction_sound.play()
@@ -19,7 +19,7 @@ func attempt_interaction():
 	get_tree().call_group('player_cards', 'use_card')
 	interaction_handler()
 
-func update_hint(passedAction : GameActions.ACTIONS):
+func update_hint(passedAction : Action):
 	if action == passedAction:
 		show_interaction_icon()
 	else:

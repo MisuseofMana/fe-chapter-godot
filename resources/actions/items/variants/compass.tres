@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemAction" load_steps=3 format=3 uid="uid://di3mewkcc2lwh"]
+
+[ext_resource type="Script" uid="uid://cl1dgh74gshjd" path="res://resources/actions/items/item_action.gd" id="1_jloct"]
+[ext_resource type="Texture2D" uid="uid://in4lhayd7blt" path="res://assets/cards/interactions/compass.png" id="2_jloct"]
+
+[resource]
+script = ExtResource("1_jloct")
+action = 3
+texture = ExtResource("2_jloct")
+metadata/_custom_type_script = "uid://cl1dgh74gshjd"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=33 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
@@ -10,20 +10,24 @@
 [ext_resource type="PackedScene" uid="uid://blhwohnvuv5sp" path="res://scenes/interactables/teleporter.tscn" id="6_lakw3"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
-[ext_resource type="Resource" uid="uid://dc6qj45tw8le2" path="res://cards/abstract_card/card_resources/variants/open.tres" id="10_7t5mc"]
 [ext_resource type="PackedScene" uid="uid://607tiukkn1lq" path="res://scenes/hud.tscn" id="10_oo54l"]
 [ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="10_pm21f"]
 [ext_resource type="Script" uid="uid://jjhmygbyoyxh" path="res://scenes/tutorial_panel.gd" id="10_q5onr"]
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="11_jhx03"]
-[ext_resource type="Resource" uid="uid://b86718do7pdq4" path="res://cards/abstract_card/card_resources/variants/melee.tres" id="11_lakw3"]
-[ext_resource type="Resource" uid="uid://bxpnc6w3njvf4" path="res://cards/abstract_card/card_resources/variants/teleport.tres" id="12_2lf6f"]
 [ext_resource type="Texture2D" uid="uid://c2lh06iu0xsxg" path="res://assets/ui/close_icon-export.png" id="12_o8fc1"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="12_pm21f"]
+[ext_resource type="Resource" uid="uid://4wljcbgjve4q" path="res://resources/actions/interactions/variants/lock.tres" id="13_oo54l"]
 [ext_resource type="Texture2D" uid="uid://n0afdi5g4623" path="res://assets/cards/card_texture/card_texture8.png" id="13_xo05s"]
-[ext_resource type="Resource" uid="uid://bltrtr7ko7ypd" path="res://cards/abstract_card/card_resources/variants/wait.tres" id="15_7iits"]
+[ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="14_kpybi"]
+[ext_resource type="Resource" uid="uid://bp3mb1hv35lk7" path="res://resources/actions/interactions/variants/teleport.tres" id="15_ctatt"]
 [ext_resource type="PackedScene" uid="uid://bvvjl7supfis8" path="res://scenes/interactables/chest-new.tscn" id="15_dss4m"]
-[ext_resource type="Resource" uid="uid://cxe8qeqorjm50" path="res://cards/abstract_card/card_resources/variants/ranged.tres" id="16_ctatt"]
-[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://cards/abstract_card/card_resources/abstract_card_details.gd" id="16_dss4m"]
+[ext_resource type="Resource" uid="uid://bm2o1qk2xtofu" path="res://resources/actions/combat_actions/variants/heal.tres" id="16_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="17_7t5mc"]
+[ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="17_munwf"]
+[ext_resource type="Resource" uid="uid://bcp3j6fht5j2j" path="res://resources/actions/combat_actions/variants/wait.tres" id="18_ts3gi"]
+[ext_resource type="Resource" uid="uid://crswbcrki1gf4" path="res://resources/actions/items/variants/crown.tres" id="19_0nbtd"]
+[ext_resource type="Resource" uid="uid://cnu3or3rc6j8j" path="res://resources/actions/items/variants/goblin_doll.tres" id="20_37qwj"]
+[ext_resource type="Resource" uid="uid://di3mewkcc2lwh" path="res://resources/actions/items/variants/compass.tres" id="21_navra"]
 
 [sub_resource type="Gradient" id="Gradient_xo05s"]
 offsets = PackedFloat32Array(0)
@@ -64,45 +68,36 @@ script = ExtResource("2_dss4m")
 
 [node name="Door2" parent="Interactables" instance=ExtResource("5_jhx03")]
 position = Vector2(-24, -40)
-action = 12
 oneshot_interaction = true
 
 [node name="Chest2" parent="Interactables" instance=ExtResource("15_dss4m")]
 position = Vector2(72, -8)
-action = 12
 
 [node name="Door3" parent="Interactables" instance=ExtResource("5_jhx03")]
 position = Vector2(120, -24)
-action = 12
 
 [node name="Door" parent="Interactables" instance=ExtResource("5_jhx03")]
 position = Vector2(-152, -24)
-action = 12
 oneshot_interaction = true
 
 [node name="Barrel2" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-40, -88)
-action = 9
 oneshot_interaction = true
 
 [node name="Barrel" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-168, -8)
-action = 9
 oneshot_interaction = true
 
 [node name="Barrel3" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-136, -88)
-action = 9
 oneshot_interaction = true
 
 [node name="Barrel4" parent="Interactables" instance=ExtResource("5_dss4m")]
 position = Vector2(-120, -88)
-action = 9
 oneshot_interaction = true
 
 [node name="Chest" parent="Interactables" instance=ExtResource("15_dss4m")]
 position = Vector2(-104, -40)
-action = 12
 oneshot_interaction = true
 
 [node name="CastleTeleporter" parent="Interactables" node_paths=PackedStringArray("teleport_destination") instance=ExtResource("6_lakw3")]
@@ -137,12 +132,13 @@ region_rect = Rect2(0, 128, 32, 32)
 script = ExtResource("10_pm21f")
 
 [node name="InteractionCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("16_dss4m")]([ExtResource("10_7t5mc"), ExtResource("12_2lf6f")])
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("13_oo54l"), ExtResource("14_kpybi"), ExtResource("15_ctatt")])
 
 [node name="CombatCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("16_dss4m")]([ExtResource("11_lakw3"), ExtResource("16_ctatt"), ExtResource("15_7iits")])
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_xgqkh"), ExtResource("17_munwf"), ExtResource("18_ts3gi")])
 
 [node name="InventoryCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd"), ExtResource("20_37qwj"), ExtResource("21_navra")])
 
 [node name="HUD" parent="." instance=ExtResource("10_oo54l")]
 

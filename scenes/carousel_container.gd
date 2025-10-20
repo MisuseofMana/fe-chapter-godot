@@ -4,9 +4,12 @@ class_name CarouselContainer
 var carousels : Array[CardCarousel] = []
 
 func _ready():
-	for carousel : CardCarousel in get_children():
-		carousels.push_back(carousel)
-	carousels[0].show_carousel()
+	for child : CardCarousel in get_children():
+		carousels.push_back(child)
+	for carousel in carousels:
+		if carousel.get_index() == 0:
+			carousel.show_carousel()
+			carousel.cycling_locked = false
 
 func _input(event):
 	if event.is_action_pressed('cycle_action_type'):

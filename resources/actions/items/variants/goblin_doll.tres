@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemAction" load_steps=3 format=3 uid="uid://cnu3or3rc6j8j"]
+
+[ext_resource type="Script" uid="uid://cl1dgh74gshjd" path="res://resources/actions/items/item_action.gd" id="1_qf8rk"]
+[ext_resource type="Texture2D" uid="uid://beufwvw1sx1yf" path="res://assets/cards/inventory/goblin_doll.png" id="2_qf8rk"]
+
+[resource]
+script = ExtResource("1_qf8rk")
+action = 1
+texture = ExtResource("2_qf8rk")
+metadata/_custom_type_script = "uid://cl1dgh74gshjd"
