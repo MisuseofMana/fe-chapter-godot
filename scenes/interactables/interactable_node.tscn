@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://nfj2em8xgqtt"]
 
-[ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable.gd" id="1_cfryh"]
+[ext_resource type="Script" uid="uid://gh2tw2qiejqr" path="res://scenes/interactables/interactable_node.gd" id="1_cfryh"]
 [ext_resource type="Script" uid="uid://f6g62t436o0y" path="res://resources/actions/combat_actions/combat_action.gd" id="2_et2dc"]
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="3_et2dc"]
 [ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="3_n2tmg"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvvjl7supfis8"]
 
-[ext_resource type="PackedScene" uid="uid://nfj2em8xgqtt" path="res://scenes/interactables/interactable.tscn" id="1_4fxdc"]
+[ext_resource type="PackedScene" uid="uid://nfj2em8xgqtt" path="res://scenes/interactables/interactable_node.tscn" id="1_4fxdc"]
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="2_ak4r8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bh024"]

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://byf6ejfwu1bxi"
-path="res://.godot/imported/door_close_3.wav-296beab58240e347bfff7007ba97f4a2.sample"
+path="res://.godot/imported/heavy_wood_thud.wav-891034cd4671fa82f7d68d64990a90eb.sample"
 
 [deps]
 
-source_file="res://assets/audio/interactions/door_close_3.wav"
-dest_files=["res://.godot/imported/door_close_3.wav-296beab58240e347bfff7007ba97f4a2.sample"]
+source_file="res://assets/audio/interactions/wood_items/heavy_wood_thud.wav"
+dest_files=["res://.godot/imported/heavy_wood_thud.wav-891034cd4671fa82f7d68d64990a90eb.sample"]
 
 [params]
 

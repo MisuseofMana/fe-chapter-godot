@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://c01s78h32o2yq"]
 
-[ext_resource type="PackedScene" uid="uid://nfj2em8xgqtt" path="res://scenes/interactables/interactable.tscn" id="1_bo30t"]
+[ext_resource type="PackedScene" uid="uid://nfj2em8xgqtt" path="res://scenes/interactables/interactable_node.tscn" id="1_bo30t"]
 [ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="2_10222"]
 [ext_resource type="AudioStream" uid="uid://b83xw535xjxgk" path="res://assets/audio/interactions/door_open.wav" id="3_pj1ub"]
 [ext_resource type="AudioStream" uid="uid://0at4godjku4i" path="res://assets/audio/interactions/door_close.wav" id="4_6lyxi"]
 [ext_resource type="AudioStream" uid="uid://bh8857fcxonuk" path="res://assets/audio/interactions/door_close_2.wav" id="5_u7c3r"]
-[ext_resource type="AudioStream" uid="uid://byf6ejfwu1bxi" path="res://assets/audio/interactions/door_close_3.wav" id="6_6lyxi"]
+[ext_resource type="AudioStream" uid="uid://byf6ejfwu1bxi" path="res://assets/audio/interactions/wood_items/heavy_wood_thud.wav" id="6_6lyxi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3n66"]
 atlas = ExtResource("2_10222")

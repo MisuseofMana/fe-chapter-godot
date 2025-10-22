@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=3 format=3 uid="uid://txkgx07hsqdh"]
+
+[ext_resource type="Script" uid="uid://f6g62t436o0y" path="res://resources/actions/combat_actions/combat_action.gd" id="1_hti0x"]
+[ext_resource type="Texture2D" uid="uid://ehgyltr6kkpw" path="res://assets/cards/combat/fireball.png" id="2_hti0x"]
+
+[resource]
+script = ExtResource("1_hti0x")
+action = 4
+texture = ExtResource("2_hti0x")
+metadata/_custom_type_script = "uid://f6g62t436o0y"

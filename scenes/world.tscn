@@ -1,32 +1,25 @@
-[gd_scene load_steps=33 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=24 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" uid="uid://b7otmjo2e4xrn" path="res://scenes/interactables/barrel-new.tscn" id="5_dss4m"]
-[ext_resource type="PackedScene" uid="uid://c01s78h32o2yq" path="res://scenes/interactables/door_new.tscn" id="5_jhx03"]
-[ext_resource type="PackedScene" uid="uid://blhwohnvuv5sp" path="res://scenes/interactables/teleporter.tscn" id="6_lakw3"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://607tiukkn1lq" path="res://scenes/hud.tscn" id="10_oo54l"]
 [ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="10_pm21f"]
-[ext_resource type="Script" uid="uid://jjhmygbyoyxh" path="res://scenes/tutorial_panel.gd" id="10_q5onr"]
-[ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="11_jhx03"]
-[ext_resource type="Texture2D" uid="uid://c2lh06iu0xsxg" path="res://assets/ui/close_icon-export.png" id="12_o8fc1"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="12_pm21f"]
 [ext_resource type="Resource" uid="uid://4wljcbgjve4q" path="res://resources/actions/interactions/variants/lock.tres" id="13_oo54l"]
-[ext_resource type="Texture2D" uid="uid://n0afdi5g4623" path="res://assets/cards/card_texture/card_texture8.png" id="13_xo05s"]
 [ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="14_kpybi"]
 [ext_resource type="Resource" uid="uid://bp3mb1hv35lk7" path="res://resources/actions/interactions/variants/teleport.tres" id="15_ctatt"]
-[ext_resource type="PackedScene" uid="uid://bvvjl7supfis8" path="res://scenes/interactables/chest-new.tscn" id="15_dss4m"]
 [ext_resource type="Resource" uid="uid://bm2o1qk2xtofu" path="res://resources/actions/combat_actions/variants/heal.tres" id="16_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="17_7t5mc"]
 [ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="17_munwf"]
 [ext_resource type="Resource" uid="uid://bcp3j6fht5j2j" path="res://resources/actions/combat_actions/variants/wait.tres" id="18_ts3gi"]
 [ext_resource type="Resource" uid="uid://crswbcrki1gf4" path="res://resources/actions/items/variants/crown.tres" id="19_0nbtd"]
 [ext_resource type="Resource" uid="uid://cnu3or3rc6j8j" path="res://resources/actions/items/variants/goblin_doll.tres" id="20_37qwj"]
+[ext_resource type="PackedScene" uid="uid://csfjhmmnapy2u" path="res://scenes/interactables/breakables/barrel.tscn" id="21_7iits"]
 [ext_resource type="Resource" uid="uid://di3mewkcc2lwh" path="res://resources/actions/items/variants/compass.tres" id="21_navra"]
 
 [sub_resource type="Gradient" id="Gradient_xo05s"]
@@ -36,15 +29,9 @@ colors = PackedColorArray(0.0470588, 0.0745098, 0.0901961, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dss4m"]
 gradient = SubResource("Gradient_xo05s")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo05s"]
-bg_color = Color(0.27623, 0.148609, 0, 0.890196)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t5mc"]
-texture = ExtResource("13_xo05s")
-
 [node name="World" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-156, -158)
 scale = Vector2(2.96875, 540)
 texture = SubResource("GradientTexture1D_dss4m")
@@ -65,56 +52,6 @@ tile_set = ExtResource("1_m33p3")
 
 [node name="Interactables" type="Node2D" parent="."]
 script = ExtResource("2_dss4m")
-
-[node name="Door2" parent="Interactables" instance=ExtResource("5_jhx03")]
-position = Vector2(-24, -40)
-script = null
-
-[node name="Chest2" parent="Interactables" instance=ExtResource("15_dss4m")]
-position = Vector2(72, -8)
-script = null
-
-[node name="Door3" parent="Interactables" instance=ExtResource("5_jhx03")]
-position = Vector2(120, -24)
-script = null
-
-[node name="Door" parent="Interactables" instance=ExtResource("5_jhx03")]
-position = Vector2(-152, -24)
-script = null
-
-[node name="Barrel2" parent="Interactables" instance=ExtResource("5_dss4m")]
-position = Vector2(-40, -88)
-script = null
-
-[node name="Barrel" parent="Interactables" instance=ExtResource("5_dss4m")]
-position = Vector2(-168, -8)
-script = null
-
-[node name="Barrel3" parent="Interactables" instance=ExtResource("5_dss4m")]
-position = Vector2(-136, -88)
-script = null
-
-[node name="Barrel4" parent="Interactables" instance=ExtResource("5_dss4m")]
-position = Vector2(-120, -88)
-script = null
-
-[node name="Chest" parent="Interactables" instance=ExtResource("15_dss4m")]
-position = Vector2(-104, -40)
-script = null
-
-[node name="CastleTeleporter" parent="Interactables" node_paths=PackedStringArray("teleport_destination") instance=ExtResource("6_lakw3")]
-position = Vector2(88, -56)
-teleport_destination = NodePath("../CaveTeleporter/Marker2D")
-
-[node name="Marker2D" type="Marker2D" parent="Interactables/CastleTeleporter"]
-position = Vector2(16, 0)
-
-[node name="CaveTeleporter" parent="Interactables" node_paths=PackedStringArray("teleport_destination") instance=ExtResource("6_lakw3")]
-position = Vector2(-376, -280)
-teleport_destination = NodePath("../CastleTeleporter/Marker2D")
-
-[node name="Marker2D" type="Marker2D" parent="Interactables/CaveTeleporter"]
-position = Vector2(-16, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_71j4m")]
 position = Vector2(-56, -8)
@@ -148,88 +85,10 @@ card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd"), ExtResou
 stream = ExtResource("8_7r4gi")
 script = ExtResource("9_w7kh3")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
-offset_left = -144.0
-offset_top = -72.0
-offset_right = 32.0
-offset_bottom = 48.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_xo05s")
-script = ExtResource("10_q5onr")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("11_jhx03")
-theme_override_font_sizes/font_size = 16
-icon = ExtResource("12_o8fc1")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_7t5mc")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("12_o8fc1")
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_jhx03")
-theme_override_font_sizes/font_size = 32
-text = "4"
-horizontal_alignment = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(101, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/line_separation = -3
-theme_override_fonts/normal_font = ExtResource("11_jhx03")
-theme_override_font_sizes/normal_font_size = 16
-text = "Move with 'W', 'A', 'S, & 'D'
-
-Open the drawer with 'TAB' or click the tab in the bottom right of the screen.
-
-Click the key card in the bottom drawer to show interactable objects.
-
-Movement is disabled when cards are selected.
-
-Monsters move after you move (they do nothing for now.)"
+[node name="Barrel" parent="." instance=ExtResource("21_7iits")]
+position = Vector2(-120, -8)
 
 [connection signal="child_entered_tree" from="Interactables" to="Interactables" method="_on_child_entered_tree"]
 [connection signal="players_turn_over" from="Player" to="MonsterContainer" method="handle_monster_movement"]
 [connection signal="monster_turn_over" from="MonsterContainer" to="Player" method="unlock_movement"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="PanelContainer" method="_on_button_pressed"]
