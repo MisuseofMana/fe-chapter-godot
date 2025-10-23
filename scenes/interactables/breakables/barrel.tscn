@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csfjhmmnapy2u"]
+[gd_scene load_steps=11 format=3 uid="uid://csfjhmmnapy2u"]
 
 [ext_resource type="Script" uid="uid://d2qyvwu8ebr1h" path="res://scenes/interactables/interactable.gd" id="1_ntnq4"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_nmw8u"]
@@ -6,30 +6,9 @@
 [ext_resource type="Resource" uid="uid://dau0urwxvxth2" path="res://resources/actions/combat_actions/variants/ranged_attack.tres" id="4_jjhyq"]
 [ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="5_u3xws"]
 [ext_resource type="Texture2D" uid="uid://b8a71ryyctgwo" path="res://assets/sprites/interactables/barrel-destroyed.png" id="6_ifij4"]
-[ext_resource type="Texture2D" uid="uid://16bp48tn2hh6" path="res://assets/sprites/tiles.png" id="7_ycbey"]
+[ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel-default.png" id="7_ntnq4"]
 [ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="8_82tco"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3bee"]
-atlas = ExtResource("7_ycbey")
-region = Rect2(128, 544, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oq6n3"]
-atlas = ExtResource("7_ycbey")
-region = Rect2(160, 544, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_k3gxc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s3bee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oq6n3")
-}],
-"loop": false,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://r4a5tmpkaxdn" path="res://assets/sprites/interactables/barrel-showing-hint.png" id="8_nmw8u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2tmg"]
 size = Vector2(16, 16)
@@ -42,15 +21,20 @@ ExtResource("4_jjhyq"): 3,
 ExtResource("5_u3xws"): 3
 })
 interaction_sprites = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("7_ntnq4"),
 3: ExtResource("6_ifij4")
 })
+hint_sprites = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("8_nmw8u")
+})
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_k3gxc")
+texture = ExtResource("7_ntnq4")
 
 [node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 0
@@ -61,9 +45,11 @@ shape = SubResource("RectangleShape2D_n2tmg")
 debug_color = Color(0.9235774, 0.2766383, 0, 0.41960785)
 
 [node name="HintCircle" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 visible = false
 position = Vector2(0, -11)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_82tco")
 
 [node name="InteractionIcon" type="Sprite2D" parent="HintCircle"]
+unique_name_in_owner = true

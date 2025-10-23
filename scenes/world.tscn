@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=25 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://4wljcbgjve4q" path="res://resources/actions/interactions/variants/lock.tres" id="13_oo54l"]
 [ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="14_kpybi"]
 [ext_resource type="Resource" uid="uid://bp3mb1hv35lk7" path="res://resources/actions/interactions/variants/teleport.tres" id="15_ctatt"]
+[ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="15_oo54l"]
 [ext_resource type="Resource" uid="uid://bm2o1qk2xtofu" path="res://resources/actions/combat_actions/variants/heal.tres" id="16_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="17_7t5mc"]
 [ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="17_munwf"]
@@ -74,7 +75,7 @@ script = ExtResource("10_pm21f")
 card_actions = Array[ExtResource("12_pm21f")]([ExtResource("13_oo54l"), ExtResource("14_kpybi"), ExtResource("15_ctatt")])
 
 [node name="CombatCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_xgqkh"), ExtResource("17_munwf"), ExtResource("18_ts3gi")])
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_xgqkh"), ExtResource("17_munwf"), ExtResource("18_ts3gi"), ExtResource("15_oo54l")])
 
 [node name="InventoryCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
 card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd"), ExtResource("20_37qwj"), ExtResource("21_navra")])
