@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqtu0p2n537g8"]
+[gd_scene load_steps=24 format=3 uid="uid://bqtu0p2n537g8"]
 
 [ext_resource type="Script" uid="uid://b27fcoyllmytp" path="res://cards/carousel_card_action.gd" id="2_8bdjv"]
 [ext_resource type="Texture2D" uid="uid://dqcvhiddmwk45" path="res://assets/ui/card-selection-indicator.png" id="2_uqbyb"]
-[ext_resource type="SpriteFrames" uid="uid://dxgyu6jt4sewr" path="res://resources/actions/items/item_card_texture_sprite_frames.tres" id="3_vpmqw"]
+[ext_resource type="Texture2D" uid="uid://tjvjnk1pwnlx" path="res://assets/cards/card_texture/card_textures.png" id="3_vpmqw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vox7"]
 atlas = ExtResource("2_uqbyb")
@@ -36,6 +36,84 @@ animations = [{
 "texture": SubResource("AtlasTexture_mr6kq")
 }],
 "loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sl64"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybqjb"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3yf2"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2binw"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01we5"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2nfg"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fijoo"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mphbu"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(112, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmaw2"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(128, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdo5v"]
+atlas = ExtResource("3_vpmqw")
+region = Rect2(144, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2vik"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sl64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybqjb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3yf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2binw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01we5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2nfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fijoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mphbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmaw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdo5v")
+}],
+"loop": true,
 "name": &"default",
 "speed": 5.0
 }]
@@ -144,7 +222,7 @@ frame = 1
 
 [node name="Card" type="AnimatedSprite2D" parent="Node2D"]
 unique_name_in_owner = true
-sprite_frames = ExtResource("3_vpmqw")
+sprite_frames = SubResource("SpriteFrames_f2vik")
 
 [node name="ActionIcon" type="Sprite2D" parent="Node2D/Card"]
 unique_name_in_owner = true

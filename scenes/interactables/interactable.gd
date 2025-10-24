@@ -19,6 +19,8 @@ signal new_loot_collected(passed_loot : Action)
 @export var interaction_sounds : Dictionary[STATES, AudioStreamRandomizer]
 @export var can_become_walkable : bool = false
 
+var is_walkable : bool = false
+
 @onready var sprite: Sprite2D = %Sprite
 @onready var sfx: AudioStreamPlayer2D = %SoundEffect
 @onready var interaction_icon: Sprite2D = %InteractionIcon
@@ -55,7 +57,7 @@ func trigger_reset():
 	sfx.stream = interaction_sounds[STATES.DEFAULT]
 	sfx.play()
 	if can_become_walkable:
-		collision.disabled = false
+		is_walkable = false
 		swap_valid_actions_to()
 		return
 	exhaust_action_by_state(STATES.DEFAULT)
@@ -65,7 +67,7 @@ func trigger_interaction():
 	sfx.stream = interaction_sounds[STATES.INTERACTED]
 	sfx.play()
 	if can_become_walkable:
-		collision.disabled = true
+		is_walkable = true
 		swap_valid_actions_to()
 		return
 	exhaust_action_by_state(STATES.INTERACTED)

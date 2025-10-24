@@ -60,14 +60,14 @@ position = Vector2(12, 7)
 texture = ExtResource("3_uo2fv")
 
 [node name="CycleLeft" type="Sprite2D" parent="."]
-position = Vector2(72, 148)
+position = Vector2(52, 148)
 texture = ExtResource("5_0i1j5")
 
 [node name="CycleRight" type="Sprite2D" parent="."]
-position = Vector2(120, 148)
+position = Vector2(140, 148)
 texture = ExtResource("6_mphia")
 
 [node name="ConfirmButton" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(96, 148)
+position = Vector2(96, 152)
 sprite_frames = SubResource("SpriteFrames_5n1hp")

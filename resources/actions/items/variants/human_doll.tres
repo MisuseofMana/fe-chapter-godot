@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="ItemAction" load_steps=4 format=3 uid="uid://s8y6g2qpy4cw"]
+[gd_resource type="Resource" script_class="ItemAction" load_steps=3 format=3 uid="uid://s8y6g2qpy4cw"]
 
 [ext_resource type="Script" uid="uid://cl1dgh74gshjd" path="res://resources/actions/items/item_action.gd" id="1_nf723"]
 [ext_resource type="Texture2D" uid="uid://83bm5t5rv3ak" path="res://assets/cards/inventory/human_doll.png" id="2_nf723"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nf723"]
-
 [resource]
 script = ExtResource("1_nf723")
-sprite_frames = SubResource("SpriteFrames_nf723")
 action = 0
 texture = ExtResource("2_nf723")
+effective_distance = null
 metadata/_custom_type_script = "uid://cl1dgh74gshjd"

@@ -11,10 +11,8 @@ enum INTERACTIONS {
 	NONE = -1,
 }
 
+@export var action_color : Color = Color(0.863, 1.0, 0.863, 1.0)
 @export var action : INTERACTIONS = INTERACTIONS.NONE
-
-func get_sprite_frames() -> SpriteFrames:
-	return preload("uid://dhc1wisadhv7e")
 	
 func get_action() -> INTERACTIONS:
 	return action

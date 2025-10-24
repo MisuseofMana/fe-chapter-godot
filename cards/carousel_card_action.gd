@@ -9,8 +9,8 @@ var action: Action
 
 func _ready():
 	action_icon.texture = action.texture
-	card.sprite_frames = action.get_sprite_frames()
 	card.frame = randi_range(0, card.sprite_frames.get_frame_count('default') - 1)
+	card.self_modulate = action.action_color
 	EventBus.action_completed.connect(lower_card)
 	
 func use_card():

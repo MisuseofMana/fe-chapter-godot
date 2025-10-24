@@ -7,4 +7,5 @@
 script = ExtResource("1_hti0x")
 action = 4
 texture = ExtResource("2_hti0x")
+effective_distance = 3
 metadata/_custom_type_script = "uid://f6g62t436o0y"

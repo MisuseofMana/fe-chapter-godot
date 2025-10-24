@@ -44,6 +44,7 @@ shape = SubResource("RectangleShape2D_i7141")
 debug_color = Color(0.967637, 3.85046e-07, 0.472992, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 12)
 zoom = Vector2(0.8, 0.8)
 
 [node name="TeleportParticles" type="GPUParticles2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://e4vn3snwj3bp"]
+[gd_scene load_steps=14 format=3 uid="uid://e4vn3snwj3bp"]
 
 [ext_resource type="Script" uid="uid://ckio76ke2j6md" path="res://scenes/interactables/interactable.gd" id="1_bgnmh"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_6balc"]
@@ -22,9 +22,6 @@ streams_count = 1
 stream_0/stream = ExtResource("10_gfpj0")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2tmg"]
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3nu8"]
 size = Vector2(16, 16)
 
 [node name="Door" type="Node2D"]
@@ -65,15 +62,6 @@ monitoring = false
 [node name="MovementCollider" type="CollisionShape2D" parent="MovementArea"]
 shape = SubResource("RectangleShape2D_n2tmg")
 debug_color = Color(0.9235774, 0.2766383, 0, 0.41960785)
-
-[node name="InteractionArea" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
-monitoring = false
-priority = 1
-
-[node name="InteractionCollider" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("RectangleShape2D_t3nu8")
 
 [node name="HintCircle" type="Sprite2D" parent="."]
 unique_name_in_owner = true

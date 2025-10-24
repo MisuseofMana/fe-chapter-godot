@@ -67,6 +67,11 @@ func handle_direction_input(ray: RayCast2D):
 		
 #	if direction is colliding with something
 	if ray.is_colliding():
+		var collision_owner = ray.get_collider().owner
+		if collision_owner is Interactable:
+			if collision_owner.is_walkable:
+				attempt_movement(input_direction_map[ray] * move_distance, true)
+				return		
 		attempt_movement(input_direction_map[ray] * bounce_distance, false) 
 #	if able to move here, move to that location
 	else:
