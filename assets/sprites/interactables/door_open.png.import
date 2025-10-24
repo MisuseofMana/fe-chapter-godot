@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r4a5tmpkaxdn"
-path="res://.godot/imported/barrel-showing-hint.png-db1af99acbea72b5f4ab6c8aa1551fe8.ctex"
+uid="uid://bkvdgtatxh1qp"
+path="res://.godot/imported/door_open.png-ff5d36c9461e56d32bd5bc60d4d1aa13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/interactables/barrel-showing-hint.png"
-dest_files=["res://.godot/imported/barrel-showing-hint.png-db1af99acbea72b5f4ab6c8aa1551fe8.ctex"]
+source_file="res://assets/sprites/interactables/door_open.png"
+dest_files=["res://.godot/imported/door_open.png-ff5d36c9461e56d32bd5bc60d4d1aa13.ctex"]
 
 [params]
 

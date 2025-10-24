@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8a71ryyctgwo"
-path="res://.godot/imported/barrel-destroyed.png-3d814c570e8f74a93751101e7901e89d.ctex"
+uid="uid://cdolv6xfsgr8w"
+path="res://.godot/imported/door_hint.png-57f054e7470cf27af3b6b90b7dcb28d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/interactables/barrel-destroyed.png"
-dest_files=["res://.godot/imported/barrel-destroyed.png-3d814c570e8f74a93751101e7901e89d.ctex"]
+source_file="res://assets/sprites/interactables/door_hint.png"
+dest_files=["res://.godot/imported/door_hint.png-57f054e7470cf27af3b6b90b7dcb28d0.ctex"]
 
 [params]
 

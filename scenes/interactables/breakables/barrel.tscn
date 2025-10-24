@@ -1,24 +1,32 @@
-[gd_scene load_steps=11 format=3 uid="uid://csfjhmmnapy2u"]
+[gd_scene load_steps=14 format=3 uid="uid://csfjhmmnapy2u"]
 
-[ext_resource type="Script" uid="uid://d2qyvwu8ebr1h" path="res://scenes/interactables/interactable.gd" id="1_ntnq4"]
-[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_nmw8u"]
+[ext_resource type="Script" uid="uid://ckio76ke2j6md" path="res://scenes/interactables/interactable.gd" id="1_ejjcg"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_ntnq4"]
 [ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="3_k3mo4"]
 [ext_resource type="Resource" uid="uid://dau0urwxvxth2" path="res://resources/actions/combat_actions/variants/ranged_attack.tres" id="4_jjhyq"]
 [ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="5_u3xws"]
-[ext_resource type="Texture2D" uid="uid://b8a71ryyctgwo" path="res://assets/sprites/interactables/barrel-destroyed.png" id="6_ifij4"]
-[ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel-default.png" id="7_ntnq4"]
+[ext_resource type="Texture2D" uid="uid://b8a71ryyctgwo" path="res://assets/sprites/interactables/barrel_destroyed.png" id="6_ifij4"]
+[ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel_default.png" id="7_ntnq4"]
 [ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="8_82tco"]
-[ext_resource type="Texture2D" uid="uid://r4a5tmpkaxdn" path="res://assets/sprites/interactables/barrel-showing-hint.png" id="8_nmw8u"]
+[ext_resource type="Texture2D" uid="uid://r4a5tmpkaxdn" path="res://assets/sprites/interactables/barrel_hint.png" id="8_nmw8u"]
+[ext_resource type="AudioStream" uid="uid://byf6ejfwu1bxi" path="res://assets/audio/interactions/wood_items/heavy_wood_thud.wav" id="9_k3mo4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2tmg"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k3mo4"]
+streams_count = 2
+stream_0/stream = ExtResource("9_k3mo4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3mo4"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjhyq"]
 size = Vector2(16, 16)
 
 [node name="Barrel" type="Node2D"]
-script = ExtResource("1_ntnq4")
-action_triggers = Dictionary[ExtResource("2_nmw8u"), int]({
+script = ExtResource("1_ejjcg")
+action_triggers = Dictionary[ExtResource("2_ntnq4"), int]({
+ExtResource("5_u3xws"): 3,
 ExtResource("3_k3mo4"): 3,
-ExtResource("4_jjhyq"): 3,
-ExtResource("5_u3xws"): 3
+ExtResource("4_jjhyq"): 3
 })
 interaction_sprites = Dictionary[int, CompressedTexture2D]({
 0: ExtResource("7_ntnq4"),
@@ -26,6 +34,9 @@ interaction_sprites = Dictionary[int, CompressedTexture2D]({
 })
 hint_sprites = Dictionary[int, CompressedTexture2D]({
 0: ExtResource("8_nmw8u")
+})
+interaction_sounds = Dictionary[int, AudioStreamRandomizer]({
+3: SubResource("AudioStreamRandomizer_k3mo4")
 })
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -36,13 +47,21 @@ texture = ExtResource("7_ntnq4")
 [node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MovementArea" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_n2tmg")
+[node name="MovementCollider" type="CollisionShape2D" parent="MovementArea"]
+shape = SubResource("RectangleShape2D_k3mo4")
 debug_color = Color(0.9235774, 0.2766383, 0, 0.41960785)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="InteractionCollider" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_jjhyq")
 
 [node name="HintCircle" type="Sprite2D" parent="."]
 unique_name_in_owner = true

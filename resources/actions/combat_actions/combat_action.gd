@@ -14,5 +14,8 @@ enum COMBAT_ACTIONS {
 
 @export var action: COMBAT_ACTIONS = COMBAT_ACTIONS.NONE
 
+func get_sprite_frames() -> SpriteFrames:
+	return preload("uid://bwty5cui12jqy")
+
 func get_action() -> COMBAT_ACTIONS:
 	return action

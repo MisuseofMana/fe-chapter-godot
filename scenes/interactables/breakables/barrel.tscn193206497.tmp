@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://csfjhmmnapy2u"]
+
+[ext_resource type="Script" uid="uid://ckio76ke2j6md" path="res://scenes/interactables/interactable.gd" id="1_ejjcg"]
+[ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel-default.png" id="7_ntnq4"]
+[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="8_82tco"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2tmg"]
+size = Vector2(16, 16)
+
+[node name="Barrel" type="Node2D"]
+script = ExtResource("1_ejjcg")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_ntnq4")
+
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_n2tmg")
+debug_color = Color(0.9235774, 0.2766383, 0, 0.41960785)
+
+[node name="HintCircle" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -11)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_82tco")
+
+[node name="InteractionIcon" type="Sprite2D" parent="HintCircle"]
+unique_name_in_owner = true

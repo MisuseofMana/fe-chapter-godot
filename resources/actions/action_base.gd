@@ -5,9 +5,13 @@ class_name Action
 
 func get_action(): pass
 
+func get_sprite_frames() -> SpriteFrames:
+	return preload("uid://dhc1wisadhv7e")
+
 @export var texture : CompressedTexture2D = preload("uid://ibkxqi0a103r")
 @export_range(0, 100, 1) var actions_to_cooldown : int = 0
 @export_range(-1, 10) var usage_limit: int = -1
+
 
 var card_is_active : bool = false:
 	set(new):

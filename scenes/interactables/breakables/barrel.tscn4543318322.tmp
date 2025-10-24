@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=3 uid="uid://csfjhmmnapy2u"]
+
+[ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="3_k3mo4"]
+[ext_resource type="Resource" uid="uid://dau0urwxvxth2" path="res://resources/actions/combat_actions/variants/ranged_attack.tres" id="4_jjhyq"]
+[ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="5_u3xws"]
+[ext_resource type="Texture2D" uid="uid://b8a71ryyctgwo" path="res://assets/sprites/interactables/barrel-destroyed.png" id="6_ifij4"]
+[ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel-default.png" id="7_ntnq4"]
+[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="8_82tco"]
+[ext_resource type="Texture2D" uid="uid://r4a5tmpkaxdn" path="res://assets/sprites/interactables/barrel-showing-hint.png" id="8_nmw8u"]
+[ext_resource type="AudioStream" uid="uid://byf6ejfwu1bxi" path="res://assets/audio/interactions/wood_items/heavy_wood_thud.wav" id="9_k3mo4"]
+
+[sub_resource type="GDScript" id="GDScript_nmw8u"]
+script/source = "@tool
+extends Node2D
+class_name Interactable
+
+enum STATES {
+	DEFAULT,
+	LOOTED,
+	INTERACTED,
+	DESTROYED,
+}
+
+signal new_loot_collected(passed_loot : Action)
+
+@export var action_triggers : Dictionary[Action, STATES]
+@export var interaction_sprites : Dictionary[STATES, CompressedTexture2D]
+@export var hint_sprites : Dictionary[STATES, CompressedTexture2D]
+@export var interaction_reward : Action
+@export var interaction_sounds : Dictionary[STATES, AudioStreamRandomizer]
+
+@onready var sprite: Sprite2D = %Sprite
+@onready var sfx: AudioStreamPlayer2D = %SoundEffect
+@onready var interaction_icon: Sprite2D = %InteractionIcon
+@onready var hint_circle: Sprite2D = %HintCircle
+
+var current_state : STATES = STATES.DEFAULT
+
+func _ready():
+	EventBus.selected_card_changed.connect(show_green_hint_outline)
+	EventBus.card_deselected.connect(disable_hint_sprite)
+
+func show_green_hint_outline(primed_action: Action):
+	if action_triggers.has(primed_action):
+		sprite.texture = hint_sprites[current_state]
+		
+func disable_hint_sprite():
+	sprite.texture = interaction_sprites[current_state]
+
+func handle_interaction(attempted_action : Action):
+	if action_triggers.has(attempted_action):
+		current_state = action_triggers[attempted_action]
+		match(current_state):
+			STATES.LOOTED:
+				loot_interactable()
+			STATES.INTERACTED:
+				trigger_interaction()
+			STATES.DESTROYED:
+				trigger_destruction()
+				
+func trigger_interaction():
+	sprite.texture = interaction_sprites[STATES.INTERACTED]
+	sfx.stream = interaction_sounds[STATES.INTERACTED]
+	sfx.play()
+	exhaust_action_by_state(STATES.INTERACTED)
+
+func trigger_destruction():
+	sprite.texture = interaction_sprites[STATES.DESTROYED]
+	sfx.stream = interaction_sounds[STATES.DESTROYED]
+	sfx.play()
+	exhaust_action_by_state(STATES.DESTROYED)
+
+func loot_interactable():
+	sprite.texture = interaction_sprites[STATES.LOOTED]
+	new_loot_collected.emit(interaction_reward)
+	exhaust_action_by_state(STATES.LOOTED)
+
+func exhaust_action_by_state(passed_state: STATES):
+	for action : Action in action_triggers.keys():
+		if action_triggers[action] == passed_state:
+			action_triggers.erase(action)
+	EventBus.action_completed.emit()
+"
+
+[sub_resource type="GDScript" id="GDScript_ntnq4"]
+script/source = "@abstract
+@tool
+extends Resource
+class_name Action
+
+func get_action(): pass
+func get_sprite_frames() -> SpriteFrames:
+	return preload(\"uid://dhc1wisadhv7e\")
+
+@export var texture : CompressedTexture2D = preload(\"uid://ibkxqi0a103r\")
+@export_range(0, 100, 1) var actions_to_cooldown : int = 0
+@export_range(-1, 10) var usage_limit: int = -1
+
+
+var card_is_active : bool = false:
+	set(new):
+		card_is_active = new
+		if new == false:
+			EventBus.card_deselected.emit()
+		if new == true:
+			EventBus.selected_card_changed.emit(self)
+"
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jjhyq"]
+streams_count = 1
+stream_0/stream = ExtResource("9_k3mo4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2tmg"]
+size = Vector2(16, 16)
+
+[node name="Barrel" type="Node2D"]
+script = SubResource("GDScript_nmw8u")
+action_triggers = Dictionary[SubResource("GDScript_ntnq4"), int]({
+ExtResource("3_k3mo4"): 3,
+ExtResource("4_jjhyq"): 3,
+ExtResource("5_u3xws"): 3
+})
+interaction_sprites = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("7_ntnq4"),
+3: ExtResource("6_ifij4")
+})
+hint_sprites = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("8_nmw8u")
+})
+interaction_sounds = Dictionary[int, AudioStreamRandomizer]({
+0: SubResource("AudioStreamRandomizer_jjhyq")
+})
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_ntnq4")
+
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_n2tmg")
+debug_color = Color(0.9235774, 0.2766383, 0, 0.41960785)
+
+[node name="HintCircle" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -11)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_82tco")
+
+[node name="InteractionIcon" type="Sprite2D" parent="HintCircle"]
+unique_name_in_owner = true

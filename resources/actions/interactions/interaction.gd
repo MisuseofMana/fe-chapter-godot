@@ -3,6 +3,7 @@ extends Action
 class_name Interaction
 
 enum INTERACTIONS {
+	USE,
 	OPEN,
 	LOCK,
 	REST,
@@ -12,5 +13,8 @@ enum INTERACTIONS {
 
 @export var action : INTERACTIONS = INTERACTIONS.NONE
 
+func get_sprite_frames() -> SpriteFrames:
+	return preload("uid://dhc1wisadhv7e")
+	
 func get_action() -> INTERACTIONS:
 	return action

@@ -12,8 +12,6 @@ class_name PlayerContainer
 var move_distance : int = 16
 var bounce_distance : int = 4
 
-var movement_locked : bool = false
-
 @onready var input_direction_map : Dictionary[RayCast2D, Vector2] = {
 	up: Vector2.UP,
 	down: Vector2.DOWN,
@@ -22,15 +20,18 @@ var movement_locked : bool = false
 }
 
 signal players_turn_over
-	
+
+func _ready():
+	EventBus.action_completed.connect(register_adjacent_interactions)
+
 func move_all_monsters():
 	players_turn_over.emit()
 
 func unlock_movement():
-	movement_locked = false
+	EventBus.movement_locked = false
 	
 func lock_movement():
-	movement_locked = true
+	EventBus.movement_locked = true
 
 func register_adjacent_interactions():
 	var registration_array : Array[Interactable]
@@ -43,7 +44,7 @@ func register_adjacent_interactions():
 	move_all_monsters()
 
 func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
-	movement_locked = true
+	EventBus.movement_locked = true
 	var origin_pos = position
 	var lvl_tween : Tween = create_tween()
 	if can_move_here:
@@ -55,12 +56,12 @@ func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
 
 func attempt_action(ray : RayCast2D):
 	if ray.is_colliding():
-		var interactable = ray.get_collider().owner
-		if interactable is Interactable:
-			interactable.attempt_interaction()
+			var interactable = ray.get_collider().owner
+			if interactable is Interactable:
+					interactable.handle_interaction(EventBus.active_action)
 
 func handle_direction_input(ray: RayCast2D):
-	if movement_locked:
+	if EventBus.movement_locked:
 		attempt_action(ray)
 		return
 		

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yfp38tsw5aqs"
-path="res://.godot/imported/barrel-default.png-0dbaaab08b38850d49df0eba7331d010.ctex"
+uid="uid://be8epj5qnoxc"
+path="res://.godot/imported/combat_card_texture.png-d1c8be9a8f65a5358bd3b2cbf3998e2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/interactables/barrel-default.png"
-dest_files=["res://.godot/imported/barrel-default.png-0dbaaab08b38850d49df0eba7331d010.ctex"]
+source_file="res://assets/cards/card_texture/combat_card_texture.png"
+dest_files=["res://.godot/imported/combat_card_texture.png-d1c8be9a8f65a5358bd3b2cbf3998e2a.ctex"]
 
 [params]
 

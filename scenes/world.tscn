@@ -1,19 +1,21 @@
-[gd_scene load_steps=25 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=27 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
+[ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="1_oo54l"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
+[ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="2_kpybi"]
+[ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel_default.png" id="3_ctatt"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
+[ext_resource type="PackedScene" uid="uid://e4vn3snwj3bp" path="res://scenes/interactables/obstacles/door.tscn" id="4_kpybi"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://607tiukkn1lq" path="res://scenes/hud.tscn" id="10_oo54l"]
 [ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="10_pm21f"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="12_pm21f"]
-[ext_resource type="Resource" uid="uid://4wljcbgjve4q" path="res://resources/actions/interactions/variants/lock.tres" id="13_oo54l"]
-[ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="14_kpybi"]
-[ext_resource type="Resource" uid="uid://bp3mb1hv35lk7" path="res://resources/actions/interactions/variants/teleport.tres" id="15_ctatt"]
 [ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="15_oo54l"]
+[ext_resource type="Resource" uid="uid://oljlvpajfin3" path="res://resources/actions/interactions/variants/use.tres" id="16_oo54l"]
 [ext_resource type="Resource" uid="uid://bm2o1qk2xtofu" path="res://resources/actions/combat_actions/variants/heal.tres" id="16_xgqkh"]
 [ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="17_7t5mc"]
 [ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="17_munwf"]
@@ -31,6 +33,37 @@ colors = PackedColorArray(0.0470588, 0.0745098, 0.0901961, 1)
 gradient = SubResource("Gradient_xo05s")
 
 [node name="World" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Debugger" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_oo54l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Debugger"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Debugger/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kpybi")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Debugger/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_ctatt")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(-156, -158)
@@ -54,8 +87,17 @@ tile_set = ExtResource("1_m33p3")
 [node name="Interactables" type="Node2D" parent="."]
 script = ExtResource("2_dss4m")
 
-[node name="Player" parent="." instance=ExtResource("5_71j4m")]
+[node name="Barrel" parent="Interactables" instance=ExtResource("21_7iits")]
+position = Vector2(-88, -8)
+
+[node name="Barrel2" parent="Interactables" instance=ExtResource("21_7iits")]
 position = Vector2(-56, -8)
+
+[node name="Door" parent="Interactables" instance=ExtResource("4_kpybi")]
+position = Vector2(-152, -24)
+
+[node name="Player" parent="." instance=ExtResource("5_71j4m")]
+position = Vector2(-136, -8)
 
 [node name="MonsterContainer" parent="." instance=ExtResource("3_k0juu")]
 position = Vector2(-24, 15)
@@ -71,11 +113,11 @@ region_rect = Rect2(0, 128, 32, 32)
 [node name="CarouselContainer" type="CanvasLayer" parent="."]
 script = ExtResource("10_pm21f")
 
-[node name="InteractionCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("12_pm21f")]([ExtResource("13_oo54l"), ExtResource("14_kpybi"), ExtResource("15_ctatt")])
-
 [node name="CombatCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_xgqkh"), ExtResource("17_munwf"), ExtResource("18_ts3gi"), ExtResource("15_oo54l")])
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("17_munwf"), ExtResource("16_xgqkh"), ExtResource("18_ts3gi"), ExtResource("15_oo54l")])
+
+[node name="InteractionCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_oo54l")])
 
 [node name="InventoryCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
 card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd"), ExtResource("20_37qwj"), ExtResource("21_navra")])
@@ -85,9 +127,6 @@ card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd"), ExtResou
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_7r4gi")
 script = ExtResource("9_w7kh3")
-
-[node name="Barrel" parent="." instance=ExtResource("21_7iits")]
-position = Vector2(-120, -8)
 
 [connection signal="child_entered_tree" from="Interactables" to="Interactables" method="_on_child_entered_tree"]
 [connection signal="players_turn_over" from="Player" to="MonsterContainer" method="handle_monster_movement"]
