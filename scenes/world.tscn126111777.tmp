@@ -1,18 +1,19 @@
-[gd_scene load_steps=28 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=32 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="1_oo54l"]
 [ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="2_kpybi"]
+[ext_resource type="Script" uid="uid://do6nav18ra00u" path="res://scenes/space_selector.gd" id="3_ctatt"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
 [ext_resource type="PackedScene" uid="uid://e4vn3snwj3bp" path="res://scenes/interactables/obstacles/door.tscn" id="4_kpybi"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
-[ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="10_ctatt"]
 [ext_resource type="PackedScene" uid="uid://607tiukkn1lq" path="res://scenes/hud.tscn" id="10_oo54l"]
 [ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="10_pm21f"]
+[ext_resource type="Texture2D" uid="uid://cubgce7h75ct3" path="res://assets/ui/selection-indicator.png" id="11_xgqkh"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="12_pm21f"]
 [ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="15_oo54l"]
 [ext_resource type="Resource" uid="uid://oljlvpajfin3" path="res://resources/actions/interactions/variants/use.tres" id="16_oo54l"]
@@ -35,6 +36,28 @@ colors = PackedColorArray(0.0470588, 0.0745098, 0.0901961, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dss4m"]
 gradient = SubResource("Gradient_xo05s")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_munwf"]
+atlas = ExtResource("11_xgqkh")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts3gi"]
+atlas = ExtResource("11_xgqkh")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0nbtd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_munwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts3gi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="World" type="Node2D"]
 
@@ -117,8 +140,16 @@ position = Vector2(-288, -263)
 position = Vector2(128, -23)
 region_rect = Rect2(0, 128, 32, 32)
 
-[node name="SpaceSelector" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_ctatt")]
+[node name="SpaceSelector" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_ctatt")
 player = NodePath("../Player")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpaceSelector"]
+visible = false
+position = Vector2(-136, -8)
+sprite_frames = SubResource("SpriteFrames_0nbtd")
+frame = 1
+frame_progress = 0.72711647
 
 [node name="CarouselContainer" type="CanvasLayer" parent="."]
 script = ExtResource("10_pm21f")

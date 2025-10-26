@@ -78,15 +78,17 @@ func _input(event):
 	if cycling_locked or not visible_on_screen_notifier_2d.is_on_screen():
 		return
 	
-	if event.is_action_pressed('cycle_cards_left', true):
-		cycle_cards_left()
-	if event.is_action_pressed('cycle_cards_right', true):
-		cycle_cards_right()
-	if event.is_action_pressed('toggle_card_activation'):
+	if carousel_path.get_children().size() > 1:
+		if event.is_action_pressed('cycle_cards_left', true):
+			cycle_cards_left()
+		if event.is_action_pressed('cycle_cards_right', true):
+			cycle_cards_right()
+			
+	if event.is_action_pressed('select_card'):
+		handle_card_animation(true)
+	if event.is_action_pressed('deselect_card'):
 		if focused_card.action.card_is_active:
 			handle_card_animation(false)
-		else:
-			handle_card_animation(true)
 
 func cycle_cards_right():
 	handle_card_animation(false)

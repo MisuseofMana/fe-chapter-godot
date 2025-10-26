@@ -14,6 +14,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed('cycle_action_type'):
 		show_next_carousel()
+		EventBus.card_deselected.emit()
 
 func show_next_carousel():
 	var first : CardCarousel =	carousels.pop_front()
