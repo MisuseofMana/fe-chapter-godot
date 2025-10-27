@@ -5,12 +5,13 @@ class_name SpaceSelector
 
 @onready var squares = $Squares
 @onready var cursor = $AnimatedSprite2D
-@onready var anims = $AnimationPlayer
 
 const SELECTOR_SQUARE = preload("uid://dk2e101cnxd3i")
 
 var registered_interactables : Array[Interactable] = []
 var selected_interactable : Interactable
+var cursor_animating : bool = false 
+var acceptable_positions : Array[Vector2] = []
 
 var cardinal_dir : Array[Vector2] = [
 	Vector2.UP,
@@ -20,18 +21,28 @@ var cardinal_dir : Array[Vector2] = [
 ]
 
 func _ready():
+	cursor.hide()
 	EventBus.selected_card_changed.connect(generate_target_squares)
 	EventBus.card_deselected.connect(remove_target_squares)
-	
+
+func update_cursor_status():
+	cursor_animating = not cursor_animating
+
 func move_cursor(vector: Vector2):
-	if EventBus.movement_locked:
+	if EventBus.movement_locked and not cursor_animating:
 		var new_glob_pos : Vector2 = cursor.global_position + (vector * 16)
-		var range_acceptance = ((float(squares.get_children().size()) / 4) * 16)
-		if new_glob_pos.distance_to(player.global_position) <= range_acceptance:
-			var tween = get_tree().create_tween()
+		var tween = get_tree().create_tween()
+		update_cursor_status()
+		if acceptable_positions.has(new_glob_pos):
 			tween.tween_property(cursor, 'global_position', cursor.global_position + (vector * 16), 0.1)
 		else:
-			anims.play('error')
+			var previous_cursor_location : Vector2 = cursor.global_position
+			tween.tween_property(cursor, 'global_position', cursor.global_position + (vector * 2), 0.01)
+			tween.tween_property(cursor, 'self_modulate', Color(0.951, 0.0, 0.0, 1), 0.04)
+			tween.tween_property(cursor, 'self_modulate', Color(1.0, 1.0, 1.0, 1.0), 0.04)
+			tween.tween_property(cursor, 'global_position', previous_cursor_location, 0.01)
+		tween.tween_callback(update_cursor_status)
+		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('up'):
 		move_cursor(Vector2.UP)
@@ -51,10 +62,13 @@ func generate_square(multiplier : int, vector_dir : Vector2, action_color : Colo
 	squares.add_child(square)
 	square.interactable_detected.connect(register_interactable)
 	square.self_modulate = action_color
-	square.global_position = loc + (vector_dir * 16 * (multiplier))
+	var square_center : Vector2 = loc + (vector_dir * 16 * (multiplier))
+	square.global_position = square_center
+	acceptable_positions.push_front(square_center)
 	
 func generate_target_squares(passedAction : Action):
 	cursor.global_position = player.global_position
+	acceptable_positions.push_front(player.global_position)
 	for n in passedAction.effective_distance:
 		var current_multiplier : int = n + 1
 		for dir : Vector2 in cardinal_dir:
@@ -65,6 +79,7 @@ func remove_target_squares():
 	for child in squares.get_children():
 		child.queue_free()
 	registered_interactables.clear()
+	acceptable_positions.clear()
 	selected_interactable = null
 	cursor.hide()
 	
@@ -73,6 +88,6 @@ func register_interactable(interactable : Interactable):
 		registered_interactables.push_back(interactable)
 		cursor.global_position = registered_interactables[0].global_position
 
-func register_selected_interactable(interactable: Interactable):
-	if registered_interactables.has(interactable):
-		selected_interactable = interactable
+func register_selected_interactable(interactable: Area2D):
+	if registered_interactables.has(interactable.owner):
+		selected_interactable = interactable.owner
