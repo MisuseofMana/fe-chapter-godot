@@ -66,8 +66,7 @@ func generate_square(multiplier : int, vector_dir : Vector2, action_color : Colo
 	var square : SelectorSquare = SELECTOR_SQUARE.instantiate()
 	squares.add_child(square)
 	square.interactable_detected.connect(register_interactable)
-	#square.self_modulate = action_color
-	square.modulate = Color(1,1,1,0)
+	square.modulate = action_color
 	var square_center : Vector2 = loc + (vector_dir * 16 * (multiplier))
 	square.global_position = square_center
 	acceptable_positions.push_front(square_center)

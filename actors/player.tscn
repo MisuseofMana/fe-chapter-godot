@@ -27,7 +27,7 @@ texture = SubResource("GradientTexture1D_1yqc4")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_1yqc4")
 region_enabled = true
-region_rect = Rect2(32, 128, 32, 32)
+region_rect = Rect2(128, 64, 32, 32)
 
 [node name="WallDetection" type="Node2D" parent="."]
 
@@ -58,7 +58,6 @@ debug_color = Color(0.967637, 3.85046e-07, 0.472992, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 12)
-zoom = Vector2(0.8, 0.8)
 
 [node name="TeleportParticles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true

@@ -10,7 +10,7 @@ enum ITEMS {
 	NONE = -1
 }
 
-@export var action_color : Color = Color(0.863, 0.863, 1.0, 1.0)
+@export var action_color : Color = Color(0.0, 0.0, 1.0, 1.0)
 @export var action: ITEMS = ITEMS.NONE
 
 func get_action() -> ITEMS:

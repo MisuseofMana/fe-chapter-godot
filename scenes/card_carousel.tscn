@@ -4,7 +4,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_ok7b7"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 120, 144.27, 0, 0, 0, 0, 96, 152.285, 0, 0, 0, 0, 72, 144.27, 0, 0, 0, 0, 96, 132.247)
+"points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 112, 144.26965, 0, 0, 0, 0, 96, 144.26965, 0, 0, 0, 0, 80, 144.26965, 0, 0, 0, 0, 96, 132.247)
 }
 point_count = 5
 
@@ -80,7 +80,7 @@ wait_time = 0.3
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(96, 185)
-rect = Rect2(-23, -9, 46, 19)
+rect = Rect2(-16, -9, 32, 12)
 
 [node name="CarouselPath" type="Path2D" parent="."]
 unique_name_in_owner = true
