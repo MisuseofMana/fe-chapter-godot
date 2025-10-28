@@ -1,14 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7ffejioelqqr"]
+[gd_scene load_steps=7 format=3 uid="uid://b7ffejioelqqr"]
 
 [ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="1_mvpqy"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="2_1yqc4"]
 [ext_resource type="Material" uid="uid://cpjixaqg8mhuy" path="res://resources/teleport_particles.tres" id="3_1yqc4"]
+
+[sub_resource type="Gradient" id="Gradient_xo05s"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0470588, 0.0745098, 0.0901961, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1yqc4"]
+gradient = SubResource("Gradient_xo05s")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
 size = Vector2(8, 8)
 
 [node name="PlayerContainer" type="Node2D" groups=["player_node"]]
 script = ExtResource("1_mvpqy")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(-1.5974045e-05, 11.999996)
+scale = Vector2(1.0624998, 231.99998)
+texture = SubResource("GradientTexture1D_1yqc4")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

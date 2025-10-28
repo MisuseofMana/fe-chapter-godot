@@ -49,3 +49,4 @@ shape = SubResource("RectangleShape2D_1kajh")
 debug_color = Color(0.28646275, 0.6307282, 0, 0.41960785)
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="." method="register_selected_interactable"]
+[connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="." method="unregister_selected_interactable"]

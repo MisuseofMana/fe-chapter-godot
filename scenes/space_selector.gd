@@ -55,18 +55,26 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed('right'):
 		move_cursor(Vector2.RIGHT)
+	
+	if event.is_action_pressed('confirm_action'):
+		if selected_interactable:
+			selected_interactable.handle_interaction(EventBus.active_action)
+		
 		
 func generate_square(multiplier : int, vector_dir : Vector2, action_color : Color):
 	var loc : Vector2 = player.global_position
 	var square : SelectorSquare = SELECTOR_SQUARE.instantiate()
 	squares.add_child(square)
 	square.interactable_detected.connect(register_interactable)
-	square.self_modulate = action_color
+	#square.self_modulate = action_color
+	square.modulate = Color(1,1,1,0)
 	var square_center : Vector2 = loc + (vector_dir * 16 * (multiplier))
 	square.global_position = square_center
 	acceptable_positions.push_front(square_center)
 	
 func generate_target_squares(passedAction : Action):
+	if passedAction.effective_distance == 0:
+		generate_square(0, Vector2.ZERO, passedAction.action_color)
 	cursor.global_position = player.global_position
 	acceptable_positions.push_front(player.global_position)
 	for n in passedAction.effective_distance:
@@ -74,7 +82,7 @@ func generate_target_squares(passedAction : Action):
 		for dir : Vector2 in cardinal_dir:
 			generate_square(current_multiplier, dir, passedAction.action_color)
 	cursor.show()
-
+	
 func remove_target_squares():
 	for child in squares.get_children():
 		child.queue_free()
@@ -85,9 +93,15 @@ func remove_target_squares():
 	
 func register_interactable(interactable : Interactable):
 	if interactable.action_triggers.has(EventBus.active_action):
+		cursor.hide()
 		registered_interactables.push_back(interactable)
-		cursor.global_position = registered_interactables[0].global_position
+		#cursor.global_position = registered_interactables[0].global_position
+		cursor.show()
 
-func register_selected_interactable(interactable: Area2D):
-	if registered_interactables.has(interactable.owner):
-		selected_interactable = interactable.owner
+func register_selected_interactable(area: Area2D):
+	if registered_interactables.has(area.owner):
+		selected_interactable = area.owner
+
+func unregister_selected_interactable(area: Area2D):
+	if selected_interactable == area.owner:
+		selected_interactable = null

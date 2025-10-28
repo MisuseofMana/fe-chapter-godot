@@ -69,5 +69,6 @@ texture = ExtResource("6_mphia")
 
 [node name="ConfirmButton" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(96, 152)
 sprite_frames = SubResource("SpriteFrames_5n1hp")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://csfjhmmnapy2u"]
+[gd_scene load_steps=13 format=3 uid="uid://csfjhmmnapy2u"]
 
 [ext_resource type="Script" uid="uid://ckio76ke2j6md" path="res://scenes/interactables/interactable.gd" id="1_ejjcg"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_ntnq4"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="5_u3xws"]
 [ext_resource type="Texture2D" uid="uid://b8a71ryyctgwo" path="res://assets/sprites/interactables/barrel_destroyed.png" id="6_ifij4"]
 [ext_resource type="Texture2D" uid="uid://yfp38tsw5aqs" path="res://assets/sprites/interactables/barrel_default.png" id="7_ntnq4"]
-[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="8_82tco"]
 [ext_resource type="Texture2D" uid="uid://r4a5tmpkaxdn" path="res://assets/sprites/interactables/barrel_hint.png" id="8_nmw8u"]
 [ext_resource type="AudioStream" uid="uid://byf6ejfwu1bxi" path="res://assets/audio/interactions/wood_items/heavy_wood_thud.wav" id="9_k3mo4"]
 
@@ -62,13 +61,3 @@ collision_mask = 0
 
 [node name="InteractionCollider" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_jjhyq")
-
-[node name="HintCircle" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, -11)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_82tco")
-
-[node name="InteractionIcon" type="Sprite2D" parent="HintCircle"]
-unique_name_in_owner = true

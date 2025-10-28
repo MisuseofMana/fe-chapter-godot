@@ -13,7 +13,7 @@ func _ready():
 	EventBus.action_completed.connect(action_completed)
 	EventBus.selected_card_changed.connect(selected_card_changed)
 	EventBus.card_deselected.connect(clear_texture)
-	EventBus.adjacent_interactions_registered.connect(set_registered_interactables)
+	EventBus.interactable_focused.connect(set_focused_interactable)
 
 func action_completed():
 	label.text = 'action completed'
@@ -24,6 +24,7 @@ func selected_card_changed(action: Action):
 func clear_texture():
 	texture_rect.texture = null
 
-func set_registered_interactables(all_interactables):
-	label.text = str(all_interactables)
+func set_focused_interactable(interactable):
+	print(interactable)
+	label.text = str(interactable)
 	

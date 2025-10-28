@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://dxeyq3nkf0btw"]
+
+[ext_resource type="Script" uid="uid://ckio76ke2j6md" path="res://scenes/interactables/interactable.gd" id="1_2ykrw"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_raiki"]
+[ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="3_sq3ll"]
+[ext_resource type="Texture2D" uid="uid://dhq8r2vjom7p7" path="res://assets/sprites/interactables/chest_looted.png" id="4_h781a"]
+[ext_resource type="Texture2D" uid="uid://bomv5jon5vuxo" path="res://assets/sprites/interactables/chest_hint.png" id="6_3ufsb"]
+[ext_resource type="Resource" uid="uid://crswbcrki1gf4" path="res://resources/actions/items/variants/crown.tres" id="7_4k7mg"]
+[ext_resource type="AudioStream" uid="uid://byf6ejfwu1bxi" path="res://assets/audio/interactions/wood_items/heavy_wood_thud.wav" id="9_1yjrl"]
+[ext_resource type="Texture2D" uid="uid://bdcvlis3xp5mr" path="res://assets/sprites/interactables/chest_default.png" id="10_4k7mg"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k3mo4"]
+streams_count = 2
+stream_0/stream = ExtResource("9_1yjrl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3mo4"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjhyq"]
+size = Vector2(16, 16)
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_2ykrw")
+action_triggers = Dictionary[ExtResource("2_raiki"), int]({
+ExtResource("3_sq3ll"): 1
+})
+interaction_sprites = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("10_4k7mg"),
+1: ExtResource("4_h781a")
+})
+hint_sprites = Dictionary[int, CompressedTexture2D]({
+0: ExtResource("6_3ufsb")
+})
+interaction_reward = ExtResource("7_4k7mg")
+interaction_sounds = Dictionary[int, AudioStreamRandomizer]({
+3: SubResource("AudioStreamRandomizer_k3mo4")
+})
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_4k7mg")
+
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MovementArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 0
+monitoring = false
+
+[node name="MovementCollider" type="CollisionShape2D" parent="MovementArea"]
+shape = SubResource("RectangleShape2D_k3mo4")
+debug_color = Color(0.9235774, 0.2766383, 0, 0.41960785)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="InteractionCollider" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_jjhyq")

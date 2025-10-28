@@ -23,8 +23,6 @@ var is_walkable : bool = false
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var sfx: AudioStreamPlayer2D = %SoundEffect
-@onready var interaction_icon: Sprite2D = %InteractionIcon
-@onready var hint_circle: Sprite2D = %HintCircle
 @onready var collision = $MovementArea/MovementCollider
 
 var current_state : STATES = STATES.DEFAULT

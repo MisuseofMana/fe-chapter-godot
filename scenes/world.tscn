@@ -1,19 +1,22 @@
-[gd_scene load_steps=28 format=4 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=27 format=4 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_m33p3"]
 [ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="1_oo54l"]
-[ext_resource type="Script" uid="uid://bma3ovha2ywtq" path="res://scenes/interactables.gd" id="2_dss4m"]
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="2_kpybi"]
 [ext_resource type="PackedScene" uid="uid://clcphumb7x1fi" path="res://actors/monster_container.tscn" id="3_k0juu"]
 [ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="4_71j4m"]
 [ext_resource type="PackedScene" uid="uid://e4vn3snwj3bp" path="res://scenes/interactables/obstacles/door.tscn" id="4_kpybi"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://dxeyq3nkf0btw" path="res://scenes/interactables/lootables/chest.tscn" id="6_ctatt"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="8_7r4gi"]
+[ext_resource type="Texture2D" uid="uid://b5syd7ugowpqv" path="res://assets/sprites/interactables/level-entrance.png" id="9_ctatt"]
 [ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="9_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="10_ctatt"]
 [ext_resource type="PackedScene" uid="uid://607tiukkn1lq" path="res://scenes/hud.tscn" id="10_oo54l"]
 [ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="10_pm21f"]
+[ext_resource type="Texture2D" uid="uid://ixufa54odgdh" path="res://assets/sprites/interactables/level-exit.png" id="10_xgqkh"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="12_pm21f"]
+[ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="15_kpybi"]
 [ext_resource type="Resource" uid="uid://txkgx07hsqdh" path="res://resources/actions/combat_actions/variants/fireball.tres" id="15_oo54l"]
 [ext_resource type="Resource" uid="uid://oljlvpajfin3" path="res://resources/actions/interactions/variants/use.tres" id="16_oo54l"]
 [ext_resource type="Resource" uid="uid://bm2o1qk2xtofu" path="res://resources/actions/combat_actions/variants/heal.tres" id="16_xgqkh"]
@@ -21,22 +24,13 @@
 [ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="17_munwf"]
 [ext_resource type="Resource" uid="uid://bcp3j6fht5j2j" path="res://resources/actions/combat_actions/variants/wait.tres" id="18_ts3gi"]
 [ext_resource type="Resource" uid="uid://crswbcrki1gf4" path="res://resources/actions/items/variants/crown.tres" id="19_0nbtd"]
-[ext_resource type="Resource" uid="uid://cnu3or3rc6j8j" path="res://resources/actions/items/variants/goblin_doll.tres" id="20_37qwj"]
 [ext_resource type="PackedScene" uid="uid://csfjhmmnapy2u" path="res://scenes/interactables/breakables/barrel.tscn" id="21_7iits"]
-[ext_resource type="Resource" uid="uid://di3mewkcc2lwh" path="res://resources/actions/items/variants/compass.tres" id="21_navra"]
 
 [sub_resource type="Theme" id="Theme_ctatt"]
 default_font = ExtResource("2_kpybi")
 default_font_size = 12
 
-[sub_resource type="Gradient" id="Gradient_xo05s"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.0470588, 0.0745098, 0.0901961, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dss4m"]
-gradient = SubResource("Gradient_xo05s")
-
-[node name="World" type="Node2D"]
+[node name="GameContainer" type="Node2D"]
 
 [node name="DebugHUD" type="CanvasLayer" parent="."]
 
@@ -72,50 +66,72 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(-156, -158)
-scale = Vector2(2.96875, 540)
-texture = SubResource("GradientTexture1D_dss4m")
+[node name="World" type="Node2D" parent="."]
+position = Vector2(200, 72)
 
-[node name="Level" type="Node2D" parent="."]
+[node name="Tiles" type="Node2D" parent="World"]
 position = Vector2(0, -1)
 scale = Vector2(0.5, 0.5)
 
-[node name="Ground" type="TileMapLayer" parent="Level"]
+[node name="Colliders" type="TileMapLayer" parent="World/Tiles"]
 position = Vector2(0, 2)
-tile_map_data = PackedByteArray("AAD3//3/AwAAAAYAAAD3//7/AwABAAYAAAD3////AwAAAAYAAAD4////AwAAAAYAAAD5////AwADAAkAAAD6////AwAAAAYAAAD7////AwADAAoAAAD6/wEAAwACAAcAAAD4//v/AwAAAAYAAAD5//r/AwAAAAYAAAD5//v/AwACAAkAAAD6//r/AwAAAAYAAAD6//v/AwAAAAYAAAD7//r/AwAAAAYAAAD7//v/AwAAAAYAAAD8//r/AwADAAkAAAD+//r/AwAAAA0AAAD+//v/AwAAAAYAAAD1//r/AwAAAAYAAAD2//v/AwABAAgAAAD3//r/AwAAAAYAAAD3//v/AwAAAAYAAAD0//r/AwAAAA0AAAD0//v/AwAAAAYAAAD0//z/AwAAAAYAAAD0//3/AwACAAYAAAD0//7/AwAAAAYAAAD0////AwAAAAYAAAD0/wAAAwAAAA0AAAD0/wEAAwAAAA0AAAD1//z/AwADAAkAAAD1//3/AwAAAAYAAAD1//7/AwACAAcAAAD1////AwABAAYAAAD1/wAAAwADABcAAAD1/wEAAwAAAAYAAAD2//z/AwAAAAYAAAD3//z/AwAAAAYAAAD9//z/AwAAAAYAAAD+//z/AwAAAAYAAAD+//3/AwAAAAYAAAD9//3/AwAAAAYAAAD8//3/AwACAAkAAAD8//7/AwAAAAYAAAD8/wAAAwABABUAAAD9/wAAAwADABcAAAD9////AwAAAAYAAAD9//7/AwAAAAYAAAD2/wAAAwABAAkAAAD2////AwAAAAYAAAD2//7/AwAAAAYAAAD2//3/AwAAAAYAAAD7//z/AwABAAgAAAD7//3/AwAAAAYAAAD7//7/AwABAAgAAAD2/wEAAwAAAAYAAAD3/wEAAwABAAYAAAD4/wEAAwAAAAYAAAD5/wEAAwAAAAYAAAD7/wEAAwAAAAYAAAD8/wEAAwAAAAYAAAD9/wEAAwAAAAYAAAD9//v/AwAAAAYAAAD5//3/AwAAAAYAAAD4//3/AwAAAAYAAAD6//3/AwAAAAYAAAD4//z/AwAAAAYAAAD5//z/AwAAAAYAAAD6//z/AwAAAAYAAAD5//7/AwADAAgAAAADAP3/AwACAAcAAAAGAP3/AwAAAAYAAAAEAPz/AwABAAcAAAAEAP//AwAAAAYAAAAFAP//AwAAAAYAAAAFAAAAAwAAABcAAAAGAAAAAwABABcAAAAHAPv/AwAAAAYAAAAHAP7/AwAAAAYAAAAHAP//AwAAAAYAAAAHAAAAAwAAABcAAAD8////AwAAAAYAAAAAAP3/AwABAAgAAAD1//v/AwAAABYAAADv/wQAAwACAAgAAADw/wUAAwACAAgAAADx/wQAAwADABgAAADz/wIAAwABAAgAAADz/wMAAwADAAgAAAD0/wIAAwACAAgAAAD2/wMAAwACAAgAAAD2/wQAAwABAAgAAAD3/wIAAwACAAgAAAD3/wMAAwADAAgAAAD6/wMAAwABAAgAAAD6/wQAAwABAAgAAAD7/wQAAwABAAgAAAD8/wMAAwABAAgAAAD9/wIAAwACAAgAAAACAAUAAwAAABkAAAADAAIAAwABAAgAAAAEAAIAAwABAAgAAAAEAAMAAwABAAgAAAAEAAQAAwADAAgAAAAFAAUAAwADABkAAAAGAAQAAwACAAgAAAAJAAIAAwABAAgAAAAJAAQAAwADAAgAAAANAAUAAwACABkAAAD//wAAAwABAAgAAAAAAAAAAwADABgAAAACAAEAAwABAAgAAAAJAP//AwADAAgAAAAJAAAAAwABAAgAAAAKAPz/AwADABgAAAAKAP//AwAAABkAAAALAPv/AwABAAgAAAAMAPr/AwADAAgAAAAMAPz/AwADAAgAAAAMAP//AwABAAgAAAANAPX/AwABAAgAAAANAPn/AwADABgAAAANAPv/AwACAAgAAAANAP//AwACAAgAAAD///X/AwADAAgAAAD///f/AwADAAgAAAAAAPb/AwABABkAAAAAAPf/AwACAAgAAAACAPX/AwABABkAAAACAPn/AwADAAgAAAADAPf/AwADAAgAAAAEAPX/AwACAAgAAAAEAPf/AwADAAgAAAAGAPj/AwADAAgAAAAHAPj/AwACAAgAAADx//j/AwADAAgAAADy//j/AwABAAgAAADz//j/AwABAAgAAAD4//j/AwACAAgAAAD5//X/AwABAAgAAAD6//f/AwADABkAAAD7//b/AwABAAgAAAD8//j/AwABAAgAAADv//7/AwADABgAAADv/wAAAwABABkAAADx//r/AwADAAgAAADz//r/AwABAAgAAADz//7/AwACAAgAAADz/wAAAwABAAgAAADz/wEAAwABAAgAAAD///v/AwACAAgAAAAIAPX/AwACAAgAAAAJAPX/AwACAAgAAAAKAPX/AwABAAgAAAAKAPb/AwACAAgAAAAJAPj/AwACAAgAAAAJAPn/AwABAAgAAAD3/wUAAwADABgAAAD3/wYAAwADABkAAAD1/wQAAwADABgAAAD1/wUAAwADABkAAADx/wUAAwADABkAAADw/wMAAwADABgAAADw/wQAAwADABkAAADv////AwADABkAAADw//v/AwADABgAAADw//z/AwADABkAAADw//b/AwADABgAAADw//f/AwADABkAAADx//X/AwADABgAAADx//b/AwADABkAAAD3//X/AwADABgAAAD3//b/AwADABkAAAD6//b/AwADABgAAAD9//X/AwADABgAAAD9//b/AwADABkAAAABAPj/AwADABgAAAABAPn/AwADABkAAAAAAAEAAwADABkAAAD9/wMAAwADABgAAAD9/wQAAwADABkAAAD8/wQAAwADABgAAAD8/wUAAwADABkAAAAFAAQAAwADABgAAAAGAAUAAwADABgAAAAGAAYAAwADABkAAAAMAAMAAwADABgAAAAMAAQAAwADABkAAAANAAAAAwADABgAAAANAAEAAwADABkAAAALAP3/AwADABgAAAALAP7/AwADABkAAAAKAP3/AwADABkAAAANAPr/AwADABkAAAAKAPf/AwADABgAAAAKAPj/AwADABkAAAAGAPX/AwADABgAAAAGAPb/AwADABkAAAD5//b/AwACABkAAAD2//X/AwACABkAAAD1//b/AwACABkAAADv//j/AwACABkAAADv//f/AwACABkAAADw//X/AwACABkAAADv//3/AwACABkAAADw////AwACABkAAADv/wEAAwACABkAAADv/wUAAwACABkAAADw/wYAAwACABkAAAD2/wYAAwACABkAAAD9/wYAAwACABkAAAABAAIAAwACABkAAAAAAAMAAwABABkAAAABAAMAAwAAABkAAAABAAYAAwAAABkAAAD//wUAAwAAABkAAAD4/wYAAwAAABkAAAD5/wQAAwAAABkAAADz/wYAAwAAABkAAADy/wYAAwABABkAAAAFAAYAAwABABkAAAAIAAUAAwABABkAAAAJAAYAAwABABkAAAAKAAMAAwABABkAAAAKAAUAAwACABkAAAALAAYAAwACABkAAAAMAAUAAwACABkAAAALAAUAAwAAABkAAAAMAAEAAwAAABkAAAALAPr/AwAAABkAAAAMAPn/AwAAABkAAAANAPj/AwABABkAAAALAPf/AwABABkAAAAFAPb/AwABABkAAAAHAPf/AwABABkAAAD+//b/AwACABkAAAD8//f/AwACABkAAAABAPX/AwACABkAAAADAPX/AwACABkAAAAEAPb/AwACABkAAAAAAPX/AwAAABkAAAD4//X/AwAAABkAAADj/+r/AwACAAkAAADr/+f/AwACAAkAAADt/+j/AwABAAkAAADv/+r/AwABAAkAAADw/+f/AwACAAkAAADy/+j/AwABAAkAAADx/+v/AwADAAkAAADo/+n/AwACAAkAAADk/+r/AwABAAkAAADk/+n/AwADAAkAAADi/+3/AwABAAkAAADj/+//AwADAAkAAADj//P/AwADAAkAAADk//P/AwABAAkAAADp/+7/AwABAAkAAADs/+//AwAOABAAAADp//D/AwABAAkAAADn/+3/AwADAAkAAADk//X/AwACAAkAAADp//X/AwABAAkAAADy//H/AwADAAkAAADr//P/AwADAAkAAADq//b/AwADAAkAAADj//f/AwACAAkAAADv//T/AwABAAkAAADy//T/AwABAAkAAADy/+3/AwADAAkAAADz/+//AwABAAkAAADr//H/AwABABUAAADs/+3/AwABABUAAADt/+7/AwAAABUAAADn//D/AwABABQAAADn/+z/AwAAABQAAADm/+3/AwAAABQAAADs/+7/AwAAABYAAADt//H/AwAAABYAAADq/+7/AwAPABAAAADm/+7/AwAPABAAAADo//D/AwAPABAAAADo/+z/AwAPABAAAAAEAAAAAwAAABcAAAA=")
+tile_map_data = PackedByteArray("AAD+//7/AwAAAAAAAAD+////AwAAAAAAAAD0/wAAAwAAAAAAAAD0//z/AwAAAAAAAAD0//3/AwAAAAAAAAD0//7/AwAAAAAAAAD0////AwAAAAAAAAD9//7/AwABAAAAAAD0/wEAAwABAAAAAAD1/wEAAwABAAAAAAD2/wEAAwABAAAAAAD3/wEAAwABAAAAAAD4/wEAAwAAAAAAAAD6/wEAAwAAAAAAAAD7/wEAAwABAAAAAAD8/wEAAwABAAAAAAD9/wEAAwABAAAAAAD+/wEAAwABAAAAAAD+/wAAAwAAAAAAAAD7//7/AwABAAAAAAD7//3/AwAAAAAAAAD0//v/AwAAAAAAAAD1//v/AwABAAAAAAD2//v/AwABAAAAAAD3//v/AwAAAAAAAAD3//z/AwAAAAAAAAD2//7/AwAAAAAAAAD2//3/AwAAAAAAAAD2////AwABAAAAAAD4//z/AwABAAAAAAD5//z/AwABAAAAAAD6//z/AwABAAAAAAD7//z/AwAAAAAAAAD3//3/AwABAAAAAAD5//v/AwAAAAAAAAD5//r/AwAAAAAAAAD5//n/AwAAAAAAAAD9//3/AwAAAAAAAAD9//z/AwAAAAAAAAD9//v/AwAAAAAAAAD9//r/AwAAAAAAAAD6//n/AwABAAAAAAD7//n/AwABAAAAAAD8//n/AwABAAAAAAD9//n/AwAAAAAAAAD3/wYAAwAAAAAAAAD3/wcAAwAAAAAAAAD3/wgAAwABAAAAAAD4/wYAAwABAAAAAAD4/wgAAwABAAAAAAD5/wgAAwABAAAAAAD6/wYAAwAAAAAAAAD6/wcAAwAAAAAAAAD6/wgAAwABAAAAAAD4/wUAAwAAAAAAAAD4/wQAAwAAAAAAAAD4/wMAAwAAAAAAAAD4/wIAAwAAAAAAAAD6/wUAAwAAAAAAAAD6/wQAAwAAAAAAAAD7/wQAAwABAAAAAAD7/wMAAwAAAAAAAAD7/wIAAwAAAAAAAAD6/wIAAwABAAAAAAD5/wEAAwABAAAAAAA=")
 tile_set = ExtResource("1_m33p3")
 
-[node name="Colliders" type="TileMapLayer" parent="Level"]
-position = Vector2(0, 2)
-tile_map_data = PackedByteArray("AAAAAPz/AwABAAAAAAABAPz/AwABAAAAAAACAPz/AwABAAAAAAD///z/AwABAAAAAAD///7/AwABAAAAAAACAP7/AwABAAAAAAD0//r/AwAAAAAAAAD+//7/AwAAAAAAAAD+////AwAAAAAAAAD+//r/AwAAAAAAAAD+//z/AwABAAAAAAD+//v/AwAAAAAAAAD0/wAAAwAAAAAAAAD0//v/AwAAAAAAAAD0//z/AwAAAAAAAAD0//3/AwAAAAAAAAD0//7/AwAAAAAAAAD0////AwAAAAAAAAD1//7/AwABAAAAAAD3//7/AwABAAAAAAD8//7/AwABAAAAAAD9//7/AwABAAAAAAAAAP7/AwABAAAAAAABAP7/AwABAAAAAAADAPr/AwAAAAAAAAADAPv/AwAAAAAAAAADAPz/AwABAAAAAAADAP7/AwAAAAAAAAADAP//AwAAAAAAAAADAAAAAwAAAAAAAAADAAEAAwABAAAAAAD1//n/AwABAAAAAAD2//n/AwABAAAAAAD3//n/AwABAAAAAAD4//n/AwABAAAAAAD5//n/AwABAAAAAAD6//n/AwABAAAAAAD7//n/AwABAAAAAAD8//n/AwABAAAAAAD9//n/AwABAAAAAAD0//n/AwAAAAAAAAD+//n/AwAAAAAAAAD5//z/AwABAAAAAAD4//z/AwAAAAAAAAD4//3/AwABAAAAAAD3//3/AwAAAAAAAAAEAPr/AwABAAAAAAAFAPr/AwABAAAAAAAGAPr/AwABAAAAAAAHAPv/AwABAAAAAAAIAPz/AwAAAAAAAAAIAP3/AwAAAAAAAAAIAP7/AwAAAAAAAAAIAP//AwAAAAAAAAAIAAAAAwAAAAAAAAAHAAEAAwABAAAAAAAGAAEAAwABAAAAAAAFAAEAAwABAAAAAAAEAAEAAwABAAAAAAAIAAEAAwABAAAAAAAHAPr/AwAAAAAAAAAIAPv/AwAAAAAAAAD0/wEAAwABAAAAAAD1/wEAAwABAAAAAAD2/wEAAwABAAAAAAD3/wEAAwABAAAAAAD4/wEAAwABAAAAAAD6/wEAAwABAAAAAAD7/wEAAwABAAAAAAD8/wEAAwABAAAAAAD9/wEAAwABAAAAAAD+/wEAAwABAAAAAAD9////AwAFABcAAAD+/wAAAwAAAAAAAAD1//r/AwAAABcAAAD2//r/AwAGABEAAAD7//7/AwABAAAAAAD7//3/AwAAAAAAAAD6//3/AwABAAAAAAD6//z/AwAAAAAAAAD5/wEAAwABAAAAAAD4//7/AwAAABIAAAD6//7/AwACABEAAAD2/wAAAwACABEAAADr/+z/AwACAAIAAADs/+z/AwABAAIAAADt/+z/AwABAAIAAADu/+z/AwAAAAIAAADu/+3/AwAAAAIAAADq//H/AwAAAAIAAADp//H/AwAAAAIAAADo//H/AwAAAAIAAADn//H/AwAAAAIAAADm//D/AwAAAAIAAADl/+z/AwAAAAIAAADl/+3/AwAAAAIAAADl/+7/AwAAAAIAAADl/+//AwAAAAIAAADl//D/AwAAAAIAAADn//L/AwABAAIAAADo//L/AwABAAIAAADp//L/AwABAAIAAADq//L/AwAAAAIAAADm//H/AwAAAAIAAADl//H/AwABAAIAAADm//L/AwABAAIAAADm/+v/AwAAAAIAAADq/+v/AwABAAIAAADr/+v/AwAAAAIAAADs/+v/AwAAAAIAAADt/+v/AwAAAAIAAADv/+z/AwAAAAIAAADv/+3/AwAAAAIAAADu/+v/AwAAAAIAAADr//P/AwABAAIAAADs//P/AwABAAIAAADt//P/AwABAAIAAADu//P/AwABAAIAAADv//P/AwABAAIAAADr//L/AwAAAAIAAADs//L/AwAAAAIAAADt//L/AwAAAAIAAADu//L/AwAAAAIAAADv//L/AwAAAAIAAADu//H/AwAAAAIAAADu//D/AwAAAAIAAADu/+//AwAAAAIAAADu/+7/AwAAAAIAAADv/+7/AwAAAAIAAADv/+//AwAAAAIAAADv//D/AwAAAAIAAADv//H/AwAAAAIAAADq//P/AwABAAIAAADk//D/AwAAAAIAAADk/+//AwAAAAIAAADk/+7/AwAAAAIAAADk/+3/AwAAAAIAAADk/+z/AwAAAAIAAADl/+v/AwAAAAIAAADm/+r/AwAAAAIAAADn/+r/AwAAAAIAAADo/+r/AwAAAAIAAADp/+r/AwAAAAIAAADq/+r/AwAAAAIAAADn/+v/AwABAAIAAADo/+v/AwABAAIAAADp/+v/AwABAAIAAADm/+z/AwABAAIAAADr/+r/AwAAAAIAAADt/+3/AwADABcAAADt//H/AwADABcAAADt/+//AwADABcAAADt//D/AwAFABcAAADr//D/AwABABYAAAAEAP7/AwABAAAAAAAFAP7/AwABAAAAAAAGAP7/AwABAAAAAAA=")
-tile_set = ExtResource("1_m33p3")
-
-[node name="Interactables" type="Node2D" parent="."]
-script = ExtResource("2_dss4m")
-
-[node name="Barrel" parent="Interactables" instance=ExtResource("21_7iits")]
-position = Vector2(-88, -8)
-
-[node name="Barrel2" parent="Interactables" instance=ExtResource("21_7iits")]
-position = Vector2(-56, -8)
-
-[node name="Door" parent="Interactables" instance=ExtResource("4_kpybi")]
-position = Vector2(-152, -24)
-
-[node name="Player" parent="." instance=ExtResource("5_71j4m")]
-position = Vector2(-136, -8)
-
-[node name="MonsterContainer" parent="." instance=ExtResource("3_k0juu")]
+[node name="Monsters" parent="World" instance=ExtResource("3_k0juu")]
+visible = false
 position = Vector2(-24, 15)
 scale = Vector2(1, 1)
 
-[node name="MonsterSprite" parent="MonsterContainer" instance=ExtResource("4_71j4m")]
+[node name="Lich" parent="World/Monsters" instance=ExtResource("4_71j4m")]
 position = Vector2(-288, -263)
 
-[node name="MonsterSprite2" parent="MonsterContainer" instance=ExtResource("4_71j4m")]
-position = Vector2(128, -23)
+[node name="Skeleton" parent="World/Monsters" instance=ExtResource("4_71j4m")]
+position = Vector2(32, -55)
 region_rect = Rect2(0, 128, 32, 32)
+max_movement_repeat = 3
+
+[node name="Interactables" type="Node2D" parent="World"]
+
+[node name="Barrel2" parent="World/Interactables" instance=ExtResource("21_7iits")]
+position = Vector2(-40, -8)
+
+[node name="Barrel3" parent="World/Interactables" instance=ExtResource("21_7iits")]
+position = Vector2(-88, -72)
+
+[node name="Door" parent="World/Interactables" instance=ExtResource("4_kpybi")]
+position = Vector2(-168, -8)
+
+[node name="Door3" parent="World/Interactables" instance=ExtResource("4_kpybi")]
+position = Vector2(-56, -24)
+
+[node name="Door2" parent="World/Interactables" instance=ExtResource("4_kpybi")]
+position = Vector2(-104, 24)
+
+[node name="Chest" parent="World/Interactables" instance=ExtResource("6_ctatt")]
+position = Vector2(-104, -40)
+
+[node name="Chest2" parent="World/Interactables" instance=ExtResource("6_ctatt")]
+position = Vector2(-88, -88)
+
+[node name="Entrance" type="Sprite2D" parent="World"]
+position = Vector2(-120, 120)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_ctatt")
+
+[node name="Marker2D" type="Marker2D" parent="World/Entrance"]
+position = Vector2(32, 0)
+
+[node name="Exit" type="Sprite2D" parent="World"]
+position = Vector2(-152, -56)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_xgqkh")
+
+[node name="Marker2D" type="Marker2D" parent="World/Exit"]
+position = Vector2(-32, 0)
+
+[node name="Player" parent="." instance=ExtResource("5_71j4m")]
+position = Vector2(96, 128)
 
 [node name="SpaceSelector" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_ctatt")]
 player = NodePath("../Player")
@@ -124,21 +140,21 @@ player = NodePath("../Player")
 script = ExtResource("10_pm21f")
 
 [node name="InteractionCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_oo54l")])
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("16_oo54l"), ExtResource("15_kpybi")])
 
 [node name="CombatCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
 card_actions = Array[ExtResource("12_pm21f")]([ExtResource("17_munwf"), ExtResource("16_xgqkh"), ExtResource("18_ts3gi"), ExtResource("15_oo54l")])
 
 [node name="InventoryCarousel" parent="CarouselContainer" instance=ExtResource("17_7t5mc")]
-card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd"), ExtResource("20_37qwj"), ExtResource("21_navra")])
+card_actions = Array[ExtResource("12_pm21f")]([ExtResource("19_0nbtd")])
 
 [node name="HUD" parent="." instance=ExtResource("10_oo54l")]
+visible = false
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_7r4gi")
 script = ExtResource("9_w7kh3")
 
-[connection signal="child_entered_tree" from="Interactables" to="Interactables" method="_on_child_entered_tree"]
-[connection signal="players_turn_over" from="Player" to="MonsterContainer" method="handle_monster_movement"]
-[connection signal="monster_turn_over" from="MonsterContainer" to="Player" method="unlock_movement"]
+[connection signal="monster_turn_over" from="World/Monsters" to="Player" method="unlock_movement"]
+[connection signal="players_turn_over" from="Player" to="World/Monsters" method="handle_monster_movement"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]
