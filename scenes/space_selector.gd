@@ -1,7 +1,7 @@
 extends Node2D
 class_name SpaceSelector
 
-@export var player: PlayerContainer
+@export var player: Player
 
 @onready var squares = $Squares
 @onready var cursor = $AnimatedSprite2D

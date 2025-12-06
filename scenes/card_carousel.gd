@@ -55,7 +55,7 @@ func recalculate_card_properties(behavior : String) -> void:
 		
 		var float_progress : float = abs(float(progress_ratio) - int(progress_ratio))
 		var percentage_from_center = abs(0.5 - float_progress) * 2
-		var 	modulate_percentage = 0.7 - (0.7 * percentage_from_center)
+		var modulate_percentage = 0.95 - (0.95 * percentage_from_center)
 		
 		var tween : Tween = get_tree().create_tween()
 		tween.set_parallel()

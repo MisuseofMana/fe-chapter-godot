@@ -20,7 +20,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjhyq"]
 size = Vector2(16, 16)
 
-[node name="Barrel" type="Node2D"]
+[node name="Barrel" type="Node2D" node_paths=PackedStringArray("my_face")]
 script = ExtResource("1_ejjcg")
 action_triggers = Dictionary[ExtResource("2_ntnq4"), int]({
 ExtResource("5_u3xws"): 3,
@@ -37,6 +37,7 @@ hint_sprites = Dictionary[int, CompressedTexture2D]({
 interaction_sounds = Dictionary[int, AudioStreamRandomizer]({
 3: SubResource("AudioStreamRandomizer_k3mo4")
 })
+my_face = NodePath("")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true

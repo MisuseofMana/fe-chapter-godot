@@ -1,5 +1,5 @@
 extends Node2D
-class_name PlayerContainer
+class_name Player
 
 @onready var player: Sprite2D = $PlayerSprite
 @onready var down : RayCast2D = $WallDetection/Down
@@ -8,6 +8,7 @@ class_name PlayerContainer
 @onready var left : RayCast2D = $WallDetection/Left
 @onready var wall_detection = $WallDetection
 @onready var teleport_particles = %TeleportParticles
+@onready var transition_detection: CollisionShape2D = $OverlapDetection/CollisionShape2D
 
 var move_distance : int = 16
 var bounce_distance : int = 4
@@ -21,6 +22,11 @@ var bounce_distance : int = 4
 
 signal players_turn_over
 
+func _ready():
+	SceneSwitcher.entered_transition_zone.connect(lock_movement.unbind(2))
+	SceneSwitcher.level_swap_completed.connect(unlock_movement.unbind(1))
+	SceneSwitcher.level_swap_completed.connect(teleport_to)
+	
 func move_all_monsters():
 	players_turn_over.emit()
 
@@ -78,4 +84,4 @@ func teleport_to(global_pos : Vector2):
 	teleport_particles.emitting = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", global_pos, 0.3)
-	
+	tween.tween_callback(func (): unlock_movement())

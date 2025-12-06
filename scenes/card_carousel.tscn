@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/card_carousel.gd" id="1_ok7b7"]
 
-[sub_resource type="Curve2D" id="Curve2D_ok7b7"]
+[sub_resource type="Curve2D" id="Curve2D_8ccff"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 112, 144.26965, 0, 0, 0, 0, 96, 144.26965, 0, 0, 0, 0, 80, 144.26965, 0, 0, 0, 0, 96, 132.247)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 20, -1, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, -20, -1, 0, 0, 0, 0, 0, -9)
 }
 point_count = 5
 
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 44)]
+"values": [Vector2(0, 45)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(96, 185)]
+"values": [Vector2(0, 45)]
 }
 
 [sub_resource type="Animation" id="Animation_svm4r"]
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector2(0, 44), Vector2(0, -1)]
+"values": [Vector2(0, 45), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector2(96, 185), Vector2(96, 143)]
+"values": [Vector2(0, 45), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d5yrc"]
@@ -79,14 +79,13 @@ unique_name_in_owner = true
 wait_time = 0.3
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(96, 185)
-rect = Rect2(-16, -9, 32, 12)
+position = Vector2(0, 45)
+rect = Rect2(-8, -8, 16, 16)
 
 [node name="CarouselPath" type="Path2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 44)
-scale = Vector2(1, 0.998131)
-curve = SubResource("Curve2D_ok7b7")
+position = Vector2(0, 45)
+curve = SubResource("Curve2D_8ccff")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
