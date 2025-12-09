@@ -1,6 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://8uqlohigjsfq"]
+[gd_scene load_steps=10 format=3 uid="uid://8uqlohigjsfq"]
 
 [ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/card_carousel.gd" id="1_ok7b7"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_cg4d0"]
+[ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="3_iyei2"]
+[ext_resource type="Resource" uid="uid://oljlvpajfin3" path="res://resources/actions/interactions/variants/use.tres" id="4_6yc53"]
+[ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="5_w7uqd"]
 
 [sub_resource type="Curve2D" id="Curve2D_8ccff"]
 _data = {
@@ -72,6 +76,7 @@ _data = {
 
 [node name="CardCarousel" type="Node2D"]
 script = ExtResource("1_ok7b7")
+card_actions = Array[ExtResource("2_cg4d0")]([ExtResource("3_iyei2"), ExtResource("4_6yc53"), ExtResource("5_w7uqd")])
 cycle_speed_base = 0.1
 
 [node name="CycleTimer" type="Timer" parent="."]

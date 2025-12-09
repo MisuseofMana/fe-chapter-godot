@@ -4,10 +4,10 @@ class_name AnimatedTransition
 @onready var anims: AnimationPlayer = $AnimationPlayer
 
 func _ready():
-	SceneSwitcher.entered_transition_zone.connect(fade_in)
+	SceneSwitcher.entered_transition_zone.connect(fade_in.unbind(2))
 	SceneSwitcher.level_swap_completed.connect(fade_out.unbind(1))
 	
-func fade_in(_new_level : PackedScene, _is_descending: bool):
+func fade_in():
 	anims.play('fade_in')
 	
 func fade_out():

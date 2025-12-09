@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://djqad3fs433mu"]
 
-[ext_resource type="Script" uid="uid://do6nav18ra00u" path="res://scenes/space_selector.gd" id="1_1kajh"]
+[ext_resource type="Script" uid="uid://do6nav18ra00u" path="res://scenes/ui/space_selector.gd" id="1_1kajh"]
 [ext_resource type="Texture2D" uid="uid://cubgce7h75ct3" path="res://assets/ui/selection-indicator.png" id="2_ttg2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_munwf"]

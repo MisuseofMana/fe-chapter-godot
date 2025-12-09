@@ -25,7 +25,7 @@ signal players_turn_over
 func _ready():
 	SceneSwitcher.entered_transition_zone.connect(lock_movement.unbind(2))
 	SceneSwitcher.level_swap_completed.connect(unlock_movement.unbind(1))
-	SceneSwitcher.level_swap_completed.connect(teleport_to)
+	SceneSwitcher.level_swap_completed.connect(reloacte_to)
 	
 func move_all_monsters():
 	players_turn_over.emit()
@@ -85,3 +85,6 @@ func teleport_to(global_pos : Vector2):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", global_pos, 0.3)
 	tween.tween_callback(func (): unlock_movement())
+	
+func reloacte_to(global_pos : Vector2):
+	global_position = global_pos

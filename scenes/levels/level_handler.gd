@@ -29,8 +29,8 @@ func get_current_level():
 	return level_container.get_child(0)
 
 # triggered by staricases interaction
-func preload_next_level(new_level: PackedScene, descending: bool) -> void:
-	preloaded_level = new_level.instantiate()
+func preload_next_level(new_level: String, descending: bool) -> void:
+	preloaded_level = load(new_level).instantiate()
 	is_descending = descending
 
 # triggered when the scene transition animation finished fading in

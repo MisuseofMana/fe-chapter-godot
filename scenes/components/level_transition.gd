@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name LevelTransition
 
-@export var level : PackedScene
+@export var level_path: String
 @export var is_decending : bool = false
 @export var spawn_point: Marker2D
 @export var marker_only: bool = false
@@ -12,5 +12,5 @@ func _ready():
 		area_2d.queue_free()
 
 func _on_player_entered(_area: Area2D) -> void:
-	if level:
-		SceneSwitcher.entered_transition_zone.emit(level, is_decending)
+	if level_path:
+		SceneSwitcher.entered_transition_zone.emit(level_path, is_decending)

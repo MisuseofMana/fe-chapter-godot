@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7ffejioelqqr"]
+[gd_scene load_steps=8 format=3 uid="uid://b7ffejioelqqr"]
 
 [ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="1_mvpqy"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="2_1yqc4"]
@@ -9,6 +9,13 @@ size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1yqc4"]
 size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_py7vm"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.039215688, 0.07058824, 0.09019608, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1yqc4"]
+gradient = SubResource("Gradient_py7vm")
 
 [node name="PlayerContainer" type="Node2D" groups=["player_node"]]
 script = ExtResource("1_mvpqy")
@@ -64,5 +71,7 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverlapDetection"]
 shape = SubResource("RectangleShape2D_1yqc4")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 16)
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+scale = Vector2(3.9999998, 2.2499998)
+texture = SubResource("GradientTexture2D_1yqc4")

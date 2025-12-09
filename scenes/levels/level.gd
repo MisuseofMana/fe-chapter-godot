@@ -7,7 +7,7 @@ class_name Level
 @export var interactable_container: Node2D
 
 func get_spawn_point_vector(is_decending: bool) -> Vector2:
-	if is_decending:
+	if is_decending && entrance:
 		return entrance.spawn_point.global_position
 	else:
 		return exit.spawn_point.global_position
