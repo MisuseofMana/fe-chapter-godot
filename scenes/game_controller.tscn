@@ -1,0 +1,281 @@
+[gd_scene load_steps=26 format=3 uid="uid://bf6l6gw486uwb"]
+
+[ext_resource type="Script" uid="uid://cj08odxy6irfv" path="res://scenes/game_controller.gd" id="1_py7vm"]
+[ext_resource type="PackedScene" uid="uid://dp6avhbk43c4p" path="res://scenes/ui/animated_transition.tscn" id="2_endrn"]
+[ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="2_kea5x"]
+[ext_resource type="Texture2D" uid="uid://gcvhqin71jpo" path="res://assets/ui/X.png" id="2_shnkw"]
+[ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="3_13gk1"]
+[ext_resource type="Texture2D" uid="uid://cbofjw8l8ga82" path="res://assets/ui/CONTROLPAD.png" id="3_py7vm"]
+[ext_resource type="Texture2D" uid="uid://bhocgu48rk8ux" path="res://assets/ui/CIRCLE.png" id="4_1m60t"]
+[ext_resource type="PackedScene" uid="uid://cionh15eqaxdh" path="res://scenes/levels/dungeon_1/floor_1/level_1.tscn" id="4_endrn"]
+[ext_resource type="Script" uid="uid://bwhbp0twq52iv" path="res://scenes/levels/level_handler.gd" id="4_kea5x"]
+[ext_resource type="Texture2D" uid="uid://cmxwkf2lkt22" path="res://assets/ui/TRIANGLE.png" id="5_py7vm"]
+[ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_shnkw"]
+[ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="6_py7vm"]
+[ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="7_1m60t"]
+[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="8_fpu5w"]
+[ext_resource type="Texture2D" uid="uid://dntvuioywwfof" path="res://assets/ui/hud_container.png" id="9_kea5x"]
+[ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="18_fo8ny"]
+[ext_resource type="Shape2D" uid="uid://cx47iowaujfmo" path="res://resources/direction_button_shape.tres.tres" id="18_shnkw"]
+[ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="19_grkcg"]
+[ext_resource type="Texture2D" uid="uid://1bwf3olj7r0p" path="res://assets/ui/SQUARE.png" id="19_shnkw"]
+[ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="23_1m60t"]
+
+[sub_resource type="Gradient" id="Gradient_shnkw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.15864289, 0.22834104, 0.27196658, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_py7vm"]
+gradient = SubResource("Gradient_shnkw")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shnkw"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_py7vm"]
+radius = 7.0
+
+[sub_resource type="Theme" id="Theme_ctatt"]
+default_font = ExtResource("3_13gk1")
+default_font_size = 12
+
+[node name="GameController" type="Node2D"]
+script = ExtResource("1_py7vm")
+
+[node name="AnimatedTransition" parent="." instance=ExtResource("2_endrn")]
+
+[node name="LevelHandler" type="Node2D" parent="." node_paths=PackedStringArray("level_container", "animated_transition")]
+unique_name_in_owner = true
+script = ExtResource("4_kea5x")
+level_container = NodePath("LevelContainer")
+animated_transition = NodePath("../AnimatedTransition")
+
+[node name="LevelContainer" type="Node2D" parent="LevelHandler"]
+
+[node name="Level" parent="LevelHandler/LevelContainer" instance=ExtResource("4_endrn")]
+
+[node name="SpaceSelector" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_py7vm")]
+player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("5_shnkw")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(24, 56)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(32, 0)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_fo8ny")
+script = ExtResource("19_grkcg")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -72.0
+offset_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="UIDrawer" type="NinePatchRect" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.000015
+offset_top = -72.0
+offset_right = -16.400032
+offset_bottom = -7.9999924
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(1.2500005, 2.25)
+texture = ExtResource("9_kea5x")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="CarouselDrawer" type="Sprite2D" parent="HUD"]
+position = Vector2(40, 128)
+scale = Vector2(0.25000006, 0.5000001)
+texture = SubResource("GradientTexture2D_py7vm")
+
+[node name="CarouselSwapButton" type="TouchScreenButton" parent="HUD"]
+position = Vector2(40, 136)
+scale = Vector2(1, 0.5751613)
+shape = SubResource("CircleShape2D_shnkw")
+action = "cycle_cards_left"
+
+[node name="CarouselContainer" type="Node2D" parent="HUD"]
+position = Vector2(40.000004, 136)
+scale = Vector2(0.7, 0.7)
+script = ExtResource("7_1m60t")
+
+[node name="CombatCarousel" parent="HUD/CarouselContainer" instance=ExtResource("8_fpu5w")]
+position = Vector2(-2.1798269e-05, 0)
+scale = Vector2(2, 2)
+
+[node name="TouchControls" type="Node2D" parent="HUD"]
+position = Vector2(0, -8)
+
+[node name="Movement" type="Sprite2D" parent="HUD/TouchControls"]
+position = Vector2(208, 80)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("3_py7vm")
+
+[node name="UpButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
+position = Vector2(-3.1999998, -8)
+scale = Vector2(0.25, 0.25)
+shape = ExtResource("18_shnkw")
+action = "up"
+
+[node name="RightButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
+position = Vector2(7.999998, -3.1999998)
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+shape = ExtResource("18_shnkw")
+action = "right"
+
+[node name="DownButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
+position = Vector2(3.1999998, 7.999999)
+rotation = 3.1415927
+scale = Vector2(0.25, 0.25)
+shape = ExtResource("18_shnkw")
+action = "down"
+
+[node name="LeftButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
+position = Vector2(-8, 3.1999998)
+rotation = -1.5707964
+scale = Vector2(0.25, 0.25)
+shape = ExtResource("18_shnkw")
+action = "left"
+
+[node name="Cross" type="Sprite2D" parent="HUD/TouchControls"]
+position = Vector2(216, 127)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_shnkw")
+
+[node name="ConfirmButton" type="TouchScreenButton" parent="HUD/TouchControls/Cross"]
+shape = SubResource("CircleShape2D_py7vm")
+action = "confirm_action"
+
+[node name="Circle" type="Sprite2D" parent="HUD/TouchControls"]
+position = Vector2(239.00002, 108)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_1m60t")
+
+[node name="CancelButton" type="TouchScreenButton" parent="HUD/TouchControls/Circle"]
+shape = SubResource("CircleShape2D_py7vm")
+action = "cancel_action"
+
+[node name="Square" type="Sprite2D" parent="HUD/TouchControls"]
+visible = false
+position = Vector2(196.00002, 36)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("19_shnkw")
+
+[node name="CancelButton" type="TouchScreenButton" parent="HUD/TouchControls/Square"]
+shape = SubResource("CircleShape2D_py7vm")
+action = "cancel_action"
+
+[node name="Triangle" type="Sprite2D" parent="HUD/TouchControls"]
+visible = false
+position = Vector2(216, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_py7vm")
+
+[node name="CycleCardButton" type="TouchScreenButton" parent="HUD/TouchControls/Triangle"]
+shape = SubResource("CircleShape2D_py7vm")
+action = "cycle_cards_left"
+
+[node name="ControlHints" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 96.0
+offset_bottom = 72.0
+theme = ExtResource("23_1m60t")
+
+[node name="CycleHint" type="Label" parent="HUD/ControlHints"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 128.0
+offset_right = 224.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme = ExtResource("23_1m60t")
+text = "Tap To Cycle"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionHint" type="Label" parent="HUD/ControlHints"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 59.0
+offset_bottom = 28.0
+grow_vertical = 0
+theme = ExtResource("23_1m60t")
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cancel" type="Label" parent="HUD/ControlHints"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 120.0
+offset_right = 83.0
+offset_bottom = 132.0
+text = "Cancel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Debugger" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = SubResource("Theme_ctatt")
+script = ExtResource("2_kea5x")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/Debugger"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_right = 53.5
+offset_bottom = 16.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Debugger/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="HUD/Debugger/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_13gk1")
+theme_override_font_sizes/font_size = 12
+text = "debugger output enabled"
+horizontal_alignment = 1
+
+[connection signal="monster_turn_over" from="LevelHandler" to="Player" method="unlock_movement"]
+[connection signal="players_turn_over" from="Player" to="LevelHandler" method="handle_monster_movement"]
+[connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]

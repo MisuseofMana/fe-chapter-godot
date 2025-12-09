@@ -15,7 +15,7 @@ signal card_deselected
 signal action_completed()
 
 @warning_ignore("unused_signal")
-signal adjacent_interactions_registered(registered_interactions : Array[Interactable])
+signal interactable_focused(interactable : Node)
 
 @warning_ignore("unused_signal")
 signal new_card_aquired(action_details : Action)

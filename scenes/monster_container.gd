@@ -1,8 +1,6 @@
 extends Node2D
 class_name MonsterContainer
 
-var move_distance : int = 32
-
 signal monster_turn_over
 	
 func handle_monster_movement():

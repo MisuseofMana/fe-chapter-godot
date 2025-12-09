@@ -18,13 +18,12 @@ signal new_loot_collected(passed_loot : Action)
 @export var interaction_reward : Action
 @export var interaction_sounds : Dictionary[STATES, AudioStreamRandomizer]
 @export var can_become_walkable : bool = false
+@export var my_face: Sprite2D
 
 var is_walkable : bool = false
 
 @onready var sprite: Sprite2D = %Sprite
 @onready var sfx: AudioStreamPlayer2D = %SoundEffect
-@onready var interaction_icon: Sprite2D = %InteractionIcon
-@onready var hint_circle: Sprite2D = %HintCircle
 @onready var collision = $MovementArea/MovementCollider
 
 var current_state : STATES = STATES.DEFAULT
@@ -66,6 +65,7 @@ func trigger_interaction():
 	sprite.texture = interaction_sprites[STATES.INTERACTED]
 	sfx.stream = interaction_sounds[STATES.INTERACTED]
 	sfx.play()
+#	also show a video of an exploding barrel
 	if can_become_walkable:
 		is_walkable = true
 		swap_valid_actions_to()

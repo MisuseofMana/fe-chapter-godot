@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=4 uid="uid://bv3qx5ltcxx65"]
+
+[ext_resource type="Script" uid="uid://brmby7h68mui" path="res://scenes/levels/level.gd" id="1_hkhtm"]
+[ext_resource type="PackedScene" uid="uid://c4s8hp5xn1ejg" path="res://scenes/components/level_transition.tscn" id="2_rq0yi"]
+[ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="3_qk7sh"]
+[ext_resource type="PackedScene" uid="uid://dxeyq3nkf0btw" path="res://scenes/interactables/lootables/chest.tscn" id="4_dxkgk"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("entrance", "monster_container", "interactable_container")]
+script = ExtResource("1_hkhtm")
+entrance = NodePath("Entrance")
+monster_container = NodePath("MonsterContainer")
+interactable_container = NodePath("Interactables")
+
+[node name="Entrance" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("2_rq0yi")]
+position = Vector2(24, 40)
+level_path = "uid://c3um7cpuf0p8j"
+spawn_point = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Entrance"]
+position = Vector2(32, 0)
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+
+[node name="Colliders" type="TileMapLayer" parent="Tiles"]
+position = Vector2(0, 2)
+tile_map_data = PackedByteArray("AAAAAAAAAwAAAAIAAAABAAAAAwABAAIAAAACAAAAAwABAAIAAAADAAAAAwABAAIAAAAEAAAAAwABAAIAAAAFAAAAAwABAAIAAAAAAAEAAwAAAAIAAAAAAAIAAwAAAAIAAAAAAAMAAwAAAAIAAAAAAAQAAwABAAIAAAABAAQAAwABAAIAAAACAAQAAwABAAIAAAADAAQAAwABAAIAAAAEAAQAAwABAAIAAAAFAAQAAwABAAIAAAAGAAQAAwABAAIAAAAGAAAAAwAAAAIAAAAGAAEAAwAAAAIAAAAGAAIAAwAAAAIAAAAGAAMAAwAAAAIAAAA=")
+tile_set = ExtResource("3_qk7sh")
+
+[node name="MonsterContainer" type="Node2D" parent="."]
+position = Vector2(-24, 15)
+
+[node name="Interactables" type="Node2D" parent="."]
+
+[node name="Chest" parent="Interactables" instance=ExtResource("4_dxkgk")]
+position = Vector2(72, 40)

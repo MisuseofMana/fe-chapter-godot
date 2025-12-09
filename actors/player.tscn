@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7ffejioelqqr"]
+[gd_scene load_steps=8 format=3 uid="uid://b7ffejioelqqr"]
 
 [ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="1_mvpqy"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="2_1yqc4"]
@@ -7,6 +7,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7141"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yqc4"]
+size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_py7vm"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.039215688, 0.07058824, 0.09019608, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1yqc4"]
+gradient = SubResource("Gradient_py7vm")
+
 [node name="PlayerContainer" type="Node2D" groups=["player_node"]]
 script = ExtResource("1_mvpqy")
 
@@ -14,7 +24,7 @@ script = ExtResource("1_mvpqy")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_1yqc4")
 region_enabled = true
-region_rect = Rect2(32, 128, 32, 32)
+region_rect = Rect2(128, 64, 32, 32)
 
 [node name="WallDetection" type="Node2D" parent="."]
 
@@ -43,10 +53,6 @@ monitoring = false
 shape = SubResource("RectangleShape2D_i7141")
 debug_color = Color(0.967637, 3.85046e-07, 0.472992, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 12)
-zoom = Vector2(0.8, 0.8)
-
 [node name="TeleportParticles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 emitting = false
@@ -56,3 +62,16 @@ explosiveness = 0.5
 randomness = 0.5
 local_coords = true
 process_material = ExtResource("3_1yqc4")
+
+[node name="OverlapDetection" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverlapDetection"]
+shape = SubResource("RectangleShape2D_1yqc4")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -100
+scale = Vector2(3.9999998, 2.2499998)
+texture = SubResource("GradientTexture2D_1yqc4")

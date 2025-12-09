@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://8uqlohigjsfq"]
+[gd_scene load_steps=10 format=3 uid="uid://8uqlohigjsfq"]
 
 [ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/card_carousel.gd" id="1_ok7b7"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_cg4d0"]
+[ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="3_iyei2"]
+[ext_resource type="Resource" uid="uid://oljlvpajfin3" path="res://resources/actions/interactions/variants/use.tres" id="4_6yc53"]
+[ext_resource type="Resource" uid="uid://qew7y3uofvmo" path="res://resources/actions/interactions/variants/open.tres" id="5_w7uqd"]
 
-[sub_resource type="Curve2D" id="Curve2D_ok7b7"]
+[sub_resource type="Curve2D" id="Curve2D_8ccff"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 96, 132.247, 0, 0, 0, 0, 120, 144.27, 0, 0, 0, 0, 96, 152.285, 0, 0, 0, 0, 72, 144.27, 0, 0, 0, 0, 96, 132.247)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 20, -1, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, -20, -1, 0, 0, 0, 0, 0, -9)
 }
 point_count = 5
 
@@ -20,7 +24,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 44)]
+"values": [Vector2(0, 45)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,7 +36,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(96, 185)]
+"values": [Vector2(0, 45)]
 }
 
 [sub_resource type="Animation" id="Animation_svm4r"]
@@ -49,7 +53,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector2(0, 44), Vector2(0, -1)]
+"values": [Vector2(0, 45), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,7 +65,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, 2),
 "update": 0,
-"values": [Vector2(96, 185), Vector2(96, 143)]
+"values": [Vector2(0, 45), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d5yrc"]
@@ -72,6 +76,7 @@ _data = {
 
 [node name="CardCarousel" type="Node2D"]
 script = ExtResource("1_ok7b7")
+card_actions = Array[ExtResource("2_cg4d0")]([ExtResource("3_iyei2"), ExtResource("4_6yc53"), ExtResource("5_w7uqd")])
 cycle_speed_base = 0.1
 
 [node name="CycleTimer" type="Timer" parent="."]
@@ -79,14 +84,13 @@ unique_name_in_owner = true
 wait_time = 0.3
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(96, 185)
-rect = Rect2(-23, -9, 46, 19)
+position = Vector2(0, 45)
+rect = Rect2(-8, -8, 16, 16)
 
 [node name="CarouselPath" type="Path2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, 44)
-scale = Vector2(1, 0.998131)
-curve = SubResource("Curve2D_ok7b7")
+position = Vector2(0, 45)
+curve = SubResource("Curve2D_8ccff")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

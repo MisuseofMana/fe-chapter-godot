@@ -55,7 +55,7 @@ func recalculate_card_properties(behavior : String) -> void:
 		
 		var float_progress : float = abs(float(progress_ratio) - int(progress_ratio))
 		var percentage_from_center = abs(0.5 - float_progress) * 2
-		var 	modulate_percentage = 0.8 - (0.8 * percentage_from_center)
+		var modulate_percentage = 0.95 - (0.95 * percentage_from_center)
 		
 		var tween : Tween = get_tree().create_tween()
 		tween.set_parallel()
@@ -84,9 +84,9 @@ func _input(event):
 		if event.is_action_pressed('cycle_cards_right', true):
 			cycle_cards_right()
 			
-	if event.is_action_pressed('select_card'):
+	if event.is_action_pressed('confirm_action'):
 		handle_card_animation(true)
-	if event.is_action_pressed('deselect_card'):
+	if event.is_action_pressed('cancel_action'):
 		if focused_card.action.card_is_active:
 			handle_card_animation(false)
 
@@ -119,4 +119,5 @@ func show_carousel():
 	
 func hide_carousel():
 	anims.play_backwards("toggle_carousel")
+	handle_card_animation(false)
 	cycling_locked = true

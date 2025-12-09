@@ -1,5 +1,5 @@
 extends Node2D
-class_name PlayerContainer
+class_name Player
 
 @onready var player: Sprite2D = $PlayerSprite
 @onready var down : RayCast2D = $WallDetection/Down
@@ -8,6 +8,7 @@ class_name PlayerContainer
 @onready var left : RayCast2D = $WallDetection/Left
 @onready var wall_detection = $WallDetection
 @onready var teleport_particles = %TeleportParticles
+@onready var transition_detection: CollisionShape2D = $OverlapDetection/CollisionShape2D
 
 var move_distance : int = 16
 var bounce_distance : int = 4
@@ -22,8 +23,10 @@ var bounce_distance : int = 4
 signal players_turn_over
 
 func _ready():
-	EventBus.action_completed.connect(register_adjacent_interactions)
-
+	SceneSwitcher.entered_transition_zone.connect(lock_movement.unbind(2))
+	SceneSwitcher.level_swap_completed.connect(unlock_movement.unbind(1))
+	SceneSwitcher.level_swap_completed.connect(reloacte_to)
+	
 func move_all_monsters():
 	players_turn_over.emit()
 
@@ -32,16 +35,6 @@ func unlock_movement():
 	
 func lock_movement():
 	EventBus.movement_locked = true
-
-func register_adjacent_interactions():
-	var registration_array : Array[Interactable]
-	for ray in input_direction_map:
-		if ray.is_colliding():
-			var interactable = ray.get_collider().owner
-			if interactable is Interactable:
-				registration_array.push_front(interactable)
-	EventBus.adjacent_interactions_registered.emit(registration_array)
-	move_all_monsters()
 
 func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
 	EventBus.movement_locked = true
@@ -52,17 +45,10 @@ func attempt_movement(relative_pos : Vector2, can_move_here: bool = true):
 	if not can_move_here:
 		lvl_tween.tween_property(self, "position", position + relative_pos, 0.1)
 		lvl_tween.tween_property(self, "position", origin_pos, 0.1)
-	lvl_tween.tween_callback(register_adjacent_interactions)
-
-func attempt_action(ray : RayCast2D):
-	if ray.is_colliding():
-			var interactable = ray.get_collider().owner
-			if interactable is Interactable:
-					interactable.handle_interaction(EventBus.active_action)
+	lvl_tween.tween_callback(move_all_monsters)
 
 func handle_direction_input(ray: RayCast2D):
 	if EventBus.movement_locked:
-		attempt_action(ray)
 		return
 		
 #	if direction is colliding with something
@@ -98,4 +84,7 @@ func teleport_to(global_pos : Vector2):
 	teleport_particles.emitting = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", global_pos, 0.3)
+	tween.tween_callback(func (): unlock_movement())
 	
+func reloacte_to(global_pos : Vector2):
+	global_position = global_pos

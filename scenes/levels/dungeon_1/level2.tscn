@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=4 uid="uid://c3um7cpuf0p8j"]
+
+[ext_resource type="Script" uid="uid://brmby7h68mui" path="res://scenes/levels/level.gd" id="1_7wrji"]
+[ext_resource type="PackedScene" uid="uid://c4s8hp5xn1ejg" path="res://scenes/components/level_transition.tscn" id="2_w3flp"]
+[ext_resource type="Texture2D" uid="uid://ixufa54odgdh" path="res://assets/sprites/interactables/level-exit.png" id="3_ur4rt"]
+[ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="4_bpj8t"]
+[ext_resource type="PackedScene" uid="uid://jrijq5330mc3" path="res://actors/monster.tscn" id="5_tcvdh"]
+[ext_resource type="PackedScene" uid="uid://e4vn3snwj3bp" path="res://scenes/interactables/obstacles/door.tscn" id="6_un7y4"]
+[ext_resource type="PackedScene" uid="uid://dxeyq3nkf0btw" path="res://scenes/interactables/lootables/chest.tscn" id="7_yw553"]
+[ext_resource type="PackedScene" uid="uid://csfjhmmnapy2u" path="res://scenes/interactables/breakables/barrel.tscn" id="8_3t8bb"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("entrance", "exit", "monster_container", "interactable_container")]
+script = ExtResource("1_7wrji")
+entrance = NodePath("Entrance")
+exit = NodePath("Exit")
+monster_container = NodePath("MonsterContainer")
+interactable_container = NodePath("Interactables")
+
+[node name="Tiles" type="Node2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+
+[node name="Colliders" type="TileMapLayer" parent="Tiles"]
+position = Vector2(0, 2)
+tile_map_data = PackedByteArray("AAAAAAIAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAQAAwAAAAAAAAABAAIAAwABAAAAAAABAAQAAwABAAAAAAABAAYAAwAAAAAAAAABAAcAAwAAAAAAAAACAAIAAwABAAAAAAADAAIAAwABAAAAAAADAAQAAwABAAAAAAADAAUAAwACAAoAAAADAAcAAwAAAAAAAAAEAAIAAwABAAAAAAAEAAQAAwAAAAAAAAAEAAUAAwAAAAAAAAAEAAcAAwADAAYAAAAFAAIAAwABAAAAAAAGAAAAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAIAAwAAAAAAAAAHAAAAAwABAAAAAAAHAAEAAwABAAoAAAAHAAMAAwABAAAAAAAHAAYAAwACAAoAAAAIAAAAAwABAAAAAAAIAAEAAwACAAoAAAAJAAEAAwABAAYAAAAJAAMAAwAAAAAAAAAJAAQAAwAAAAAAAAAJAAYAAwABAAAAAAAKAAYAAwABAAAAAAALAAMAAwAAAAAAAAALAAQAAwAAAAAAAAALAAYAAwABAAAAAAANAAAAAwAAAAAAAAANAAEAAwAAAAAAAAANAAIAAwAAAAAAAAANAAMAAwAAAAAAAAANAAQAAwAAAAAAAAANAAUAAwAAAAAAAAANAAYAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAYAAwABAAAAAAABAAgAAwAAAAAAAAABAAkAAwABAAAAAAACAAMAAwACAAYAAAACAAQAAwABAAAAAAACAAkAAwABAAAAAAADAAYAAwAAAAAAAAADAAkAAwABAAAAAAAEAAYAAwABAAAAAAAEAAkAAwABAAAAAAAFAAQAAwABAAAAAAAFAAkAAwABAAAAAAAGAAMAAwAAAAAAAAAGAAQAAwABAAAAAAAGAAkAAwABAAAAAAAHAAIAAwADAAoAAAAHAAUAAwACAAYAAAAHAAgAAwABAAYAAAAHAAkAAwABAAAAAAAIAAIAAwABAAoAAAAIAAMAAwABAAAAAAAIAAgAAwAAAAAAAAAIAAkAAwABAAAAAAAJAAAAAwABAAAAAAAJAAUAAwAAAAAAAAAJAAgAAwABAAAAAAAKAAAAAwABAAAAAAAKAAgAAwABAAAAAAALAAAAAwABAAAAAAALAAUAAwAAAAAAAAALAAgAAwABAAAAAAAMAAAAAwABAAAAAAAMAAEAAwACAAoAAAAMAAcAAwABAAYAAAAMAAgAAwABAAAAAAANAAcAAwAAAAAAAAANAAgAAwABAAAAAAA=")
+tile_set = ExtResource("4_bpj8t")
+
+[node name="Entrance" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("2_w3flp")]
+position = Vector2(24, 88)
+level_path = "uid://cionh15eqaxdh"
+spawn_point = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Entrance"]
+position = Vector2(32, 0)
+
+[node name="Exit" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("2_w3flp")]
+position = Vector2(168, 88)
+texture = ExtResource("3_ur4rt")
+level_path = "uid://bv3qx5ltcxx65"
+is_decending = true
+spawn_point = NodePath("Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="Exit"]
+position = Vector2(0, -32)
+
+[node name="MonsterContainer" type="Node2D" parent="."]
+
+[node name="MonsterSprite" parent="MonsterContainer" instance=ExtResource("5_tcvdh")]
+position = Vector2(56, 56)
+region_rect = Rect2(64, 32, 32, 32)
+
+[node name="Interactables" type="Node2D" parent="."]
+
+[node name="Door" parent="Interactables" instance=ExtResource("6_un7y4")]
+position = Vector2(56, 136)
+
+[node name="Door3" parent="Interactables" instance=ExtResource("6_un7y4")]
+position = Vector2(200, 104)
+
+[node name="Door2" parent="Interactables" instance=ExtResource("6_un7y4")]
+position = Vector2(168, 56)
+
+[node name="Chest" parent="Interactables" instance=ExtResource("7_yw553")]
+position = Vector2(120, 24)
+
+[node name="Barrel2" parent="Interactables" instance=ExtResource("8_3t8bb")]
+position = Vector2(120, 40)
+
+[node name="Barrel3" parent="Interactables" instance=ExtResource("8_3t8bb")]
+position = Vector2(136, 24)

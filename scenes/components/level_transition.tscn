@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4s8hp5xn1ejg"]
+
+[ext_resource type="Texture2D" uid="uid://b5syd7ugowpqv" path="res://assets/sprites/interactables/level-entrance.png" id="1_ufjq8"]
+[ext_resource type="Script" uid="uid://cxkk6p1lv7un1" path="res://scenes/components/level_transition.gd" id="2_3pn0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8hb"]
+size = Vector2(24, 24)
+
+[node name="LevelTransition" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ufjq8")
+script = ExtResource("2_3pn0b")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_nr8hb")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_player_entered"]

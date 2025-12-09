@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://e4vn3snwj3bp"]
+[gd_scene load_steps=14 format=3 uid="uid://e4vn3snwj3bp"]
 
 [ext_resource type="Script" uid="uid://ckio76ke2j6md" path="res://scenes/interactables/interactable.gd" id="1_bgnmh"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_6balc"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://beq8jhnb1inhv" path="res://assets/sprites/interactables/door_open_hint.png" id="8_jpnev"]
 [ext_resource type="AudioStream" uid="uid://b83xw535xjxgk" path="res://assets/audio/interactions/wood_items/door_open.wav" id="9_vxm0b"]
 [ext_resource type="AudioStream" uid="uid://0at4godjku4i" path="res://assets/audio/interactions/wood_items/door_close.wav" id="10_gfpj0"]
-[ext_resource type="Texture2D" uid="uid://bvf0eoibyvk4f" path="res://assets/cards/interactions/icon-bg.png" id="10_smear"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8jsgg"]
 random_pitch = 1.1
@@ -73,13 +72,3 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_uxoyc")
-
-[node name="HintCircle" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(0, -11)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_smear")
-
-[node name="InteractionIcon" type="Sprite2D" parent="HintCircle"]
-unique_name_in_owner = true
