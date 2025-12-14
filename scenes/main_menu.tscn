@@ -3,17 +3,11 @@
 [ext_resource type="Script" uid="uid://w16uw6adiwrd" path="res://scenes/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="1_l6cm7"]
 
-[node name="Control" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_ekxnf")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -21,27 +15,44 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_l6cm7")
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Dungeon Game Prototype"
 
-[node name="Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "New Game"
 
-[node name="Button3" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="LoadGameButton" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+disabled = true
 text = "Load Game"
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="TutorialButton" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Tutorial"
+
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/NewGameButton" to="Control" method="start_new_game"]
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/TutorialButton" to="Control" method="start_tutorial"]

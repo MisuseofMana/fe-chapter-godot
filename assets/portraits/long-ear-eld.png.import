@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7e7la8o8r8ni"
-path="res://.godot/imported/rogues.png-5ecb4cb7c8a7414d456dac3bb5c24bb4.ctex"
+uid="uid://ck7h33x7jo0ri"
+path="res://.godot/imported/long-ear-eld.png-965b6455a15654d9ac15a22b746feb79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/rogues.png"
-dest_files=["res://.godot/imported/rogues.png-5ecb4cb7c8a7414d456dac3bb5c24bb4.ctex"]
+source_file="res://assets/portraits/long-ear-eld.png"
+dest_files=["res://.godot/imported/long-ear-eld.png-965b6455a15654d9ac15a22b746feb79.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7e7la8o8r8ni"
-path="res://.godot/imported/rogues.png-5ecb4cb7c8a7414d456dac3bb5c24bb4.ctex"
+uid="uid://s57dyo8ojkmv"
+path="res://.godot/imported/herbalist.png-4f349aadc892bee6f1bf73443393a564.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/rogues.png"
-dest_files=["res://.godot/imported/rogues.png-5ecb4cb7c8a7414d456dac3bb5c24bb4.ctex"]
+source_file="res://assets/portraits/herbalist.png"
+dest_files=["res://.godot/imported/herbalist.png-4f349aadc892bee6f1bf73443393a564.ctex"]
 
 [params]
 

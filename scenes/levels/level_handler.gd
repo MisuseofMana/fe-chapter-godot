@@ -28,10 +28,9 @@ func get_monsters():
 func get_current_level():
 	return level_container.get_child(0)
 
-# triggered by staricases interaction
-func preload_next_level(new_level: String, descending: bool) -> void:
-	preloaded_level = load(new_level).instantiate()
-	is_descending = descending
+func register_level_transitions():
+	pass
+#	should access the new levels transition zones and connect their signals to this script
 
 # triggered when the scene transition animation finished fading in
 func finish_level_swap():
