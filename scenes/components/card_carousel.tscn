@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://8uqlohigjsfq"]
 
-[ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/card_carousel.gd" id="1_ok7b7"]
+[ext_resource type="Script" uid="uid://d4e5601slitgy" path="res://scenes/components/card_carousel.gd" id="1_ok7b7"]
 [ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="2_cg4d0"]
 [ext_resource type="Resource" uid="uid://dp0nig7y4nlb1" path="res://resources/actions/combat_actions/variants/melee_attack.tres" id="3_iyei2"]
 [ext_resource type="Resource" uid="uid://oljlvpajfin3" path="res://resources/actions/interactions/variants/use.tres" id="4_6yc53"]

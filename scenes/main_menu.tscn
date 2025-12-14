@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy77l7n84vcon"]
+[gd_scene load_steps=4 format=3 uid="uid://dy77l7n84vcon"]
 
 [ext_resource type="Script" uid="uid://w16uw6adiwrd" path="res://scenes/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://qdopfghwbiap" path="res://scenes/scene_swap_signal.tscn" id="2_bqqt6"]
 
-[node name="MainMenu" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("scene_swap_node")]
 script = ExtResource("1_ekxnf")
+scene_swap_node = NodePath("SceneSwapSignal")
+
+[node name="SceneSwapSignal" parent="." instance=ExtResource("2_bqqt6")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

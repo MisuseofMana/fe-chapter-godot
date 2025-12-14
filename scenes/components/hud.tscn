@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://607tiukkn1lq"]
 
 [ext_resource type="Texture2D" uid="uid://y0hpsh33m1wi" path="res://assets/ui/hud-torch.png" id="1_5ysmq"]
-[ext_resource type="Script" uid="uid://wejq52gql8bi" path="res://scenes/hud.gd" id="1_hd3ao"]
+[ext_resource type="Script" uid="uid://wejq52gql8bi" path="res://scenes/components/hud.gd" id="1_hd3ao"]
 [ext_resource type="Texture2D" uid="uid://ch1aby736ewoh" path="res://assets/ui/hud-heart.png" id="2_6fi6k"]
 [ext_resource type="Texture2D" uid="uid://ysgbyqjs5udx" path="res://assets/ui/banner-tab.png" id="3_uo2fv"]
 [ext_resource type="Texture2D" uid="uid://cd2mmo5qyijmb" path="res://assets/ui/pc-card-cycle-left.png" id="5_0i1j5"]

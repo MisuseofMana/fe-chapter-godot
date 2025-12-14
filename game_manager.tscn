@@ -3,22 +3,22 @@
 [ext_resource type="Script" uid="uid://cfemnwgykvsbo" path="res://game_manager.gd" id="1_o2178"]
 [ext_resource type="PackedScene" uid="uid://dp6avhbk43c4p" path="res://scenes/ui/animated_transition.tscn" id="2_d5upp"]
 [ext_resource type="PackedScene" uid="uid://cs112vwmmf4r4" path="res://game_saving/save_and_load.tscn" id="2_vk86k"]
-[ext_resource type="PackedScene" uid="uid://dy77l7n84vcon" path="res://scenes/main_menu.tscn" id="3_vk86k"]
+[ext_resource type="Script" uid="uid://dxpcldfjhmx7q" path="res://scenes/components/scene_container.gd" id="4_vk86k"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_o2178")
 
 [node name="SaveAndLoad" parent="." instance=ExtResource("2_vk86k")]
 
-[node name="AnimatedTransition" parent="." instance=ExtResource("2_d5upp")]
+[node name="SceneManager" type="Node2D" parent="." node_paths=PackedStringArray("scene_container", "animated_transition")]
+script = ExtResource("4_vk86k")
+scene_container = NodePath("SceneContainer")
+animated_transition = NodePath("AnimatedTransition")
+
+[node name="AnimatedTransition" parent="SceneManager" instance=ExtResource("2_d5upp")]
 layer = 99
 
-[node name="ActiveScene" type="Node2D" parent="."]
-unique_name_in_owner = true
+[node name="SceneContainer" type="Node2D" parent="SceneManager"]
 
-[node name="MainMenu" parent="ActiveScene" instance=ExtResource("3_vk86k")]
-
-[connection signal="scene_swap_ended" from="." to="AnimatedTransition" method="fade_out"]
-[connection signal="scene_swap_started" from="." to="AnimatedTransition" method="fade_in"]
-[connection signal="fade_to_black_completed" from="AnimatedTransition" to="." method="finalize_scene_swap"]
-[connection signal="scene_change_requested" from="ActiveScene/MainMenu" to="." method="preload_new_scene"]
+[connection signal="fade_to_black_completed" from="SceneManager/AnimatedTransition" to="SceneManager" method="finalize_scene_swap"]
+[connection signal="child_entered_tree" from="SceneManager/SceneContainer" to="SceneManager" method="_on_child_entered_tree"]

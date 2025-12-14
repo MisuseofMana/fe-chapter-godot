@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://clcphumb7x1fi"]
 
-[ext_resource type="Script" uid="uid://b60nknttp50u5" path="res://scenes/monster_container.gd" id="1_glbne"]
+[ext_resource type="Script" uid="uid://b60nknttp50u5" path="res://scenes/components/monster_container.gd" id="1_glbne"]
 
 [node name="MonsterContainer" type="Node2D"]
 scale = Vector2(2, 2)

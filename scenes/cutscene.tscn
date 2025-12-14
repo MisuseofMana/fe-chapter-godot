@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckq8hw5vhicgx"]
+
+[ext_resource type="Texture2D" uid="uid://bkt4s4uqy58j0" path="res://assets/animatics/animatic_template.png" id="1_m4y77"]
+[ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="1_uinxe"]
+[ext_resource type="Script" uid="uid://cy8y2bfhwsqxj" path="res://scenes/cutscene.gd" id="2_kgq8h"]
+[ext_resource type="PackedScene" uid="uid://qdopfghwbiap" path="res://scenes/scene_swap_signal.tscn" id="3_2bm7f"]
+
+[node name="Cutscene" type="CanvasLayer" node_paths=PackedStringArray("scene_swap_node")]
+script = ExtResource("2_kgq8h")
+scene_swap_node = NodePath("SceneSwapSignal")
+
+[node name="SceneSwapSignal" parent="." instance=ExtResource("3_2bm7f")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_uinxe")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m4y77")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="Control/TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Proceed"
+
+[connection signal="pressed" from="Control/TextureRect/MarginContainer/Button" to="." method="_on_button_pressed"]

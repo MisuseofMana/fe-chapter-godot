@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://cybgs4qbfh4t3"]
+
+[ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="1_d7jju"]
+[ext_resource type="Script" uid="uid://x16benomtrab" path="res://scenes/combat_manager.gd" id="1_w318q"]
+[ext_resource type="Texture2D" uid="uid://b4qnd6r0ceejv" path="res://assets/portraits/blacksmith.png" id="2_p1tyc"]
+
+[node name="CombatManager" type="CanvasLayer"]
+script = ExtResource("1_w318q")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d7jju")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Combat Placeholder"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_p1tyc")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Button" type="Button" parent="Control/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Talk"
+
+[node name="Button2" type="Button" parent="Control/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Attack"
+
+[node name="Button3" type="Button" parent="Control/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="Control/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Debug Finish"
+
+[connection signal="pressed" from="Control/PanelContainer/VBoxContainer/MarginContainer/Button" to="." method="skip_combat"]

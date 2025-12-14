@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qdopfghwbiap"]
+
+[ext_resource type="Script" uid="uid://db43k31qrsk8" path="res://scenes/scene_swap_signal.gd" id="1_nxbxp"]
+
+[node name="SceneSwapSignal" type="Node"]
+script = ExtResource("1_nxbxp")

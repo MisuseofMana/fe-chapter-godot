@@ -1,15 +1,17 @@
-[gd_scene load_steps=24 format=3 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=26 format=3 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="Script" uid="uid://cj08odxy6irfv" path="res://scenes/dungeon_manager.gd" id="1_3c83e"]
 [ext_resource type="Script" uid="uid://bwhbp0twq52iv" path="res://scenes/levels/level_handler.gd" id="2_5gii0"]
+[ext_resource type="PackedScene" uid="uid://qdopfghwbiap" path="res://scenes/scene_swap_signal.tscn" id="2_a2jmi"]
 [ext_resource type="PackedScene" uid="uid://cionh15eqaxdh" path="res://scenes/levels/dungeon_1/floor_1/level_1.tscn" id="3_a2jmi"]
 [ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="4_tcw08"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_3dvl2"]
 [ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="6_k7v6l"]
-[ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="7_sy7ha"]
+[ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/components/background_music.gd" id="7_sy7ha"]
+[ext_resource type="Script" uid="uid://wejq52gql8bi" path="res://scenes/components/hud.gd" id="8_5gii0"]
 [ext_resource type="Texture2D" uid="uid://dntvuioywwfof" path="res://assets/ui/hud_container.png" id="8_ui1i4"]
-[ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="9_52l3s"]
-[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="10_fd66d"]
+[ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/components/carousel_container.gd" id="9_52l3s"]
+[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/components/card_carousel.tscn" id="10_fd66d"]
 [ext_resource type="Texture2D" uid="uid://cbofjw8l8ga82" path="res://assets/ui/CONTROLPAD.png" id="11_inrf5"]
 [ext_resource type="Shape2D" uid="uid://cx47iowaujfmo" path="res://resources/direction_button_shape.tres.tres" id="12_otf7i"]
 [ext_resource type="Texture2D" uid="uid://gcvhqin71jpo" path="res://assets/ui/X.png" id="13_f4q3y"]
@@ -17,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://1bwf3olj7r0p" path="res://assets/ui/SQUARE.png" id="15_hq3hq"]
 [ext_resource type="Texture2D" uid="uid://cmxwkf2lkt22" path="res://assets/ui/TRIANGLE.png" id="16_pq628"]
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="17_xugbv"]
-[ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="18_ggwfs"]
+[ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/components/debugger.gd" id="18_ggwfs"]
 
 [sub_resource type="Gradient" id="Gradient_shnkw"]
 offsets = PackedFloat32Array(0)
@@ -36,8 +38,11 @@ radius = 7.0
 default_font = ExtResource("17_xugbv")
 default_font_size = 12
 
-[node name="Overworld" type="Node2D"]
+[node name="DungeonManager" type="Node2D" node_paths=PackedStringArray("scene_swap_node")]
 script = ExtResource("1_3c83e")
+scene_swap_node = NodePath("SceneSwapSignal")
+
+[node name="SceneSwapSignal" parent="." instance=ExtResource("2_a2jmi")]
 
 [node name="LevelHandler" type="Node2D" parent="." node_paths=PackedStringArray("level_container")]
 unique_name_in_owner = true
@@ -64,7 +69,7 @@ script = ExtResource("7_sy7ha")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
+script = ExtResource("8_5gii0")
 
 [node name="Control" type="Control" parent="HUD"]
 layout_mode = 3
