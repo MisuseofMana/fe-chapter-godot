@@ -3,16 +3,17 @@ class_name MainMenu
 
 @onready var load_game_button = %LoadGameButton
 
+signal scene_change_requested(scene_path: String)
+
 func _ready():
 	if has_save_file():
 		load_game_button.disabled = true
 
 func start_new_game():
-	get_tree().change_scene_to_file()
+	scene_change_requested.emit("res://scenes/dungeon_manager.tscn")
 	
 func start_tutorial():
-	get_tree().change_scene_to_file("uid://bf6l6gw486uwb")
-	SceneSwitcher.entered_transition_zone.emit("uid://dqhqbwlalhfrr", true)
+	scene_change_requested.emit("res://scenes/levels/dungeon_0_tutorial/tutorial_level.tscn")
 	
 func has_save_file() -> bool:
 	return false

@@ -8,7 +8,7 @@ func update_save_slot(save_slot_number: int):
 
 func save_game():
 	var file = FileAccess.open("res://game_saving/save_files/file_" + str(current_save_slot), FileAccess.WRITE)
-	pass
+	print(file)
 	
 func load_game():
 	pass

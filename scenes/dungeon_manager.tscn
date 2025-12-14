@@ -1,23 +1,23 @@
 [gd_scene load_steps=24 format=3 uid="uid://bf6l6gw486uwb"]
 
-[ext_resource type="Script" uid="uid://cj08odxy6irfv" path="res://scenes/game_controller.gd" id="1_py7vm"]
-[ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="2_kea5x"]
-[ext_resource type="Texture2D" uid="uid://gcvhqin71jpo" path="res://assets/ui/X.png" id="2_shnkw"]
-[ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="3_13gk1"]
-[ext_resource type="Texture2D" uid="uid://cbofjw8l8ga82" path="res://assets/ui/CONTROLPAD.png" id="3_py7vm"]
-[ext_resource type="Texture2D" uid="uid://bhocgu48rk8ux" path="res://assets/ui/CIRCLE.png" id="4_1m60t"]
-[ext_resource type="PackedScene" uid="uid://cionh15eqaxdh" path="res://scenes/levels/dungeon_1/floor_1/level_1.tscn" id="4_endrn"]
-[ext_resource type="Script" uid="uid://bwhbp0twq52iv" path="res://scenes/levels/level_handler.gd" id="4_kea5x"]
-[ext_resource type="Texture2D" uid="uid://cmxwkf2lkt22" path="res://assets/ui/TRIANGLE.png" id="5_py7vm"]
-[ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_shnkw"]
-[ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="6_py7vm"]
-[ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="7_1m60t"]
-[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="8_fpu5w"]
-[ext_resource type="Texture2D" uid="uid://dntvuioywwfof" path="res://assets/ui/hud_container.png" id="9_kea5x"]
-[ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="18_fo8ny"]
-[ext_resource type="Shape2D" uid="uid://cx47iowaujfmo" path="res://resources/direction_button_shape.tres.tres" id="18_shnkw"]
-[ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="19_grkcg"]
-[ext_resource type="Texture2D" uid="uid://1bwf3olj7r0p" path="res://assets/ui/SQUARE.png" id="19_shnkw"]
+[ext_resource type="Script" uid="uid://cj08odxy6irfv" path="res://scenes/dungeon_manager.gd" id="1_3c83e"]
+[ext_resource type="Script" uid="uid://bwhbp0twq52iv" path="res://scenes/levels/level_handler.gd" id="2_5gii0"]
+[ext_resource type="PackedScene" uid="uid://cionh15eqaxdh" path="res://scenes/levels/dungeon_1/floor_1/level_1.tscn" id="3_a2jmi"]
+[ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="4_tcw08"]
+[ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_3dvl2"]
+[ext_resource type="AudioStream" uid="uid://b2e1b1lgnyh7f" path="res://assets/audio/ambiance/cave_ambiance.wav" id="6_k7v6l"]
+[ext_resource type="Script" uid="uid://cab8cyrahr2b5" path="res://scenes/background_music.gd" id="7_sy7ha"]
+[ext_resource type="Texture2D" uid="uid://dntvuioywwfof" path="res://assets/ui/hud_container.png" id="8_ui1i4"]
+[ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/carousel_container.gd" id="9_52l3s"]
+[ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/card_carousel.tscn" id="10_fd66d"]
+[ext_resource type="Texture2D" uid="uid://cbofjw8l8ga82" path="res://assets/ui/CONTROLPAD.png" id="11_inrf5"]
+[ext_resource type="Shape2D" uid="uid://cx47iowaujfmo" path="res://resources/direction_button_shape.tres.tres" id="12_otf7i"]
+[ext_resource type="Texture2D" uid="uid://gcvhqin71jpo" path="res://assets/ui/X.png" id="13_f4q3y"]
+[ext_resource type="Texture2D" uid="uid://bhocgu48rk8ux" path="res://assets/ui/CIRCLE.png" id="14_arnbb"]
+[ext_resource type="Texture2D" uid="uid://1bwf3olj7r0p" path="res://assets/ui/SQUARE.png" id="15_hq3hq"]
+[ext_resource type="Texture2D" uid="uid://cmxwkf2lkt22" path="res://assets/ui/TRIANGLE.png" id="16_pq628"]
+[ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="17_xugbv"]
+[ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/debugger.gd" id="18_ggwfs"]
 
 [sub_resource type="Gradient" id="Gradient_shnkw"]
 offsets = PackedFloat32Array(0)
@@ -33,39 +33,38 @@ radius = 24.0
 radius = 7.0
 
 [sub_resource type="Theme" id="Theme_ctatt"]
-default_font = ExtResource("3_13gk1")
+default_font = ExtResource("17_xugbv")
 default_font_size = 12
 
 [node name="Overworld" type="Node2D"]
-script = ExtResource("1_py7vm")
+script = ExtResource("1_3c83e")
 
-[node name="LevelHandler" type="Node2D" parent="." node_paths=PackedStringArray("level_container", "animated_transition")]
+[node name="LevelHandler" type="Node2D" parent="." node_paths=PackedStringArray("level_container")]
 unique_name_in_owner = true
-script = ExtResource("4_kea5x")
+script = ExtResource("2_5gii0")
 level_container = NodePath("LevelContainer")
-animated_transition = NodePath("")
 
 [node name="LevelContainer" type="Node2D" parent="LevelHandler"]
 
-[node name="Level" parent="LevelHandler/LevelContainer" instance=ExtResource("4_endrn")]
+[node name="Level" parent="LevelHandler/LevelContainer" instance=ExtResource("3_a2jmi")]
 
-[node name="SpaceSelector" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_py7vm")]
+[node name="SpaceSelector" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tcw08")]
 player = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("5_shnkw")]
+[node name="Player" parent="." instance=ExtResource("5_3dvl2")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(24, 56)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(32, 0)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("18_fo8ny")
-script = ExtResource("19_grkcg")
+stream = ExtResource("6_k7v6l")
+script = ExtResource("7_sy7ha")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Control" type="Control" parent="HUD"]
 layout_mode = 3
@@ -94,7 +93,7 @@ offset_bottom = -7.9999924
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(1.2500005, 2.25)
-texture = ExtResource("9_kea5x")
+texture = ExtResource("8_ui1i4")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
@@ -114,9 +113,9 @@ action = "cycle_cards_left"
 [node name="CarouselContainer" type="Node2D" parent="HUD"]
 position = Vector2(40.000004, 136)
 scale = Vector2(0.7, 0.7)
-script = ExtResource("7_1m60t")
+script = ExtResource("9_52l3s")
 
-[node name="CombatCarousel" parent="HUD/CarouselContainer" instance=ExtResource("8_fpu5w")]
+[node name="CombatCarousel" parent="HUD/CarouselContainer" instance=ExtResource("10_fd66d")]
 position = Vector2(-2.1798269e-05, 0)
 scale = Vector2(2, 2)
 
@@ -126,39 +125,39 @@ position = Vector2(0, -8)
 [node name="Movement" type="Sprite2D" parent="HUD/TouchControls"]
 position = Vector2(208, 80)
 scale = Vector2(3.2, 3.2)
-texture = ExtResource("3_py7vm")
+texture = ExtResource("11_inrf5")
 
 [node name="UpButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
 position = Vector2(-3.1999998, -8)
 scale = Vector2(0.25, 0.25)
-shape = ExtResource("18_shnkw")
+shape = ExtResource("12_otf7i")
 action = "up"
 
 [node name="RightButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
 position = Vector2(7.999998, -3.1999998)
 rotation = 1.5707964
 scale = Vector2(0.25, 0.25)
-shape = ExtResource("18_shnkw")
+shape = ExtResource("12_otf7i")
 action = "right"
 
 [node name="DownButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
 position = Vector2(3.1999998, 7.999999)
 rotation = 3.1415927
 scale = Vector2(0.25, 0.25)
-shape = ExtResource("18_shnkw")
+shape = ExtResource("12_otf7i")
 action = "down"
 
 [node name="LeftButton" type="TouchScreenButton" parent="HUD/TouchControls/Movement"]
 position = Vector2(-8, 3.1999998)
 rotation = -1.5707964
 scale = Vector2(0.25, 0.25)
-shape = ExtResource("18_shnkw")
+shape = ExtResource("12_otf7i")
 action = "left"
 
 [node name="Cross" type="Sprite2D" parent="HUD/TouchControls"]
 position = Vector2(216, 127)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_shnkw")
+texture = ExtResource("13_f4q3y")
 
 [node name="ConfirmButton" type="TouchScreenButton" parent="HUD/TouchControls/Cross"]
 shape = SubResource("CircleShape2D_py7vm")
@@ -167,7 +166,7 @@ action = "confirm_action"
 [node name="Circle" type="Sprite2D" parent="HUD/TouchControls"]
 position = Vector2(239.00002, 108)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_1m60t")
+texture = ExtResource("14_arnbb")
 
 [node name="CancelButton" type="TouchScreenButton" parent="HUD/TouchControls/Circle"]
 shape = SubResource("CircleShape2D_py7vm")
@@ -177,7 +176,7 @@ action = "cancel_action"
 visible = false
 position = Vector2(196.00002, 36)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("19_shnkw")
+texture = ExtResource("15_hq3hq")
 
 [node name="CancelButton" type="TouchScreenButton" parent="HUD/TouchControls/Square"]
 shape = SubResource("CircleShape2D_py7vm")
@@ -187,7 +186,7 @@ action = "cancel_action"
 visible = false
 position = Vector2(216, 16)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("5_py7vm")
+texture = ExtResource("16_pq628")
 
 [node name="CycleCardButton" type="TouchScreenButton" parent="HUD/TouchControls/Triangle"]
 shape = SubResource("CircleShape2D_py7vm")
@@ -201,7 +200,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 mouse_filter = 2
 theme = SubResource("Theme_ctatt")
-script = ExtResource("2_kea5x")
+script = ExtResource("18_ggwfs")
 
 [node name="PanelContainer" type="PanelContainer" parent="HUD/Debugger"]
 layout_mode = 1
@@ -220,10 +219,11 @@ theme_override_constants/separation = 0
 [node name="Label" type="Label" parent="HUD/Debugger/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_13gk1")
+theme_override_fonts/font = ExtResource("17_xugbv")
 theme_override_font_sizes/font_size = 12
 text = "debugger output enabled"
 horizontal_alignment = 1
 
-[connection signal="players_turn_over" from="Player" to="LevelHandler" method="handle_monster_movement"]
+[connection signal="monster_turn_over" from="LevelHandler" to="." method="unlock_input"]
+[connection signal="players_turn_ended" from="Player" to="." method="lock_input"]
 [connection signal="finished" from="BackgroundMusic" to="BackgroundMusic" method="loop_audio"]

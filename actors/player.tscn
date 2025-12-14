@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b7ffejioelqqr"]
 
-[ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://scenes/player.gd" id="1_mvpqy"]
+[ext_resource type="Script" uid="uid://cfj3ibdjguvbt" path="res://actors/player.gd" id="1_mvpqy"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="2_1yqc4"]
 [ext_resource type="Material" uid="uid://cpjixaqg8mhuy" path="res://resources/teleport_particles.tres" id="3_1yqc4"]
 

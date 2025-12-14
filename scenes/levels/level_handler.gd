@@ -8,10 +8,6 @@ var is_descending: bool = true
 var preloaded_level: Level
 
 signal monster_turn_over
-
-func _ready():
-	SceneSwitcher.entered_transition_zone.connect(preload_next_level)
-	SceneSwitcher.level_finished_loading.connect(finish_level_swap)
 	
 func handle_monster_movement():
 	var all_monsters = get_monsters()
