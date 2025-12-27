@@ -21,4 +21,4 @@ layer = 99
 [node name="SceneContainer" type="Node2D" parent="SceneManager"]
 
 [connection signal="fade_to_black_completed" from="SceneManager/AnimatedTransition" to="SceneManager" method="finalize_scene_swap"]
-[connection signal="child_entered_tree" from="SceneManager/SceneContainer" to="SceneManager" method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="SceneManager/SceneContainer" to="SceneManager" method="_on_new_scene_entered_scene_container"]

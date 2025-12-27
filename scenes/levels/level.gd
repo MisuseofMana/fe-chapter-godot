@@ -6,8 +6,6 @@ class_name Level
 @export var monster_container: Node2D
 @export var interactable_container: Node2D
 
-
-
 func get_spawn_point_vector(is_decending: bool) -> Vector2:
 	if is_decending && entrance:
 		return entrance.spawn_point.global_position

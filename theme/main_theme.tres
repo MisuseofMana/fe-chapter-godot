@@ -14,12 +14,15 @@ expand_margin_bottom = 2.0
 modulate_color = Color(1, 1, 1, 0.3137255)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dut6s"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 texture = ExtResource("2_os614")
 texture_margin_left = 3.0
 texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_1knni"]
 color = Color(0.43529412, 0.34117648, 0.3372549, 1)
@@ -41,6 +44,10 @@ Button/fonts/font = ExtResource("1_afw5t")
 Button/styles/disabled = SubResource("StyleBoxTexture_1knni")
 Button/styles/normal = SubResource("StyleBoxTexture_dut6s")
 HSeparator/styles/separator = SubResource("StyleBoxLine_1knni")
+ItemList/colors/font_color = Color(1, 1, 1, 1)
+ItemList/colors/font_hovered_color = Color(0.4427371, 0.7014114, 0.6058144, 1)
+ItemList/colors/font_selected_color = Color(7.315874e-06, 0.924878, 0.23261154, 1)
+ItemList/fonts/font = ExtResource("1_afw5t")
 Label/font_sizes/font_size = 14
 Label/fonts/font = ExtResource("1_afw5t")
 MarginContainer/constants/margin_bottom = 20

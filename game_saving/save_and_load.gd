@@ -9,7 +9,7 @@ var current_save_file: Resource
 func update_save_slot(save_slot_number: int):
 	current_save_slot = save_slot_number
 
-func save_game(data_to_save):
+func save_game(_data_to_save):
 	var saved_game:SavedGame = SavedGame.new()
 #	set all values based on current level
 	ResourceSaver.save(saved_game, "user://savegame_" + str(current_save_slot) + ".tres")

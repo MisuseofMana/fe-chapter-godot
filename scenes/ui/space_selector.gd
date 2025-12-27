@@ -2,6 +2,7 @@ extends Node2D
 class_name SpaceSelector
 
 @export var player: Player
+@export var dungeon_manager: DungeonManager
 
 @onready var squares = $Squares
 @onready var cursor = $AnimatedSprite2D
@@ -29,7 +30,7 @@ func update_cursor_status():
 	cursor_animating = not cursor_animating
 
 func move_cursor(vector: Vector2):
-	if EventBus.movement_locked and not cursor_animating:
+	if dungeon_manager.input_locked and not cursor_animating:
 		var new_glob_pos : Vector2 = cursor.global_position + (vector * 16)
 		var tween = get_tree().create_tween()
 		update_cursor_status()

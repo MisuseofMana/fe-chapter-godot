@@ -9,11 +9,10 @@ var new_scene : Node
 @export var scene_path_directory: Dictionary[String, String] = {
 	"main_menu": "res://scenes/main_menu.tscn",
 	"cutscene": "res://scenes/cutscene.tscn",
+	"new_game": "res://scenes/new_game.tscn",
 	"dungeon": "res://scenes/dungeon_manager.tscn",
 	"combat": "res://scenes/combat_manager.tscn"
 }
-
-var current_scene_int : String = "main_menu"
 
 func _ready():
 	preload_new_scene("main_menu")
@@ -28,7 +27,9 @@ func finalize_scene_swap():
 	scene_container.add_child(new_scene)
 	animated_transition.fade_out()
 	
-func _on_child_entered_tree(node: Node):
+func _on_new_scene_entered_scene_container(node: Node):
 	if node.has_node('SceneSwapSignal'):
 		var swap_node : SceneSwapSignal = node.scene_swap_node
 		swap_node.request_scene_change.connect(preload_new_scene)
+	else:
+		push_error('Target Scene doesnt have SceneSwapSignal Node')
