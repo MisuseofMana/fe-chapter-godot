@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_gm16d")
 action = 0
+action_name = "Heal"
 texture = ExtResource("2_gm16d")
 metadata/_custom_type_script = "uid://f6g62t436o0y"

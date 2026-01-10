@@ -10,10 +10,10 @@ class_name Player
 @onready var teleport_particles = %TeleportParticles
 @onready var transition_detection: CollisionShape2D = $OverlapDetection/CollisionShape2D
 
+@export var dungeon_manager : DungeonManager
+
 var move_distance : int = 16
 var bounce_distance : int = 4
-
-var input_locked: bool = false
 
 @onready var input_direction_map : Dictionary[RayCast2D, Vector2] = {
 	up: Vector2.UP,
@@ -70,8 +70,8 @@ func _input(event: InputEvent) -> void:
 		attempt_movement(Vector2.ZERO)
 		
 func teleport_to(global_pos : Vector2) -> void:
-	input_locked = true
+	dungeon_manager.input_locked = true
 	teleport_particles.emitting = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", global_pos, 0.3)
-	tween.tween_callback(func (): input_locked = false)
+	tween.tween_callback(func (): dungeon_manager.input_locked = false)

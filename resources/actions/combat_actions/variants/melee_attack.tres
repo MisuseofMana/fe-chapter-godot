@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_8jyr6")
 action = 2
+action_name = "Melee"
 texture = ExtResource("2_8jyr6")
 metadata/_custom_type_script = "uid://f6g62t436o0y"

@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://maowmyk2ym66"]
+
+[ext_resource type="Script" uid="uid://dhe3s2jlnhn8m" path="res://scenes/tutorial.gd" id="1_c13y7"]
+[ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="2_8ho6b"]
+
+[node name="Tutorial" type="CanvasLayer"]
+script = ExtResource("1_c13y7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_8ho6b")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="Button" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Main Menu"
+
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

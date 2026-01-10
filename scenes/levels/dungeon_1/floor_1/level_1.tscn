@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cionh15eqaxdh"]
+[gd_scene load_steps=9 format=4 uid="uid://cionh15eqaxdh"]
 
 [ext_resource type="Script" uid="uid://brmby7h68mui" path="res://scenes/levels/level.gd" id="1_26blj"]
 [ext_resource type="TileSet" uid="uid://cv5hbh50gwf0m" path="res://assets/LevelTiles.tres" id="1_b6flc"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dxeyq3nkf0btw" path="res://scenes/interactables/lootables/chest.tscn" id="6_s7my2"]
 [ext_resource type="PackedScene" uid="uid://c4s8hp5xn1ejg" path="res://scenes/components/level_transition.tscn" id="7_vwkcf"]
 [ext_resource type="Texture2D" uid="uid://ixufa54odgdh" path="res://assets/sprites/interactables/level-exit.png" id="8_ig7je"]
+[ext_resource type="PackedScene" uid="uid://bnhdxwco3l1g1" path="res://scenes/components/pickup.tscn" id="8_rv25a"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("entrance", "exit", "monster_container", "interactable_container")]
 script = ExtResource("1_26blj")
@@ -35,16 +36,13 @@ marker_only = true
 position = Vector2(64, -32)
 
 [node name="Tiles" type="Node2D" parent="."]
-position = Vector2(0, -1)
 scale = Vector2(0.5, 0.5)
 
 [node name="Colliders" type="TileMapLayer" parent="Tiles"]
-position = Vector2(0, 2)
 tile_map_data = PackedByteArray("AAAAAAIAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAgAAwABAAAAAAABAAIAAwABAAAAAAABAAgAAwABAAAAAAABAAkAAwAAAAAAAAABAAoAAwAAAAAAAAABAAsAAwABAAAAAAACAAIAAwABAAAAAAACAAQAAwAAAAAAAAACAAUAAwAAAAAAAAACAAYAAwABAAAAAAACAAgAAwABAAAAAAACAAkAAwABAAAAAAACAAsAAwABAAAAAAADAAIAAwAAAAAAAAADAAMAAwAAAAAAAAADAAQAAwABAAAAAAADAAgAAwABAAAAAAADAAkAAwABAAAAAAADAAsAAwABAAAAAAAEAAMAAwABAAAAAAAEAAgAAwAAAAAAAAAEAAkAAwABAAAAAAAEAAsAAwAAAAAAAAAEAAwAAwAAAAAAAAAEAA0AAwAAAAAAAAAEAA4AAwAAAAAAAAAEAA8AAwABAAAAAAAFAAMAAwABAAAAAAAFAA8AAwABAAAAAAAGAAAAAwAAAAAAAAAGAAEAAwAAAAAAAAAGAAIAAwAAAAAAAAAGAAMAAwABAAAAAAAGAAgAAwAAAAAAAAAGAAkAAwABAAAAAAAGAAsAAwAAAAAAAAAGAAwAAwAAAAAAAAAGAA0AAwAAAAAAAAAGAA4AAwAAAAAAAAAGAA8AAwABAAAAAAAHAAAAAwABAAAAAAAHAAMAAwAAAAAAAAAHAAQAAwAAAAAAAAAHAAUAAwABAAAAAAAHAAgAAwABAAAAAAAHAAkAAwAAAAAAAAAHAAoAAwAAAAAAAAAHAAsAAwABAAAAAAAIAAAAAwABAAAAAAAIAAgAAwABAAAAAAAJAAAAAwAAAAAAAAAJAAMAAwAAAAAAAAAJAAQAAwAAAAAAAAAJAAUAAwABAAAAAAAJAAgAAwABAAAAAAAKAAUAAwAAAAAAAAAKAAYAAwAAAAAAAAAKAAcAAwAAAAAAAAAKAAgAAwABAAAAAAAKAAEAAwABAAAAAAALAAEAAwABAAAAAAAMAAEAAwABAAAAAAANAAEAAwABAAAAAAAKAAMAAwABAAAAAAALAAMAAwABAAAAAAAMAAMAAwAAAAAAAAAJAAEAAwABAAAAAAAMAAQAAwAAAAAAAAAMAAUAAwAAAAAAAAAMAAYAAwAAAAAAAAAMAAcAAwABAAAAAAAOAAEAAwABAAAAAAAPAAEAAwABAAAAAAAQAAEAAwABAAAAAAARAAEAAwAAAAAAAAARAAIAAwAAAAAAAAARAAMAAwAAAAAAAAARAAQAAwAAAAAAAAARAAUAAwAAAAAAAAARAAYAAwAAAAAAAAARAAcAAwABAAAAAAANAAcAAwABAAAAAAAOAAcAAwABAAAAAAAPAAcAAwABAAAAAAAQAAcAAwABAAAAAAAQAAIAAwACABEAAAAQAAMAAwADABEAAAAPAAIAAwAGABEAAAAPAAQAAwAOABAAAAAPAAMAAwABABUAAAAQAAQAAwAAABUAAAAQAAYAAwABABcAABADAAoAAwAAABUAAAADAAUAAwACABYAAAAEAAQAAwADABYAAAAGAAQAAwAAABIAAAAJAAYAAwAAABQAAAA=")
 tile_set = ExtResource("1_b6flc")
 
 [node name="MonsterContainer" type="Node2D" parent="."]
-position = Vector2(-24, 15)
 
 [node name="Interactables" type="Node2D" parent="."]
 
@@ -74,3 +72,6 @@ position = Vector2(104, 168)
 
 [node name="Chest2" parent="Interactables" instance=ExtResource("6_s7my2")]
 position = Vector2(120, 24)
+
+[node name="Pickup" parent="." instance=ExtResource("8_rv25a")]
+position = Vector2(88, 104)

@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_bbmqc")
 action = 0
+action_name = "Unlock"
 texture = ExtResource("2_bbmqc")
 metadata/_custom_type_script = "uid://itpnpat10rwq"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnhdxwco3l1g1"]
+
+[ext_resource type="Script" uid="uid://c6hg8vaxr4e52" path="res://scenes/components/pickup.gd" id="1_xhxem"]
+[ext_resource type="Texture2D" uid="uid://beufwvw1sx1yf" path="res://assets/cards/inventory/goblin_doll.png" id="2_ftof1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5mwg"]
+radius = 4.277536
+
+[node name="Pickup" type="Node2D"]
+script = ExtResource("1_xhxem")
+
+[node name="PickupSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ftof1")
+
+[node name="ItemHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemHitbox"]
+shape = SubResource("CircleShape2D_h5mwg")

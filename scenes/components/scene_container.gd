@@ -6,19 +6,9 @@ class_name SceneManager
 
 var new_scene : Node
 
-@export var scene_path_directory: Dictionary[String, String] = {
-	"main_menu": "res://scenes/main_menu.tscn",
-	"cutscene": "res://scenes/cutscene.tscn",
-	"new_game": "res://scenes/new_game.tscn",
-	"dungeon": "res://scenes/dungeon_manager.tscn",
-	"combat": "res://scenes/combat_manager.tscn"
-}
-
-func _ready():
-	preload_new_scene("main_menu")
-
 func preload_new_scene(scene_path: String) -> void:
-	new_scene = load(scene_path_directory[scene_path]).instantiate()
+	new_scene = load(scene_path).instantiate()
+	#new_scene = load(scene_path_directory[scene_path]).instantiate()
 	animated_transition.fade_in()
 
 func finalize_scene_swap():
@@ -28,8 +18,6 @@ func finalize_scene_swap():
 	animated_transition.fade_out()
 	
 func _on_new_scene_entered_scene_container(node: Node):
-	if node.has_node('SceneSwapSignal'):
-		var swap_node : SceneSwapSignal = node.scene_swap_node
-		swap_node.request_scene_change.connect(preload_new_scene)
-	else:
-		push_error('Target Scene doesnt have SceneSwapSignal Node')
+	if node is GameLayer:
+		assert(node.has_method("swap_scene"), 'Provided node must have a swap_scene method.')
+		node.started_scene_swap_to.connect(preload_new_scene)

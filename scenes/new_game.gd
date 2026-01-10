@@ -1,4 +1,5 @@
-extends CanvasLayer
+extends GameLayer
 class_name NewGame
 
-@export var scene_swap_node: SceneSwapSignal
+func skip_character_select():
+	swap_scene("res://scenes/dungeon_manager.tscn")

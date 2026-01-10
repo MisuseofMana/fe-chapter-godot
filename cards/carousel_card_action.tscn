@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqtu0p2n537g8"]
+[gd_scene load_steps=15 format=3 uid="uid://bqtu0p2n537g8"]
 
 [ext_resource type="Script" uid="uid://b27fcoyllmytp" path="res://cards/carousel_card_action.gd" id="2_8bdjv"]
 [ext_resource type="Texture2D" uid="uid://dqcvhiddmwk45" path="res://assets/ui/card-selection-indicator.png" id="2_uqbyb"]
+[ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="2_vpmqw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vox7"]
 atlas = ExtResource("2_uqbyb")
@@ -82,6 +83,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/Label:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_uqbyb"]
 resource_name = "raise_card"
@@ -124,9 +137,27 @@ tracks/2/keys = {
 "values": [0, 0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_vpmqw"]
+resource_name = "action_name_display"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cfrx7"]
 _data = {
 &"RESET": SubResource("Animation_cfrx7"),
+&"action_name_display": SubResource("Animation_vpmqw"),
 &"raise_card": SubResource("Animation_uqbyb")
 }
 
@@ -135,6 +166,17 @@ rotates = false
 script = ExtResource("2_8bdjv")
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Node2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -6.0
+theme = ExtResource("2_vpmqw")
+theme_override_font_sizes/font_size = 8
+text = "Action"
+horizontal_alignment = 1
 
 [node name="CardSelectionIndicator" type="AnimatedSprite2D" parent="Node2D"]
 unique_name_in_owner = true
@@ -157,3 +199,9 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_cfrx7")
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

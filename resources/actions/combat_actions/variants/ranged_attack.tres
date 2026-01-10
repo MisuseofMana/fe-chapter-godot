@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_hf6bq")
 action = 1
+action_name = "Shoot"
 texture = ExtResource("2_hf6bq")
 effective_distance = 3
 metadata/_custom_type_script = "uid://f6g62t436o0y"

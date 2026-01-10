@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_l8iv4")
 action = 2
+action_name = "Teleport"
 texture = ExtResource("2_l8iv4")
 metadata/_custom_type_script = "uid://itpnpat10rwq"

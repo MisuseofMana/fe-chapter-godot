@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_8cldv")
 action = 4
+action_name = "Wait"
 texture = ExtResource("2_8cldv")
 effective_distance = 0
 metadata/_custom_type_script = "uid://f6g62t436o0y"

@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://ck2cb3s2ah77x"]
+[gd_scene load_steps=7 format=3 uid="uid://ck2cb3s2ah77x"]
 
-[ext_resource type="PackedScene" uid="uid://qdopfghwbiap" path="res://scenes/scene_swap_signal.tscn" id="1_1i1kc"]
 [ext_resource type="Script" uid="uid://cyvy33gxlooil" path="res://scenes/new_game.gd" id="1_6hhwf"]
 [ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="2_2hvmj"]
 [ext_resource type="Texture2D" uid="uid://b7e7la8o8r8ni" path="res://assets/sprites/rogues.png" id="3_ht52o"]
@@ -17,11 +16,8 @@ region = Rect2(128, 64, 32, 32)
 atlas = ExtResource("3_ht52o")
 region = Rect2(32, 128, 32, 32)
 
-[node name="NewGame" type="CanvasLayer" node_paths=PackedStringArray("scene_swap_node")]
+[node name="NewGame" type="CanvasLayer"]
 script = ExtResource("1_6hhwf")
-scene_swap_node = NodePath("SceneSwapSignal")
-
-[node name="SceneSwapSignal" parent="." instance=ExtResource("1_1i1kc")]
 
 [node name="CharacterSelect" type="Node2D" parent="."]
 
@@ -73,3 +69,11 @@ item_1/text = "Knight"
 item_1/icon = SubResource("AtlasTexture_l8kns")
 item_2/text = "Wizard"
 item_2/icon = SubResource("AtlasTexture_cwj52")
+
+[node name="Button" type="Button" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Skip"
+
+[connection signal="pressed" from="Control/PanelContainer/Button" to="." method="skip_character_select"]

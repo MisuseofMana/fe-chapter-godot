@@ -47,6 +47,7 @@ player_rays="group for players raycast colliders"
 interactable_item="group containing all interactable objects in the game"
 card_gui="contains the card drawer node"
 action_cards="for all card actions in the card carousel"
+inventory_slot=""
 
 [input]
 

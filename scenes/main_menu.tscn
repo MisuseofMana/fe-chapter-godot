@@ -1,15 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy77l7n84vcon"]
+[gd_scene load_steps=4 format=3 uid="uid://dy77l7n84vcon"]
 
 [ext_resource type="Script" uid="uid://w16uw6adiwrd" path="res://scenes/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="1_l6cm7"]
-[ext_resource type="PackedScene" uid="uid://qdopfghwbiap" path="res://scenes/scene_swap_signal.tscn" id="2_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://bek5750plg6t3" path="res://assets/ui/plus.png" id="4_wu84c"]
 
-[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("scene_swap_node")]
+[node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_ekxnf")
-scene_swap_node = NodePath("SceneSwapSignal")
-
-[node name="SceneSwapSignal" parent="." instance=ExtResource("2_bqqt6")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -30,6 +26,8 @@ grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Control/PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/CenterContainer"]
 layout_mode = 2
@@ -55,31 +53,40 @@ icon = ExtResource("4_wu84c")
 icon_alignment = 1
 
 [node name="StartButton3" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("4_wu84c")
 icon_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="StartButton1" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(45, 45)
-layout_mode = 2
-text = "New Game"
-
 [node name="StartButton2" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
-text = "New Game"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Tutorial"
+
+[node name="StartButton1" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+text = "Options"
 
 [node name="StartButton3" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
-text = "New Game"
+text = "Exit"
 
 [connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/StartButton1" to="." method="start_new_game"]
 [connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/StartButton2" to="." method="start_new_game"]
-[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/StartButton1" to="." method="start_new_game"]
-[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/StartButton2" to="." method="start_new_game"]
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/StartButton3" to="." method="start_new_game"]
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/StartButton2" to="." method="start_tutorial"]
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/StartButton1" to="." method="go_to_options"]
+[connection signal="pressed" from="Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/StartButton3" to="." method="start_new_game"]

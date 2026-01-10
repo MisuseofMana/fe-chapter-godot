@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_d0kus")
 action = 0
+action_name = "Use"
 texture = ExtResource("2_d0kus")
-effective_distance = null
 metadata/_custom_type_script = "uid://itpnpat10rwq"

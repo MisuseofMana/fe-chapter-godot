@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://dare7yonn1wad"]
+
+[ext_resource type="Theme" uid="uid://sewj1xcvscfo" path="res://theme/main_theme.tres" id="1_nim2i"]
+[ext_resource type="Script" uid="uid://dv3qke0qqo4d0" path="res://scenes/ui/inventory_screen.gd" id="2_oxpb7"]
+[ext_resource type="Texture2D" uid="uid://c4ncqikyjigco" path="res://assets/ui/full_panel.png" id="3_5m1om"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="3_dhce7"]
+[ext_resource type="Texture2D" uid="uid://beufwvw1sx1yf" path="res://assets/cards/inventory/goblin_doll.png" id="4_3ner1"]
+[ext_resource type="Resource" uid="uid://cnu3or3rc6j8j" path="res://resources/actions/items/variants/goblin_doll.tres" id="4_5idlm"]
+[ext_resource type="PackedScene" uid="uid://dedi2i3eaqh4i" path="res://scenes/ui/inventory_slot.tscn" id="5_rwj71"]
+[ext_resource type="Resource" uid="uid://crswbcrki1gf4" path="res://resources/actions/items/variants/crown.tres" id="5_ssd5d"]
+[ext_resource type="Texture2D" uid="uid://yrufd7gqk1x6" path="res://assets/ui/button_disabled.png" id="6_5idlm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0ksn"]
+texture = ExtResource("6_5idlm")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssd5d"]
+texture = ExtResource("6_5idlm")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="InventoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nim2i")
+script = ExtResource("2_oxpb7")
+inventory_items = Array[ExtResource("3_dhce7")]([ExtResource("4_5idlm"), ExtResource("5_ssd5d")])
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_g0ksn")
+
+[node name="InventoryGrid" type="GridContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/InventoryGrid" groups=["inventory_slot"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_5m1om")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/InventoryGrid/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_3ner1")
+
+[node name="TextureRect5" parent="CenterContainer/PanelContainer/InventoryGrid" instance=ExtResource("5_rwj71")]
+layout_mode = 2
+
+[node name="TextureRect6" type="TextureRect" parent="CenterContainer/PanelContainer/InventoryGrid" groups=["inventory_slot"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture = ExtResource("3_5m1om")
+
+[node name="TextureRect7" type="TextureRect" parent="CenterContainer/PanelContainer/InventoryGrid" groups=["inventory_slot"]]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture = ExtResource("3_5m1om")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -14.738693
+offset_bottom = 4.261307
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssd5d")
+text = "INV"
+
+[connection signal="pressed" from="MarginContainer/Button" to="." method="on_press_inventory_button"]

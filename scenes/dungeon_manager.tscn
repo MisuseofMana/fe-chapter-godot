@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bf6l6gw486uwb"]
+[gd_scene load_steps=27 format=3 uid="uid://bf6l6gw486uwb"]
 
 [ext_resource type="Script" uid="uid://cj08odxy6irfv" path="res://scenes/dungeon_manager.gd" id="1_3c83e"]
 [ext_resource type="Script" uid="uid://bwhbp0twq52iv" path="res://scenes/levels/level_handler.gd" id="2_5gii0"]
-[ext_resource type="PackedScene" uid="uid://qdopfghwbiap" path="res://scenes/scene_swap_signal.tscn" id="2_a2jmi"]
 [ext_resource type="PackedScene" uid="uid://cionh15eqaxdh" path="res://scenes/levels/dungeon_1/floor_1/level_1.tscn" id="3_a2jmi"]
 [ext_resource type="PackedScene" uid="uid://djqad3fs433mu" path="res://scenes/ui/space_selector.tscn" id="4_tcw08"]
 [ext_resource type="PackedScene" uid="uid://b7ffejioelqqr" path="res://actors/player.tscn" id="5_3dvl2"]
@@ -11,7 +10,9 @@
 [ext_resource type="Script" uid="uid://wejq52gql8bi" path="res://scenes/components/hud.gd" id="8_5gii0"]
 [ext_resource type="Texture2D" uid="uid://dntvuioywwfof" path="res://assets/ui/hud_container.png" id="8_ui1i4"]
 [ext_resource type="Script" uid="uid://bj030xcndthp7" path="res://scenes/components/carousel_container.gd" id="9_52l3s"]
+[ext_resource type="PackedScene" uid="uid://dare7yonn1wad" path="res://scenes/ui/inventory_screen.tscn" id="9_a2jmi"]
 [ext_resource type="PackedScene" uid="uid://8uqlohigjsfq" path="res://scenes/components/card_carousel.tscn" id="10_fd66d"]
+[ext_resource type="Script" uid="uid://b5qe5ftfbq8er" path="res://resources/actions/action_base.gd" id="10_ui1i4"]
 [ext_resource type="Texture2D" uid="uid://cbofjw8l8ga82" path="res://assets/ui/CONTROLPAD.png" id="11_inrf5"]
 [ext_resource type="Shape2D" uid="uid://cx47iowaujfmo" path="res://resources/direction_button_shape.tres.tres" id="12_otf7i"]
 [ext_resource type="Texture2D" uid="uid://gcvhqin71jpo" path="res://assets/ui/X.png" id="13_f4q3y"]
@@ -21,12 +22,12 @@
 [ext_resource type="FontFile" uid="uid://yej5vxj50iqs" path="res://assets/font/m5x7.ttf" id="17_xugbv"]
 [ext_resource type="Script" uid="uid://dnto4wx4tlg12" path="res://scenes/components/debugger.gd" id="18_ggwfs"]
 
-[sub_resource type="Gradient" id="Gradient_shnkw"]
+[sub_resource type="Gradient" id="Gradient_py7vm"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.15864289, 0.22834104, 0.27196658, 1)
+colors = PackedColorArray(0.039215688, 0.07058824, 0.09019608, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_py7vm"]
-gradient = SubResource("Gradient_shnkw")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5gii0"]
+gradient = SubResource("Gradient_py7vm")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shnkw"]
 radius = 24.0
@@ -38,11 +39,9 @@ radius = 7.0
 default_font = ExtResource("17_xugbv")
 default_font_size = 12
 
-[node name="DungeonManager" type="CanvasLayer" node_paths=PackedStringArray("scene_swap_node")]
+[node name="DungeonManager" type="CanvasLayer"]
+follow_viewport_enabled = true
 script = ExtResource("1_3c83e")
-scene_swap_node = NodePath("SceneSwapSignal")
-
-[node name="SceneSwapSignal" parent="." instance=ExtResource("2_a2jmi")]
 
 [node name="LevelHandler" type="Node2D" parent="." node_paths=PackedStringArray("level_container")]
 unique_name_in_owner = true
@@ -53,15 +52,20 @@ level_container = NodePath("LevelContainer")
 
 [node name="Level" parent="LevelHandler/LevelContainer" instance=ExtResource("3_a2jmi")]
 
-[node name="SpaceSelector" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_tcw08")]
+[node name="SpaceSelector" parent="." node_paths=PackedStringArray("player", "dungeon_manager") instance=ExtResource("4_tcw08")]
 player = NodePath("../Player")
+dungeon_manager = NodePath("..")
 
 [node name="Player" parent="." instance=ExtResource("5_3dvl2")]
 unique_name_in_owner = true
-position = Vector2(24, 56)
+position = Vector2(88, 168)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2(32, 0)
+
+[node name="Background" type="Sprite2D" parent="Player"]
+z_index = -100
+scale = Vector2(3.9999998, 2.2499998)
+texture = SubResource("GradientTexture2D_5gii0")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_k7v6l")
@@ -71,7 +75,21 @@ script = ExtResource("7_sy7ha")
 unique_name_in_owner = true
 script = ExtResource("8_5gii0")
 
+[node name="InventoryScreen" parent="HUD" instance=ExtResource("9_a2jmi")]
+inventory_items = Array[ExtResource("10_ui1i4")]([])
+
+[node name="InventoryTab" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="Control" type="Control" parent="HUD"]
+visible = false
 layout_mode = 3
 anchors_preset = 6
 anchor_left = 1.0
@@ -104,11 +122,6 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="CarouselDrawer" type="Sprite2D" parent="HUD"]
-position = Vector2(40, 128)
-scale = Vector2(0.25000006, 0.5000001)
-texture = SubResource("GradientTexture2D_py7vm")
-
 [node name="CarouselSwapButton" type="TouchScreenButton" parent="HUD"]
 position = Vector2(40, 136)
 scale = Vector2(1, 0.5751613)
@@ -125,6 +138,7 @@ position = Vector2(-2.1798269e-05, 0)
 scale = Vector2(2, 2)
 
 [node name="TouchControls" type="Node2D" parent="HUD"]
+visible = false
 position = Vector2(0, -8)
 
 [node name="Movement" type="Sprite2D" parent="HUD/TouchControls"]

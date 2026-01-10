@@ -14,6 +14,7 @@ enum COMBAT_ACTIONS {
 
 @export var action_color : Color = Color(1.0, 0.0, 0.0, 1.0)
 @export var action: COMBAT_ACTIONS = COMBAT_ACTIONS.NONE
+@export var action_name: String = "Default"
 
 func get_action() -> COMBAT_ACTIONS:
 	return action

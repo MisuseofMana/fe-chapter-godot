@@ -1,19 +1,20 @@
-extends CanvasLayer
+extends GameLayer
 class_name MainMenu
 
-@onready var load_game_button = %LoadGameButton
+#@onready var load_game_button = %LoadGameButton
 
-@export var scene_swap_node: SceneSwapSignal
-
-func _ready():
-	if has_save_file():
-		load_game_button.disabled = true
+#func _ready():
+	#if has_save_file():
+		#load_game_button.disabled = true
 
 func start_new_game():
-	scene_swap_node.swap_scene("new_game")
+	swap_scene("res://scenes/new_game.tscn")
 	
 func start_tutorial():
-	scene_swap_node.swap_scene("tutorial")
+	swap_scene("res://scenes/tutorial.tscn")
+	
+func go_to_options():
+	swap_scene("res://scenes/options.tscn")
 	
 func has_save_file() -> bool:
 	return false

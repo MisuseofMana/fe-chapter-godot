@@ -43,6 +43,7 @@ func recalculate_card_properties(behavior : String) -> void:
 		
 		if index_in_tree == 0:
 			focused_card = path
+			path.flash_hint_label()
 		
 		var progress_ratio : float
 		
@@ -121,3 +122,6 @@ func hide_carousel():
 	anims.play_backwards("toggle_carousel")
 	handle_card_animation(false)
 	cycling_locked = true
+
+func show_action_hint():
+	pass

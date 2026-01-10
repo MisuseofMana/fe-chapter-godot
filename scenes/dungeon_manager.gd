@@ -1,11 +1,9 @@
-extends CanvasLayer
+extends GameLayer
 class_name DungeonManager
 
 @onready var level_handler: LevelHandler = %LevelHandler
 @onready var hud: CanvasLayer = %HUD
 @onready var player: Player = %Player
-
-@export var scene_swap_node: SceneSwapSignal
 
 var input_locked : bool = false
 
